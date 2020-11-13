@@ -12,7 +12,7 @@ public class Borrowed_book extends Member{
     public static Statement statement = null;
     public static ResultSet resultSet = null;
     public static String url = "jdbc:mysql://localhost:3306/library";
-    public static String user = "root",pass = "!KdHwE@WRUAU#uon$2";
+    public static String user = "root",pass = DBVars.DBPassword;
     public Connection connect = DriverManager.getConnection(url,user,pass);
 
     public Borrowed_book(String user_ID, String book_ID) throws SQLException{
