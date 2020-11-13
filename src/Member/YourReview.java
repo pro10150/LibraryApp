@@ -288,7 +288,7 @@ try {
     }//GEN-LAST:event_searchFieldKeyPressed
 
     private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
-        YourReview mp = new YourReview();
+        MemberPage mp = new MemberPage();
         mp.setVisible(true);
         setVisible(false);
         dispose();
