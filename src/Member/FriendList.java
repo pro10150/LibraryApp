@@ -443,8 +443,8 @@ try {
     }//GEN-LAST:event_logoActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        Main menu = new Main();
-        menu.setVisible(true);
+        MemberPage mp = new MemberPage();
+        mp.setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_backActionPerformed

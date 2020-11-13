@@ -18,7 +18,6 @@ public class YourReview extends javax.swing.JFrame {
         try{
             Member member = new Member(UIVars.userID);
         
-            theirReview.setText("Your Review");
         }catch (Exception e){System.out.println(e);}
     }
 
@@ -132,7 +131,7 @@ public class YourReview extends javax.swing.JFrame {
 
         theirReview.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         theirReview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        theirReview.setText("Name's Reviews");
+        theirReview.setText("Your Reviews");
 
         bookReview1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReview1.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
@@ -306,7 +305,10 @@ try {
     }//GEN-LAST:event_bookReview1ActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
-        // TODO add your handling code here:
+        MemberPage mp = new MemberPage();
+        mp.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_back1ActionPerformed
 
     private void bookReview2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReview2ActionPerformed

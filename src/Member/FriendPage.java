@@ -268,7 +268,7 @@ try {
     }//GEN-LAST:event_searchFieldKeyPressed
 
     private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
-        FriendPage mp = new FriendPage();
+        MemberPage mp = new MemberPage();
         mp.setVisible(true);
         setVisible(false);
         dispose();
@@ -294,7 +294,10 @@ try {
     }//GEN-LAST:event_bookReview3ActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
-        // TODO add your handling code here:
+        FriendList fl = new FriendList();
+        fl.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_back1ActionPerformed
 
     public static void main(String args[]) {

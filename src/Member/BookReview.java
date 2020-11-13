@@ -8,39 +8,46 @@ import java.awt.event.KeyEvent;
  *
  * @author Annop Boonlieng
  */
-public class BookPage extends javax.swing.JFrame {
+public class BookReview extends javax.swing.JFrame {
 
     public String bookNameLink;
+    public int ratingStars;
     
-    public BookPage() {
+    public BookReview() {
         initComponents();
     }
-    public BookPage(String bookName) {
+    public BookReview(String bookName) {
         initComponents();
         
         bookNameLink = bookName;
         
-        this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
+        this.bookImage.setText("<html>"+bookName+"</html>");
         try{
             PhysicalBook book = new PhysicalBook(bookName);
-            this.typeAndAuthor.setText("Type: " + book.getType() 
-                    + " /  Author: " + book.getAuthor());
-            this.numberLeft.setText("Remaining: " + book.getRemaining());
-            this.rate.setText("Rating: [WIP]");
+            this.AuthorName.setText(book.getAuthor());
         }catch (Exception e){System.out.println(e);}
         
     }
     
-    public void gotoBookPageExtra(String bookName) {
-        if (!bookName.equals("-")) {
-            BookPageExtra bp = new BookPageExtra(bookName);
-            bp.setVisible(true);
-            setVisible(false);
-            dispose();
-        }
-        else {
-            System.out.println("Empty book.");    
-        }
+    
+    public void updateStars() {
+        star1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        if (ratingStars >= 2)
+            star2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        else
+            star2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
+        if (ratingStars >= 3)
+            star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        else
+            star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
+        if (ratingStars >= 4)
+            star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        else
+            star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
+        if (ratingStars == 5)
+            star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        else
+            star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
     }
 
     @SuppressWarnings("unchecked")
@@ -58,15 +65,18 @@ public class BookPage extends javax.swing.JFrame {
         logo = new javax.swing.JButton();
         backGround = new javax.swing.JPanel();
         backLine = new javax.swing.JLabel();
-        bookImage = new javax.swing.JButton();
         back = new javax.swing.JButton();
-        bookName = new javax.swing.JLabel();
-        typeAndAuthor = new javax.swing.JLabel();
-        numberLeft = new javax.swing.JLabel();
-        rate = new javax.swing.JLabel();
-        reviewButton = new javax.swing.JButton();
-        favouriteButton = new javax.swing.JButton();
-        moreButton = new javax.swing.JButton();
+        sendReview = new javax.swing.JButton();
+        bookImage = new javax.swing.JButton();
+        AuthorName = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        star1 = new javax.swing.JButton();
+        star2 = new javax.swing.JButton();
+        star3 = new javax.swing.JButton();
+        star4 = new javax.swing.JButton();
+        star5 = new javax.swing.JButton();
+        descLabel = new javax.swing.JLabel();
+        reviewTextField = new javax.swing.JTextField();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -167,13 +177,6 @@ public class BookPage extends javax.swing.JFrame {
         backLine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         backLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backLine.png"))); // NOI18N
 
-        bookImage.setText("BOOK");
-        bookImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookImageActionPerformed(evt);
-            }
-        });
-
         back.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         back.setText("<< Back");
         back.setBorderPainted(false);
@@ -184,39 +187,118 @@ public class BookPage extends javax.swing.JFrame {
             }
         });
 
-        bookName.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        bookName.setText("<html>[Book Name] XX XXXX XXX XX X X X  X X XXXXXX X X XXX X XX X XXXXXXXX</html>");
-        bookName.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        typeAndAuthor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        typeAndAuthor.setText("[Type] + [Author]");
-
-        numberLeft.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        numberLeft.setText("[Left]");
-
-        rate.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        rate.setText("[Rate]");
-
-        reviewButton.setText("Review");
-        reviewButton.addActionListener(new java.awt.event.ActionListener() {
+        sendReview.setText("Submit");
+        sendReview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reviewButtonActionPerformed(evt);
+                sendReviewActionPerformed(evt);
             }
         });
 
-        favouriteButton.setText("Add to Favourite");
-        favouriteButton.addActionListener(new java.awt.event.ActionListener() {
+        bookImage.setText("BOOK");
+        bookImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                favouriteButtonActionPerformed(evt);
+                bookImageActionPerformed(evt);
             }
         });
 
-        moreButton.setText("More Info");
-        moreButton.addActionListener(new java.awt.event.ActionListener() {
+        AuthorName.setBackground(new java.awt.Color(102, 102, 102));
+        AuthorName.setForeground(new java.awt.Color(255, 255, 255));
+        AuthorName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AuthorName.setText("[Type] + [Author]");
+        AuthorName.setOpaque(true);
+
+        jPanel1.setBackground(new java.awt.Color(195, 172, 148));
+
+        star1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star1.setContentAreaFilled(false);
+        star1.setOpaque(false);
+        star1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                moreButtonActionPerformed(evt);
+                star1ActionPerformed(evt);
             }
         });
+
+        star2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star2.setContentAreaFilled(false);
+        star2.setOpaque(false);
+        star2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                star2ActionPerformed(evt);
+            }
+        });
+
+        star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star3.setContentAreaFilled(false);
+        star3.setOpaque(false);
+        star3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                star3ActionPerformed(evt);
+            }
+        });
+
+        star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star4.setContentAreaFilled(false);
+        star4.setOpaque(false);
+        star4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                star4ActionPerformed(evt);
+            }
+        });
+
+        star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star5.setContentAreaFilled(false);
+        star5.setOpaque(false);
+        star5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                star5ActionPerformed(evt);
+            }
+        });
+
+        descLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        descLabel.setForeground(new java.awt.Color(255, 255, 255));
+        descLabel.setText("Desc:");
+
+        reviewTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        reviewTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(star1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(star2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(star3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(334, 334, 334))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(reviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(descLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(star1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(star2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(star3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reviewTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
@@ -230,60 +312,39 @@ public class BookPage extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numberLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addGap(427, 427, 427)
+                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sendReview, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35))
         );
         backGroundLayout.setVerticalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backGroundLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(numberLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(AuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(sendReview, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(backGround, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(topPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(topPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,31 +372,24 @@ public class BookPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_notifButtonActionPerformed
 
-    private void reviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewButtonActionPerformed
-        BookReview br = new BookReview(bookNameLink);
-        br.setVisible(true);
-        setVisible(false);
-        dispose();
-    }//GEN-LAST:event_reviewButtonActionPerformed
-
-    private void favouriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favouriteButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_favouriteButtonActionPerformed
-
-    private void moreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreButtonActionPerformed
-        gotoBookPageExtra(bookNameLink);
-    }//GEN-LAST:event_moreButtonActionPerformed
-
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+    private void sendReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendReviewActionPerformed
+        String review = reviewTextField.getText();
+        
+        System.out.println(review);
+        // Do some review sending thing
+        JOptionPane.showMessageDialog(null, "Review sent.");
         Main menu = new Main();
         menu.setVisible(true);
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_backActionPerformed
+    }//GEN-LAST:event_sendReviewActionPerformed
 
-    private void bookImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookImageActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookImageActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        BookPage menu = new BookPage(bookNameLink);
+        menu.setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
 
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
         String x = searchField.getText();     
@@ -343,7 +397,7 @@ public class BookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldMouseClicked
 
     private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
-try {
+    try {
             if(evt.getKeyCode()==KeyEvent.VK_ENTER) {
                 String query = searchField.getText();
                 if (!query.equals("")) {
@@ -366,6 +420,35 @@ try {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_logoActionPerformed
+
+    private void bookImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookImageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookImageActionPerformed
+
+    private void star1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star1ActionPerformed
+        ratingStars = 1;
+        updateStars();
+    }//GEN-LAST:event_star1ActionPerformed
+
+    private void star2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star2ActionPerformed
+        ratingStars = 2;
+        updateStars();
+    }//GEN-LAST:event_star2ActionPerformed
+
+    private void star3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star3ActionPerformed
+        ratingStars = 3;
+        updateStars();
+    }//GEN-LAST:event_star3ActionPerformed
+
+    private void star4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star4ActionPerformed
+        ratingStars = 4;
+        updateStars();
+    }//GEN-LAST:event_star4ActionPerformed
+
+    private void star5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star5ActionPerformed
+        ratingStars = 5;
+        updateStars();
+    }//GEN-LAST:event_star5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -403,25 +486,28 @@ try {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AuthorName;
     private javax.swing.JButton accountButton;
     private javax.swing.JButton back;
     private javax.swing.JPanel backGround;
     private javax.swing.JLabel backLine;
     private javax.swing.JButton bookImage;
-    private javax.swing.JLabel bookName;
-    private javax.swing.JButton favouriteButton;
+    private javax.swing.JLabel descLabel;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton logo;
-    private javax.swing.JButton moreButton;
     private javax.swing.JButton notifButton;
-    private javax.swing.JLabel numberLeft;
-    private javax.swing.JLabel rate;
-    private javax.swing.JButton reviewButton;
+    private javax.swing.JTextField reviewTextField;
     private javax.swing.JTextField searchField;
+    private javax.swing.JButton sendReview;
+    private javax.swing.JButton star1;
+    private javax.swing.JButton star2;
+    private javax.swing.JButton star3;
+    private javax.swing.JButton star4;
+    private javax.swing.JButton star5;
     private javax.swing.JPanel topPanel;
-    private javax.swing.JLabel typeAndAuthor;
     // End of variables declaration//GEN-END:variables
 }

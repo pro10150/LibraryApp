@@ -298,15 +298,24 @@ try {
     }//GEN-LAST:event_accountButton1ActionPerformed
 
     private void findFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findFriendButtonActionPerformed
-        // X
+        FriendList newui = new FriendList();
+        newui.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_findFriendButtonActionPerformed
 
     private void bookReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReviewButtonActionPerformed
-        // TODO add your handling code here:
+        YourReview newui = new YourReview();
+        newui.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_bookReviewButtonActionPerformed
 
     private void yourFeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yourFeeButtonActionPerformed
-        // TODO add your handling code here:
+        YourFee newui = new YourFee();
+        newui.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_yourFeeButtonActionPerformed
 
     private void rewardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rewardButtonActionPerformed

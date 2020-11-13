@@ -306,7 +306,10 @@ try {
     }//GEN-LAST:event_bookReview1ActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
-        // TODO add your handling code here:
+        FriendPage fp = new FriendPage();
+        fp.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_back1ActionPerformed
 
     private void bookReview2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReview2ActionPerformed

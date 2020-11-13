@@ -17,8 +17,15 @@ public class YourFee extends javax.swing.JFrame {
 
         try{
             Member member = new Member(UIVars.userID);
-        
-            feefont.setText("Your Review");
+            int fee = member.getFee();
+            if (fee > 0) {
+                label1.setText("You have fee of" + fee + "baht left.");
+            }
+            else {
+                label1.setText("Well done!");
+                label2.setText("You have no fee left.");
+            }
+            
         }catch (Exception e){System.out.println(e);}
     }
 
@@ -133,6 +140,7 @@ public class YourFee extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label1.setText("You have fee of [XXXX] baht left.");
+        label1.setToolTipText("");
 
         label2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         label2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -237,7 +245,10 @@ try {
     }//GEN-LAST:event_logoActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
-        // TODO add your handling code here:
+        MemberPage mp = new MemberPage();
+        mp.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_back1ActionPerformed
 
     public static void main(String args[]) {
