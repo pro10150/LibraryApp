@@ -1,5 +1,9 @@
 package librarian;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class borrowedpage extends javax.swing.JFrame {
 
     /**
@@ -34,6 +38,11 @@ public class borrowedpage extends javax.swing.JFrame {
         Icon.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         Icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LibraryLogo.png"))); // NOI18N
+        Icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IconMouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Borrowed info");
@@ -89,6 +98,19 @@ public class borrowedpage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IconMouseClicked
+        librarian_profile profile = null;
+        try {
+            // TODO add your handling code here:
+            profile = new librarian_profile();
+        } catch (SQLException ex) {
+            Logger.getLogger(borrowedpage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        profile.setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_IconMouseClicked
 
     /**
      * @param args the command line arguments

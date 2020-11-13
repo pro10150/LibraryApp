@@ -573,50 +573,59 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
     }//GEN-LAST:event_logoActionPerformed
 
     private void Delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete1ActionPerformed
-        PhysicalBook book = null;
-        try {
-            // TODO add your handling code here:
-            book = new PhysicalBook(bookID1);
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
+        int input = JOptionPane.showConfirmDialog(null, "Do you want to remove the book?", "Confirmation",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (input == 0) { // Yes
+            PhysicalBook book = null;
+            try {
+                // TODO add your handling code here:
+                book = new PhysicalBook(bookID1);
+            } catch (SQLException ex) {
+                Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                book.deletePhysicalBook();
+            } catch (SQLException ex) {
+                Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            JOptionPane.showMessageDialog(null, "Done");
+            findpage fp = new findpage();
+            fp.setVisible(true);
+            setVisible(false);
+            dispose();
         }
-        try {
-            book.deletePhysicalBook();
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        JOptionPane.showMessageDialog(null, "Done");
-        findpage fp = new findpage();
-        fp.setVisible(true);
-        setVisible(false);
-        dispose();
     }//GEN-LAST:event_Delete1ActionPerformed
 
     private void Delete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete2ActionPerformed
-        // TODO add your handling code here:
-        PhysicalBook book = null;
-        try {
-            // TODO add your handling code here:
-            book = new PhysicalBook(bookID2);
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
+        int input = JOptionPane.showConfirmDialog(null, "Do you want to remove the book?", "Confirmation",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (input == 0) { // Yes
+            PhysicalBook book = null;
+            try {
+                // TODO add your handling code here:
+                book = new PhysicalBook(bookID2);
+            } catch (SQLException ex) {
+                Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                book.deletePhysicalBook();
+            } catch (SQLException ex) {
+                Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            JOptionPane.showMessageDialog(null, "Done");
+            findpage fp = new findpage();
+            fp.setVisible(true);
+            setVisible(false);
+            dispose();
         }
-        try {
-            book.deletePhysicalBook();
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        JOptionPane.showMessageDialog(null, "Done");
-        findpage fp = new findpage();
-        fp.setVisible(true);
-        setVisible(false);
-        dispose();
     }//GEN-LAST:event_Delete2ActionPerformed
 
     private void Delete3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete3ActionPerformed
-        // TODO add your handling code here:
+        int input = JOptionPane.showConfirmDialog(null, "Do you want to remove the book?", "Confirmation",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (input == 0) { // Yes {
         PhysicalBook book = null;
         try {
             // TODO add your handling code here:
@@ -636,6 +645,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         fp.setVisible(true);
         setVisible(false);
         dispose();
+        }
     }//GEN-LAST:event_Delete3ActionPerformed
 
     public static void main(String args[]) {

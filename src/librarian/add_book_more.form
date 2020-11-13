@@ -206,7 +206,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="yearTextField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="year"/>
+            <Property name="text" type="java.lang.String" value="Year"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="yearTextFieldMouseClicked"/>
@@ -215,7 +215,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="authorTextField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="author"/>
+            <Property name="text" type="java.lang.String" value="Author"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="authorTextFieldMouseClicked"/>

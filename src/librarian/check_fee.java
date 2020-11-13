@@ -1,5 +1,9 @@
 package librarian;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class check_fee extends javax.swing.JFrame {
 
     /**
@@ -43,6 +47,11 @@ public class check_fee extends javax.swing.JFrame {
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LibraryLogoSmall_1.png"))); // NOI18N
+        logo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoMouseClicked(evt);
+            }
+        });
         topPanel.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, -1, -1));
         topPanel.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 150, 30));
 
@@ -176,8 +185,30 @@ public class check_fee extends javax.swing.JFrame {
     }//GEN-LAST:event_notifActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        librarian_profile profile = null;
+        try {
+            // TODO add your handling code here:
+            profile = new librarian_profile();
+        } catch (SQLException ex) {
+            Logger.getLogger(check_fee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        profile.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
+        librarian_profile profile = null;
+        try {
+            // TODO add your handling code here:
+            profile = new librarian_profile();
+        } catch (SQLException ex) {
+            Logger.getLogger(check_fee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        profile.setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_logoMouseClicked
 
     /**
      * @param args the command line arguments

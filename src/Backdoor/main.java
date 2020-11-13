@@ -3,9 +3,14 @@ import java.sql.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class main {
     public static void main(String[] args) throws SQLException{
+        
+        int input = JOptionPane.showConfirmDialog(null, "Do you want to remove the book?", "Confirmation",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            System.out.println("X = " + input);
         
         int pageCap = (int)Math.ceil(10 / 3.0);
         System.out.println(pageCap);

@@ -273,7 +273,16 @@ public class add_book extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        librarian_profile profile = null;
+        try {
+            // TODO add your handling code here:
+            profile = new librarian_profile();
+        } catch (SQLException ex) {
+            Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        profile.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -347,7 +356,7 @@ public class add_book extends javax.swing.JFrame {
         serial = (int)(Double.parseDouble(serialTextField.getText()));
         remaining = (int)(Double.parseDouble(remainingTextField.getText()));
         try {
-            PhysicalBook physicalBook = new PhysicalBook(book_ID,name,type,section,serial,remaining);
+            Book physicalBook = new PhysicalBook(book_ID,name,type,section,serial,remaining);
         } catch (SQLException ex) {
             Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -366,7 +375,7 @@ public class add_book extends javax.swing.JFrame {
         serial = (int)(Double.parseDouble(serialTextField.getText()));
         remaining = (int)(Double.parseDouble(remainingTextField.getText()));
         try {
-            PhysicalBook physicalBook = new PhysicalBook(book_ID,name,type,section,serial,remaining);
+            Book physicalBook = new PhysicalBook(book_ID,name,type,section,serial,remaining);
         } catch (SQLException ex) {
             Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
         }

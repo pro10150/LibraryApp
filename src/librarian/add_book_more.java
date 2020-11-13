@@ -100,7 +100,7 @@ public class add_book_more extends javax.swing.JFrame {
             }
         });
 
-        yearTextField.setText("year");
+        yearTextField.setText("Year");
         yearTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 yearTextFieldMouseClicked(evt);
@@ -112,7 +112,7 @@ public class add_book_more extends javax.swing.JFrame {
             }
         });
 
-        authorTextField.setText("author");
+        authorTextField.setText("Author");
         authorTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 authorTextFieldMouseClicked(evt);
@@ -224,7 +224,7 @@ public class add_book_more extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -234,7 +234,16 @@ public class add_book_more extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        librarian_profile profile = null;
+        try {
+            // TODO add your handling code here:
+            profile = new librarian_profile();
+        } catch (SQLException ex) {
+            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        profile.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void yearTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearTextFieldActionPerformed
