@@ -6,7 +6,13 @@ import Member.*;
 public class LibrarianUIVars {
     public static String conName = "jdbc:mysql://localhost:3306/library";
     public static String dbUsername = "root";
+    //Por's Passoword
     public String dbPassword = "@Pro3083711"; // Not needed.
+    //Job's Password
+    //public String dbPassword = "";
+    
+    //Arm's Password
+    //public String dbPassword = "";
     
     public static String userID;
     

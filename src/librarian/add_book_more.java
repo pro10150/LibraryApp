@@ -142,6 +142,7 @@ public class add_book_more extends javax.swing.JFrame {
         });
 
         descriptionTextField.setText("Description");
+        descriptionTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         descriptionTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 descriptionTextFieldMouseClicked(evt);
