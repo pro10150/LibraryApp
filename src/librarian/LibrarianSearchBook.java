@@ -3,19 +3,11 @@ package librarian;
 import Backdoor.*;
 import Member.BookPage;
 import Member.LoginScreen;
-import Member.Main;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*; 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import librarian.findpage;
-import librarian.librarian_profile;
-
-/**
- *
- * @author Annop Boonlieng
- */
 
 public class LibrarianSearchBook extends javax.swing.JFrame {
         
