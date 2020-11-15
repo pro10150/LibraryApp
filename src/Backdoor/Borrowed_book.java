@@ -11,7 +11,7 @@ public class Borrowed_book extends Member{
     private Date startDate;
     private Date returnDate;
     private boolean lateCheck;
-    private boolean isBorrow = false;
+    private boolean isBorrow;
 
     public Borrowed_book(String user_ID) throws SQLException{
         this.user_ID = user_ID;
@@ -75,8 +75,6 @@ public class Borrowed_book extends Member{
 
         else if (due - todayDate < 0) late_check = true;
 
-        this.lateCheck = late_check;
-
         /*String query = "UPDATE borrowed_book SET return_date = " + startDate + ",late_check = " + late_check +
                 " WHERE user_ID = " + this.user_ID + " AND book_ID = " + this.book_ID + " AND due_date = " + this.dueDate;
         PreparedStatement preparedStatement = connect.prepareStatement(query);
@@ -85,7 +83,7 @@ public class Borrowed_book extends Member{
                 "AND due_date = ?";
         PreparedStatement preparedStatement = connect.prepareStatement(query);
         preparedStatement.setDate(1,this.returnDate);
-        preparedStatement.setBoolean(2,this.lateCheck);
+        preparedStatement.setBoolean(2,late_check);
         preparedStatement.setString(3,this.user_ID);
         preparedStatement.setString(4,this.book_ID);
         preparedStatement.setDate(5,this.dueDate);
@@ -106,10 +104,6 @@ public class Borrowed_book extends Member{
 
     public boolean getLateCheck(){
         return lateCheck;
-    }
-    
-    public boolean getIsBorrow(){
-        return isBorrow;
     }
 
     public String toString(){

@@ -224,7 +224,7 @@ public class LoginScreen extends javax.swing.JFrame {
                             UIVars.userID = userId;
                             librarian_profile menu = new librarian_profile();
                             menu.setVisible(true);
-                            //setVisible(false);
+                            setVisible(false);
                             dispose();
                         }
                        else {

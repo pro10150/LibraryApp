@@ -48,16 +48,6 @@ public class UserPickBook extends Member {
         preparedStatement.execute();
     }
 
-    public void deleteUserPickBook(String user_ID, String book_ID) throws SQLException{
-        this.user_ID = user_ID;
-        this.book_ID = book_ID;
-        String query = "DELETE FROM user_pick_book WHERE user_ID = ? AND book_ID = ?";
-        PreparedStatement preparedStatement = connect.prepareStatement(query);
-        preparedStatement.setString(1,user_ID);
-        preparedStatement.setString(2,book_ID);
-        preparedStatement.execute();
-    }
-
     public ArrayList getBookIDList(){
         return bookIDList;
     }
