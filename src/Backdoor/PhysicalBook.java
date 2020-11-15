@@ -6,7 +6,7 @@ import java.util.*;
 
 
 
-public class PhysicalBook extends Book{
+public class PhysicalBook extends Book implements Update{
     private String section;
     private int serial;
     private int remaining;
