@@ -64,8 +64,13 @@ public class ReservedBook extends Member {
     }
 
     public void deleteRequest(String user_ID, String book_ID, Date requestDate) throws SQLException{
-        String query = "DELETE FROM reserved_book WHERE book_ID = ? AND user_ID = ? AND request_ID = ?";
+        //this.requestDate = requestDate;
+        String query = "DELETE FROM reserved_book WHERE user_ID = ? AND book_ID = ? AND request_date = ?";
         PreparedStatement preparedStatement = connect.prepareStatement(query);
+        preparedStatement.setString(1,user_ID);
+        preparedStatement.setString(2,book_ID);
+        preparedStatement.setDate(3,requestDate);
+        preparedStatement.execute();
     }
 
     public Date getRequestDate(){

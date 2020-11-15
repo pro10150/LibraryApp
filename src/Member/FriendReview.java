@@ -134,6 +134,7 @@ public class FriendReview extends javax.swing.JFrame {
         theirReview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         theirReview.setText("Name's Reviews");
 
+        bookReview1.setBackground(new java.awt.Color(195, 172, 148));
         bookReview1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReview1.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
         bookReview1.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +143,7 @@ public class FriendReview extends javax.swing.JFrame {
             }
         });
 
+        bookReview2.setBackground(new java.awt.Color(195, 172, 148));
         bookReview2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReview2.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
         bookReview2.addActionListener(new java.awt.event.ActionListener() {
@@ -150,6 +152,7 @@ public class FriendReview extends javax.swing.JFrame {
             }
         });
 
+        bookReview3.setBackground(new java.awt.Color(195, 172, 148));
         bookReview3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReview3.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
         bookReview3.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +161,7 @@ public class FriendReview extends javax.swing.JFrame {
             }
         });
 
+        bookReview4.setBackground(new java.awt.Color(195, 172, 148));
         bookReview4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReview4.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
         bookReview4.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +170,7 @@ public class FriendReview extends javax.swing.JFrame {
             }
         });
 
+        bookReview5.setBackground(new java.awt.Color(195, 172, 148));
         bookReview5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReview5.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
         bookReview5.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +179,7 @@ public class FriendReview extends javax.swing.JFrame {
             }
         });
 
+        bookReview6.setBackground(new java.awt.Color(195, 172, 148));
         bookReview6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReview6.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
         bookReview6.addActionListener(new java.awt.event.ActionListener() {

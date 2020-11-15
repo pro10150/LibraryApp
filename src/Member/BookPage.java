@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import Backdoor.*;
 
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 /**
  *
@@ -13,23 +14,34 @@ public class BookPage extends javax.swing.JFrame {
 
     public String bookNameLink;
     PhysicalBook book;
+    boolean favoriteFlag = false;
     
     public BookPage() {
         initComponents();
     }
-    public BookPage(String bookName) {
+    public BookPage(String bookName){
         initComponents();
         
         bookNameLink = bookName;
         
-        
         this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
         try{
+            // Update Book
             book = new PhysicalBook(bookName);
             this.typeAndAuthor.setText("Type: " + book.getType() 
                     + " /  Author: " + book.getAuthor());
             this.numberLeft.setText("Remaining: " + book.getRemaining());
             this.rate.setText("Rating: [WIP]");
+            // Favorite
+            UserPickBook oldFav = new UserPickBook(UIVars.userID);
+            ArrayList bookList = oldFav.getBookIDList();
+            for (int i = 0 ; i < bookList.size() ; i++) {
+                // System.out.println(bookList.get(i) + book.getBookID());
+                if (bookList.get(i).equals(book.getBookID())) {
+                    favoriteFlag = true;
+                    updateFavButton();
+                }
+            }
         }catch (Exception e){System.out.println(e);}
         
     }
@@ -43,6 +55,15 @@ public class BookPage extends javax.swing.JFrame {
         }
         else {
             System.out.println("Empty book.");    
+        }
+    }
+    
+    public void updateFavButton() {
+        if (favoriteFlag == true) {
+            favouriteButton.setText("Remove from favourite");
+        }
+        else {
+            favouriteButton.setText("Add to favourite");
         }
     }
 
@@ -322,21 +343,19 @@ public class BookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_reviewButtonActionPerformed
 
     private void favouriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favouriteButtonActionPerformed
-        int flag = 0;
         try {
-            UserPickBook oldFav = new UserPickBook(UIVars.userID);
-            ArrayList bookList = oldFav.getBookIDList();
-            for (int i = 0 ; i < bookList.size() ; i++) {
-                // System.out.println(bookList.get(i) + book.getBookID());
-                if (bookList.get(i).equals(book.getBookID())) {
-                    JOptionPane.showMessageDialog(null, "You already favorited this book.",
-                            "Library", JOptionPane.INFORMATION_MESSAGE);
-                    flag = 1;
-                }
-            }
-            if (flag == 0) {
+            if (favoriteFlag == false) {
                UserPickBook fav = new UserPickBook(UIVars.userID, book.getBookID());
                JOptionPane.showMessageDialog(null, "Success.", "Library", JOptionPane.INFORMATION_MESSAGE);
+               favoriteFlag = true;
+               updateFavButton();
+            }
+            else {
+                UserPickBook fav = new UserPickBook(UIVars.userID);
+                fav.deleteUserPickBook(UIVars.userID, book.getBookID());
+                JOptionPane.showMessageDialog(null, "Removed from favorite.", "Library", JOptionPane.INFORMATION_MESSAGE);
+                favoriteFlag = false;
+                updateFavButton();
             }
         }
         catch (Exception e){System.out.println(e);}
@@ -363,7 +382,7 @@ public class BookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldMouseClicked
 
     private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
-try {
+    try {
             if(evt.getKeyCode()==KeyEvent.VK_ENTER) {
                 String query = searchField.getText();
                 if (!query.equals("")) {

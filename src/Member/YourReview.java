@@ -38,12 +38,9 @@ public class YourReview extends javax.swing.JFrame {
         backLine = new javax.swing.JLabel();
         back1 = new javax.swing.JButton();
         theirReview = new javax.swing.JLabel();
-        bookReview1 = new javax.swing.JButton();
-        bookReview2 = new javax.swing.JButton();
-        bookReview3 = new javax.swing.JButton();
-        bookReview4 = new javax.swing.JButton();
-        bookReview5 = new javax.swing.JButton();
-        bookReview6 = new javax.swing.JButton();
+        noReview = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -133,74 +130,22 @@ public class YourReview extends javax.swing.JFrame {
         theirReview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         theirReview.setText("Your Reviews");
 
-        bookReview1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        bookReview1.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
-        bookReview1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookReview1ActionPerformed(evt);
-            }
-        });
+        noReview.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        noReview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        noReview.setText("You don't have any reviews.");
 
-        bookReview2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        bookReview2.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
-        bookReview2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookReview2ActionPerformed(evt);
-            }
+        jList1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
-
-        bookReview3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        bookReview3.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
-        bookReview3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookReview3ActionPerformed(evt);
-            }
-        });
-
-        bookReview4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        bookReview4.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
-        bookReview4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookReview4ActionPerformed(evt);
-            }
-        });
-
-        bookReview5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        bookReview5.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
-        bookReview5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookReview5ActionPerformed(evt);
-            }
-        });
-
-        bookReview6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        bookReview6.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
-        bookReview6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookReview6ActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
         backGroundLayout.setHorizontalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addComponent(bookReview3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bookReview4, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addComponent(bookReview1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bookReview2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addComponent(bookReview5, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bookReview6, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(95, 95, 95))
             .addGroup(backGroundLayout.createSequentialGroup()
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backGroundLayout.createSequentialGroup()
@@ -210,7 +155,10 @@ public class YourReview extends javax.swing.JFrame {
                         .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addGap(107, 107, 107)
-                        .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         backGroundLayout.setVerticalGroup(
@@ -222,19 +170,11 @@ public class YourReview extends javax.swing.JFrame {
                     .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bookReview1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookReview2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bookReview3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookReview4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bookReview5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookReview6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(86, 86, 86))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -300,36 +240,12 @@ try {
         dispose();
     }//GEN-LAST:event_logoActionPerformed
 
-    private void bookReview1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReview1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookReview1ActionPerformed
-
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
         MemberPage mp = new MemberPage();
         mp.setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_back1ActionPerformed
-
-    private void bookReview2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReview2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookReview2ActionPerformed
-
-    private void bookReview3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReview3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookReview3ActionPerformed
-
-    private void bookReview4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReview4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookReview4ActionPerformed
-
-    private void bookReview5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReview5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookReview5ActionPerformed
-
-    private void bookReview6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReview6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookReview6ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -368,17 +284,14 @@ try {
     private javax.swing.JButton back1;
     private javax.swing.JPanel backGround;
     private javax.swing.JLabel backLine;
-    private javax.swing.JButton bookReview1;
-    private javax.swing.JButton bookReview2;
-    private javax.swing.JButton bookReview3;
-    private javax.swing.JButton bookReview4;
-    private javax.swing.JButton bookReview5;
-    private javax.swing.JButton bookReview6;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logo;
+    private javax.swing.JLabel noReview;
     private javax.swing.JButton notifButton;
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel theirReview;

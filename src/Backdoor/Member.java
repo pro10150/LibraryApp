@@ -10,9 +10,9 @@ public class Member extends User {
 
     public static Statement statement = null;
     public static ResultSet resultSet = null;
-    private static String url = "jdbc:mysql://localhost:3306/library";
-    private static String user = "root",pass = DBVars.DBPassword;
-    protected Connection connect = DriverManager.getConnection(url,user,pass);
+    public static String url = "jdbc:mysql://localhost:3306/library";
+    public static String user = "root",pass = DBVars.DBPassword;
+    public Connection connect = DriverManager.getConnection(url,user,pass);
 
 
 
