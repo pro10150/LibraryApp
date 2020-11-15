@@ -12,7 +12,7 @@ public class Member extends User {
     public static ResultSet resultSet = null;
     private static String url = "jdbc:mysql://localhost:3306/library";
     private static String user = "root",pass = DBVars.DBPassword;
-    private Connection connect = DriverManager.getConnection(url,user,pass);
+    protected Connection connect = DriverManager.getConnection(url,user,pass);
 
 
 

@@ -8,9 +8,17 @@ import javax.swing.JOptionPane;
 public class main {
     public static void main(String[] args) throws SQLException{
         
-        int input = JOptionPane.showConfirmDialog(null, "Do you want to remove the book?", "Confirmation",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            System.out.println("X = " + input);
+        UserPickBook fav = new UserPickBook("1234");
+        ArrayList bookList = fav.getBookIDList();
+        System.out.println(bookList.get(1));
+        
+        Object X = bookList.get(1);
+        String Y = X.toString();
+        System.out.println(Y);
+        
+        //int input = JOptionPane.showConfirmDialog(null, "Do you want to remove the book?", "Confirmation",
+        //        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        //    System.out.println("X = " + input);
         
         int pageCap = (int)Math.ceil(10 / 3.0);
         System.out.println(pageCap);

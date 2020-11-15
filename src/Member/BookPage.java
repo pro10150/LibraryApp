@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import Backdoor.*;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 /**
  *
  * @author Annop Boonlieng
@@ -11,6 +12,7 @@ import java.awt.event.KeyEvent;
 public class BookPage extends javax.swing.JFrame {
 
     public String bookNameLink;
+    PhysicalBook book;
     
     public BookPage() {
         initComponents();
@@ -20,9 +22,10 @@ public class BookPage extends javax.swing.JFrame {
         
         bookNameLink = bookName;
         
+        
         this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
         try{
-            PhysicalBook book = new PhysicalBook(bookName);
+            book = new PhysicalBook(bookName);
             this.typeAndAuthor.setText("Type: " + book.getType() 
                     + " /  Author: " + book.getAuthor());
             this.numberLeft.setText("Remaining: " + book.getRemaining());
@@ -319,7 +322,24 @@ public class BookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_reviewButtonActionPerformed
 
     private void favouriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favouriteButtonActionPerformed
-        // TODO add your handling code here:
+        int flag = 0;
+        try {
+            UserPickBook oldFav = new UserPickBook(UIVars.userID);
+            ArrayList bookList = oldFav.getBookIDList();
+            for (int i = 0 ; i < bookList.size() ; i++) {
+                // System.out.println(bookList.get(i) + book.getBookID());
+                if (bookList.get(i).equals(book.getBookID())) {
+                    JOptionPane.showMessageDialog(null, "You already favorited this book.",
+                            "Library", JOptionPane.INFORMATION_MESSAGE);
+                    flag = 1;
+                }
+            }
+            if (flag == 0) {
+               UserPickBook fav = new UserPickBook(UIVars.userID, book.getBookID());
+               JOptionPane.showMessageDialog(null, "Success.", "Library", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch (Exception e){System.out.println(e);}
     }//GEN-LAST:event_favouriteButtonActionPerformed
 
     private void moreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreButtonActionPerformed
