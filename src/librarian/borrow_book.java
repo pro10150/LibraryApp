@@ -1,14 +1,15 @@
 package librarian;
 
+import Backdoor.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class borrow_book extends javax.swing.JFrame {
 
-    /**
-     * Creates new form borrow_book
-     */
+    public String user_ID,book_ID;
+    
     public borrow_book() {
         initComponents();
     }
@@ -24,10 +25,6 @@ public class borrow_book extends javax.swing.JFrame {
 
         topPanel = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
-        search = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        notif = new javax.swing.JButton();
-        account = new javax.swing.JButton();
         backGround = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -36,8 +33,6 @@ public class borrow_book extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,25 +50,6 @@ public class borrow_book extends javax.swing.JFrame {
             }
         });
         topPanel.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, -1, -1));
-        topPanel.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 150, 30));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search.png"))); // NOI18N
-        topPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
-
-        notif.setBackground(new java.awt.Color(255, 204, 153));
-        notif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notif.png"))); // NOI18N
-        notif.setContentAreaFilled(false);
-        notif.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notifActionPerformed(evt);
-            }
-        });
-        topPanel.add(notif, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, -1, -1));
-
-        account.setBackground(new java.awt.Color(255, 204, 153));
-        account.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account.png"))); // NOI18N
-        account.setContentAreaFilled(false);
-        topPanel.add(account, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 70, 60));
 
         backGround.setBackground(new java.awt.Color(255, 249, 217));
         backGround.setPreferredSize(new java.awt.Dimension(922, 495));
@@ -108,16 +84,13 @@ public class borrow_book extends javax.swing.JFrame {
 
         jLabel5.setText("Book ID");
 
-        jLabel6.setText("Return date");
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
         jButton2.setBackground(new java.awt.Color(153, 102, 0));
         jButton2.setText("ENTER");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
@@ -135,21 +108,16 @@ public class borrow_book extends javax.swing.JFrame {
                             .addGap(367, 367, 367)
                             .addComponent(jLabel3))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                            .addGap(314, 314, 314)
-                            .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(backGroundLayout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(backGroundLayout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                                    .addComponent(jLabel6)
+                            .addGap(333, 333, 333)
+                            .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(backGroundLayout.createSequentialGroup()
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(backGroundLayout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField1)))))
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addGap(458, 458, 458)
                         .addComponent(jButton2)))
@@ -173,11 +141,7 @@ public class borrow_book extends javax.swing.JFrame {
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(96, 96, 96))
         );
@@ -201,10 +165,6 @@ public class borrow_book extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void notifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_notifActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         librarian_profile profile = null;
         try {
@@ -220,15 +180,14 @@ public class borrow_book extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
+        jTextField1.getText();
+        
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
+        jTextField2.getText();
     }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
         librarian_profile profile = null;
@@ -242,6 +201,23 @@ public class borrow_book extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_logoMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        user_ID = jTextField1.getText();
+        book_ID = jTextField2.getText();
+        
+        try {
+            Borrowed_book br  = new Borrowed_book(user_ID,book_ID);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(borrow_book.class.getName()).log(Level.SEVERE, null, ex); 
+        }
+        JOptionPane.showMessageDialog(null, "Done");
+        borrow_book br = new borrow_book();
+        br.setVisible(true);
+        dispose(); 
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,28 +249,22 @@ public class borrow_book extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new borrow_book().setVisible(true);
+               new borrow_book().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton account;
     private javax.swing.JPanel backGround;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel logo;
-    private javax.swing.JButton notif;
-    private javax.swing.JTextField search;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 }
