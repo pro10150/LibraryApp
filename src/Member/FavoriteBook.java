@@ -124,8 +124,7 @@ public class FavoriteBook extends javax.swing.JFrame {
                 numberLeft3.setText("Remaining: " + book3.getRemaining());
                 rate3.setText("Rating: [WIP]");
             }
-           else HideThirdBar();
-            
+           else HideThirdBar();    
             
         }
     }

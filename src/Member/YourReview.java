@@ -1,9 +1,11 @@
 package Member;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import Backdoor.*;
 import java.awt.event.KeyEvent;
 import java.sql.*; 
+import java.util.ArrayList;
 /**
  *
  * @author Annop Boonlieng
@@ -11,13 +13,35 @@ import java.sql.*;
 public class YourReview extends javax.swing.JFrame {
 
     public String bookNameLink;
+    ArrayList idIndex = new ArrayList<String>();
+    ArrayList rateList = new ArrayList<Integer>();
+    Review review;
     
     public YourReview(){
         initComponents();
 
-        try{
-            Member member = new Member(UIVars.userID);
-        
+        try{  
+            review = new Review(UIVars.userID);
+            idIndex = review.getBookIDList();
+            rateList = review.getBookRateList();
+            
+            DefaultListModel listModel = new DefaultListModel();
+            
+            int i;
+            for (i = 0 ; i < review.getIDListCount() ; i++) {
+                PhysicalBook book = new PhysicalBook(idIndex.get(i).toString() );
+                listModel.addElement("Book: " + book.getName() + "    Rate: " + rateList.get(i));
+            }
+            reviewList.setModel(listModel);
+            
+            if (i == 0) { // No review
+                jScrollPane1.setVisible(false);
+                selectButton.setVisible(false);
+            }
+            else {
+                noReview.setVisible(false);
+            }
+            
         }catch (Exception e){System.out.println(e);}
     }
 
@@ -40,7 +64,8 @@ public class YourReview extends javax.swing.JFrame {
         theirReview = new javax.swing.JLabel();
         noReview = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        reviewList = new javax.swing.JList<>();
+        selectButton = new javax.swing.JButton();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -134,32 +159,41 @@ public class YourReview extends javax.swing.JFrame {
         noReview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         noReview.setText("You don't have any reviews.");
 
-        jList1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        reviewList.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        reviewList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(reviewList);
+
+        selectButton.setText("Select");
+        selectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectButtonActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
         backGroundLayout.setHorizontalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                .addContainerGap(107, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
             .addGroup(backGroundLayout.createSequentialGroup()
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backGroundLayout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(backGroundLayout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(back1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         backGroundLayout.setVerticalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +208,9 @@ public class YourReview extends javax.swing.JFrame {
                 .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(selectButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,6 +283,22 @@ try {
         dispose();
     }//GEN-LAST:event_back1ActionPerformed
 
+    private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
+        int index = reviewList.getSelectedIndex();
+        //System.out.println(index);
+        if (index > -1) {
+            try {
+                PhysicalBook book = new PhysicalBook(idIndex.get(index).toString() );
+                BookReview br = new BookReview(book.getName());
+                br.setVisible(true);
+                setVisible(false);
+                dispose();
+            } catch (Exception e) {System.out.println(e); }
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Nothing selected.");
+    }//GEN-LAST:event_selectButtonActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -288,12 +340,13 @@ try {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logo;
     private javax.swing.JLabel noReview;
     private javax.swing.JButton notifButton;
+    private javax.swing.JList<String> reviewList;
     private javax.swing.JTextField searchField;
+    private javax.swing.JButton selectButton;
     private javax.swing.JLabel theirReview;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
