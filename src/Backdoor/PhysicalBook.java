@@ -207,14 +207,29 @@ public class PhysicalBook extends Book implements Update{
         preparedStmt.execute();
     }
 
-    public void updateRemaining(int x) throws SQLException{
+    public void updateRemaining(int remaining) throws SQLException{
+        this.remaining = remaining;
         String query = "INSERT INTO remaining VALUES(?, ?, ?)";
         Calendar calendar = Calendar.getInstance();
-        java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+        //java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+        java.sql.Timestamp stampTime = new java.sql.Timestamp(calendar.getTimeInMillis());
         PreparedStatement preparedStmt = connect.prepareStatement(query);
         preparedStmt.setString(1,this.book_ID);
-        preparedStmt.setInt(2,x);
-        preparedStmt.setDate(3,startDate);
+        preparedStmt.setInt(2,this.remaining);
+        preparedStmt.setTimestamp(3,stampTime);
+        preparedStmt.execute();
+    }
+
+    public void reduceRemaining() throws SQLException{
+        this.remaining -= 1;
+        String query = "INSERT INTO remaining VALUES(?, ?, ?)";
+        Calendar calendar = Calendar.getInstance();
+        //java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+        java.sql.Timestamp stampTime = new java.sql.Timestamp(calendar.getTimeInMillis());
+        PreparedStatement preparedStmt = connect.prepareStatement(query);
+        preparedStmt.setString(1,this.book_ID);
+        preparedStmt.setInt(2,this.remaining);
+        preparedStmt.setTimestamp(3,stampTime);
         preparedStmt.execute();
     }
     
@@ -237,18 +252,6 @@ public class PhysicalBook extends Book implements Update{
         PreparedStatement preparedStatement = connect.prepareStatement(query);
         preparedStatement.setString(1,this.book_ID);
         preparedStatement.execute();
-    }
-    
-    public void reduceRemaining() throws SQLException{
-        this.remaining -= 1;
-        String query = "INSERT INTO remaining VALUES(?, ?, ?)";
-        Calendar calendar = Calendar.getInstance();
-        java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-        PreparedStatement preparedStmt = connect.prepareStatement(query);
-        preparedStmt.setString(1,this.book_ID);
-        preparedStmt.setInt(2,this.remaining);
-        preparedStmt.setDate(3,startDate);
-        preparedStmt.execute();
     }
     
     public void deleteBorrowedBook() throws SQLException{
