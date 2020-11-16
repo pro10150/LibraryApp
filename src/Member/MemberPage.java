@@ -323,7 +323,9 @@ try {
     }//GEN-LAST:event_accountButton1ActionPerformed
 
     private void findFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findFriendButtonActionPerformed
-        FriendList newui = new FriendList();
+        //FriendList newui = new FriendList();
+        //newui.setVisible(true);
+        YourFriendReview newui = new YourFriendReview(); // Placeholder
         newui.setVisible(true);
         setVisible(false);
         dispose();

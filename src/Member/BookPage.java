@@ -336,6 +336,7 @@ public class BookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void reviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewButtonActionPerformed
+        UIVars.prevPage = "BookPage";
         BookReview br = new BookReview(bookNameLink);
         br.setVisible(true);
         setVisible(false);

@@ -8,17 +8,17 @@ import java.awt.event.KeyEvent;
  *
  * @author Annop Boonlieng
  */
-public class BookReview extends javax.swing.JFrame {
+public class BookReviewFriend extends javax.swing.JFrame {
 
     public String bookNameLink;
     public int ratingStars = 0;
     PhysicalBook book;
     Review review;
     
-    public BookReview() {
+    public BookReviewFriend() {
         initComponents();
     }
-    public BookReview(String bookName) {
+    public BookReviewFriend(String bookName) {
         initComponents();
         
         bookNameLink = bookName;
@@ -29,19 +29,10 @@ public class BookReview extends javax.swing.JFrame {
             book = new PhysicalBook(bookName);
             this.AuthorName.setText(book.getAuthor());
             
-            review = new Review(UIVars.userID, book.getBookID());
-            //System.out.println(review.toString());
-            // rate = 0 means that you don't have any review of this book yet.
-            if (review.getRate() > 0) {
-                ratingStars = review.getRate();
-                updateStars();
-                reviewTextArea.setText(review.getDescription());
-                sendReview.setVisible(false);
-            }
-            else {
-                editReview.setVisible(false);
-                removeReview.setVisible(false);
-            }
+            review = new Review(UIVars.currentFriendID, book.getBookID());
+            ratingStars = review.getRate();
+            updateStars();
+            reviewDesc.setText("<html>" + review.getDescription() + "</html>");
             
         }catch (Exception e){System.out.println(e);}
         
@@ -88,9 +79,6 @@ public class BookReview extends javax.swing.JFrame {
         backGround = new javax.swing.JPanel();
         backLine = new javax.swing.JLabel();
         back = new javax.swing.JButton();
-        sendReview = new javax.swing.JButton();
-        removeReview = new javax.swing.JButton();
-        editReview = new javax.swing.JButton();
         bookImage = new javax.swing.JButton();
         AuthorName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -100,8 +88,8 @@ public class BookReview extends javax.swing.JFrame {
         star4 = new javax.swing.JButton();
         star5 = new javax.swing.JButton();
         descLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        reviewTextArea = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        reviewDesc = new javax.swing.JLabel();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -198,11 +186,9 @@ public class BookReview extends javax.swing.JFrame {
         );
 
         backGround.setBackground(new java.awt.Color(255, 249, 217));
-        backGround.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backLine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         backLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backLine.png"))); // NOI18N
-        backGround.add(backLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 11, 790, 48));
 
         back.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         back.setText("<< Back");
@@ -213,31 +199,6 @@ public class BookReview extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
-        backGround.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 40));
-
-        sendReview.setText("Submit");
-        sendReview.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendReviewActionPerformed(evt);
-            }
-        });
-        backGround.add(sendReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 450, 130, 34));
-
-        removeReview.setText("Remove");
-        removeReview.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeReviewActionPerformed(evt);
-            }
-        });
-        backGround.add(removeReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, 130, 34));
-
-        editReview.setText("Edit");
-        editReview.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editReviewActionPerformed(evt);
-            }
-        });
-        backGround.add(editReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 130, 34));
 
         bookImage.setText("BOOK");
         bookImage.addActionListener(new java.awt.event.ActionListener() {
@@ -245,14 +206,12 @@ public class BookReview extends javax.swing.JFrame {
                 bookImageActionPerformed(evt);
             }
         });
-        backGround.add(bookImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 65, 130, 160));
 
         AuthorName.setBackground(new java.awt.Color(102, 102, 102));
         AuthorName.setForeground(new java.awt.Color(255, 255, 255));
         AuthorName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AuthorName.setText("[Type] + [Author]");
         AuthorName.setOpaque(true);
-        backGround.add(AuthorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 231, 130, 23));
 
         jPanel1.setBackground(new java.awt.Color(195, 172, 148));
 
@@ -300,11 +259,28 @@ public class BookReview extends javax.swing.JFrame {
         descLabel.setForeground(new java.awt.Color(255, 255, 255));
         descLabel.setText("Desc:");
 
-        jScrollPane1.setToolTipText("");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        reviewTextArea.setColumns(20);
-        reviewTextArea.setRows(5);
-        jScrollPane1.setViewportView(reviewTextArea);
+        reviewDesc.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        reviewDesc.setText("Insert desc here.");
+        reviewDesc.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(reviewDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(reviewDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -313,7 +289,7 @@ public class BookReview extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(298, 298, 298)
@@ -326,7 +302,7 @@ public class BookReview extends javax.swing.JFrame {
                         .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,11 +316,44 @@ public class BookReview extends javax.swing.JFrame {
                     .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(star3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        backGround.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 260, -1, -1));
+        javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
+        backGround.setLayout(backGroundLayout);
+        backGroundLayout.setHorizontalGroup(
+            backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backGroundLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(back)
+                .addGap(9, 9, 9)
+                .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(backGroundLayout.createSequentialGroup()
+                .addGap(427, 427, 427)
+                .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(backGroundLayout.createSequentialGroup()
+                .addGap(427, 427, 427)
+                .addComponent(AuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(backGroundLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        backGroundLayout.setVerticalGroup(
+            backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backGroundLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(AuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -379,37 +388,15 @@ public class BookReview extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_notifButtonActionPerformed
 
-    private void sendReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendReviewActionPerformed
-        String reviewDesc = reviewTextArea.getText();
-        
-        // Do some review sending thing
-        if (ratingStars > 0) {
-            try {
-                Review review = new Review(UIVars.userID, book.getBookID(), ratingStars);
-                review.setDescription(reviewDesc);
-                JOptionPane.showMessageDialog(null, "Review sent.");
-                BookPage menu = new BookPage(bookNameLink);
-                menu.setVisible(true);
-                setVisible(false);
-                dispose();
-            }
-            catch (Exception e){System.out.println(e);}
-        }
-        else
-            JOptionPane.showMessageDialog(null, "Please rate the book by clicking on the star.)", "ERROR", JOptionPane.ERROR_MESSAGE);
-        
-
-    }//GEN-LAST:event_sendReviewActionPerformed
-
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        if (UIVars.prevPage.equals("BookPage")) {
-            BookPage menu = new BookPage(bookNameLink);
+        if (UIVars.prevPage.equals("FriendPage")) {
+            FriendPage menu = new FriendPage();
             menu.setVisible(true);
             setVisible(false);
             dispose();
         }
-        else { // your review
-            YourReview menu = new YourReview();
+        else {
+            YourFriendReview menu = new YourFriendReview();
             menu.setVisible(true);
             setVisible(false);
             dispose();
@@ -474,34 +461,6 @@ public class BookReview extends javax.swing.JFrame {
         updateStars();
     }//GEN-LAST:event_star5ActionPerformed
 
-    private void removeReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeReviewActionPerformed
-        int input = JOptionPane.showConfirmDialog(null, "Remove review?", "Confirmation",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (input == 0) { // Yes
-            try {
-                review.deleteReview();
-                JOptionPane.showMessageDialog(null, "Review removed.");
-                BookPage menu = new BookPage(bookNameLink);
-                menu.setVisible(true);
-                setVisible(false);
-                dispose();
-            } catch (Exception e) {System.out.println(e); }
-        
-        }
-    }//GEN-LAST:event_removeReviewActionPerformed
-
-    private void editReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editReviewActionPerformed
-        try {
-            review.setDescription(reviewTextArea.getText());
-            review.setRate(ratingStars);
-            JOptionPane.showMessageDialog(null, "Review edited.");
-            BookPage menu = new BookPage(bookNameLink);
-            menu.setVisible(true);
-            setVisible(false);
-            dispose();
-        } catch (Exception e) {System.out.println(e); }
-    }//GEN-LAST:event_editReviewActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -545,19 +504,16 @@ public class BookReview extends javax.swing.JFrame {
     private javax.swing.JLabel backLine;
     private javax.swing.JButton bookImage;
     private javax.swing.JLabel descLabel;
-    private javax.swing.JButton editReview;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logo;
     private javax.swing.JButton notifButton;
-    private javax.swing.JButton removeReview;
-    private javax.swing.JTextArea reviewTextArea;
+    private javax.swing.JLabel reviewDesc;
     private javax.swing.JTextField searchField;
-    private javax.swing.JButton sendReview;
     private javax.swing.JButton star1;
     private javax.swing.JButton star2;
     private javax.swing.JButton star3;

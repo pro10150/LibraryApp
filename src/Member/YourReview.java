@@ -21,6 +21,7 @@ public class YourReview extends javax.swing.JFrame {
         initComponents();
 
         try{  
+            
             review = new Review(UIVars.userID);
             idIndex = review.getBookIDList();
             rateList = review.getBookRateList();
@@ -288,6 +289,7 @@ try {
         //System.out.println(index);
         if (index > -1) {
             try {
+                UIVars.prevPage = "YourReview";
                 PhysicalBook book = new PhysicalBook(idIndex.get(index).toString() );
                 BookReview br = new BookReview(book.getName());
                 br.setVisible(true);
