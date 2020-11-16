@@ -2,11 +2,18 @@ package Backdoor;
 import java.sql.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.*;
 import javax.swing.JOptionPane;
 
 public class main {
     public static void main(String[] args) throws SQLException{
+        Calendar calendar = Calendar.getInstance();
+        //long calendar = System.currentTimeMillis();
+        //Timestamp timestamp = new Timestamp(calendar);
+        //System.out.println(timestamp);
+        int sec = calendar.get(calendar.SECOND);
+        System.out.println(sec);
         
         UserPickBook fav = new UserPickBook("1234");
         ArrayList bookList = fav.getBookIDList();

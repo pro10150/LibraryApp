@@ -17,6 +17,7 @@ public class ReservedBook extends Member {
     private int remaining;
     private Date requestDate;
     private Date requestExpiredDate;
+    private boolean reservedStatus;
     private boolean isReserve;
 
     public ReservedBook(String user_ID) throws SQLException{
@@ -29,6 +30,7 @@ public class ReservedBook extends Member {
                 this.book_ID = resultSet.getString("book_ID");
                 this.requestDate = resultSet.getDate("request_date");
                 this.requestExpiredDate = resultSet.getDate("request_expired_date");
+                this.reservedStatus = true;
                 //System.out.println(toString());
             }
         }
@@ -58,7 +60,7 @@ public class ReservedBook extends Member {
             preparedStatement.execute();
 
             book.reduceRemaining();
-            book.updateRemaining(this.remaining--);
+            //book.updateRemaining(this.remaining--);
             isReserve = true;
         }
     }
@@ -71,6 +73,14 @@ public class ReservedBook extends Member {
         preparedStatement.setString(2,book_ID);
         preparedStatement.setDate(3,requestDate);
         preparedStatement.execute();
+    }
+    
+    public boolean getReservedStatus(){
+        return reservedStatus;
+    }
+    
+    public boolean getIsReserve(){
+        return isReserve;
     }
 
     public Date getRequestDate(){
