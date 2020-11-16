@@ -55,7 +55,7 @@ public class Borrowed_book extends Member{
             preparedStatement.execute();
 
             book.reduceRemaining();
-            book.updateRemaining(this.remaining--);
+            //book.updateRemaining(this.remaining--);
             isBorrow = true;
         }
     }
