@@ -73,6 +73,8 @@ public class ReservedBook extends Member {
         preparedStatement.setString(2,book_ID);
         preparedStatement.setDate(3,requestDate);
         preparedStatement.execute();
+        PhysicalBook book = new PhysicalBook(book_ID);
+        book.increaseRemaining();
     }
     
     public boolean getReservedStatus(){

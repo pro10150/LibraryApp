@@ -274,6 +274,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookImageActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="            "/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="back">
           <Properties>
