@@ -289,7 +289,10 @@ public class MemberPage extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
-        // TODO add your handling code here:
+        Notification notif = new Notification();
+        notif.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
@@ -346,7 +349,10 @@ try {
     }//GEN-LAST:event_yourFeeButtonActionPerformed
 
     private void rewardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rewardButtonActionPerformed
-        // TODO add your handling code here:
+        RewardPage newui = new RewardPage();
+        newui.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_rewardButtonActionPerformed
 
     private void reservedBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservedBookButtonActionPerformed
