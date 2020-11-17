@@ -5,66 +5,53 @@ import Backdoor.*;
 
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.util.ArrayList;
 /**
  *
  * @author Annop Boonlieng
  */
-public class BookPage extends javax.swing.JFrame {
+public class YourReservedBook extends javax.swing.JFrame {
 
     public String bookNameLink;
     PhysicalBook book;
+    ReservedBook existingRB;
+    Date requestDate;
     boolean favoriteFlag = false;
     
-    public BookPage() {
+    public YourReservedBook() {
         initComponents();
-    }
-    public BookPage(String bookName){
-        initComponents();
-        
-        bookNameLink = bookName;
         
         try{
             // Update Book
-            book = new PhysicalBook(bookName);
+            existingRB = new ReservedBook(UIVars.userID);
+            
+            if (existingRB.getReservedStatus() == true) {
+            String bookID = existingRB.getBookID();
+            
+            book = new PhysicalBook(bookID);
+            String bookName = book.getName();
+            requestDate = existingRB.getRequestDate();
+            System.out.println(existingRB.toString());
             this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
             this.typeAndAuthor.setText("Type: " + book.getType() 
                     + " /  Author: " + book.getAuthor());
             this.numberLeft.setText("Remaining: " + book.getRemaining());
-            this.rate.setText("Rating: [WIP]");
-            // Favorite
-            UserPickBook oldFav = new UserPickBook(UIVars.userID);
-            ArrayList bookList = oldFav.getBookIDList();
-            for (int i = 0 ; i < bookList.size() ; i++) {
-                // System.out.println(bookList.get(i) + book.getBookID());
-                if (bookList.get(i).equals(book.getBookID())) {
-                    favoriteFlag = true;
-                    updateFavButton();
-                }
+            this.requestDateLabel.setText("Request Date: " + requestDate);
+            this.expireDateLabel.setText("Expire Date: " + existingRB.getRequestExpiredDate());
             }
+            else {
+                this.topLabel.setText("You don't have a reserved book.");
+                this.bookName.setVisible(false);
+                this.typeAndAuthor.setVisible(false);
+                this.numberLeft.setVisible(false);
+                this.requestDateLabel.setVisible(false);
+                this.expireDateLabel.setVisible(false);
+                this.unreserveButton.setVisible(false);
+                this.bookImage.setVisible(false);
+            }
+
         }catch (Exception e){System.out.println(e);}
-        
-    }
-    
-    public void gotoBookPageExtra(String bookName) {
-        if (!bookName.equals("-")) {
-            BookPageExtra bp = new BookPageExtra(bookName);
-            bp.setVisible(true);
-            setVisible(false);
-            dispose();
-        }
-        else {
-            System.out.println("Empty book.");    
-        }
-    }
-    
-    public void updateFavButton() {
-        if (favoriteFlag == true) {
-            favouriteButton.setText("Remove from favourite");
-        }
-        else {
-            favouriteButton.setText("Add to favourite");
-        }
     }
     
     public void updateRemainingLabel() {
@@ -91,11 +78,10 @@ public class BookPage extends javax.swing.JFrame {
         bookName = new javax.swing.JLabel();
         typeAndAuthor = new javax.swing.JLabel();
         numberLeft = new javax.swing.JLabel();
-        rate = new javax.swing.JLabel();
-        reviewButton = new javax.swing.JButton();
-        favouriteButton = new javax.swing.JButton();
-        reserveButton = new javax.swing.JButton();
-        moreButton = new javax.swing.JButton();
+        unreserveButton = new javax.swing.JButton();
+        requestDateLabel = new javax.swing.JLabel();
+        expireDateLabel = new javax.swing.JLabel();
+        topLabel = new javax.swing.JLabel();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -223,64 +209,52 @@ public class BookPage extends javax.swing.JFrame {
         numberLeft.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         numberLeft.setText("[Left]");
 
-        rate.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        rate.setText("[Rate]");
-
-        reviewButton.setText("Review");
-        reviewButton.addActionListener(new java.awt.event.ActionListener() {
+        unreserveButton.setText("Unreserve Book");
+        unreserveButton.setActionCommand("Unreserve Book");
+        unreserveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reviewButtonActionPerformed(evt);
+                unreserveButtonActionPerformed(evt);
             }
         });
 
-        favouriteButton.setText("Add to Favourite");
-        favouriteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                favouriteButtonActionPerformed(evt);
-            }
-        });
+        requestDateLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        requestDateLabel.setText("[Request Date]");
 
-        reserveButton.setText("Reserve Book");
-        reserveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reserveButtonActionPerformed(evt);
-            }
-        });
+        expireDateLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        expireDateLabel.setText("[Expire Date]");
 
-        moreButton.setText("More Info");
-        moreButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                moreButtonActionPerformed(evt);
-            }
-        });
+        topLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        topLabel.setText("Your reserved book");
 
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
         backGroundLayout.setHorizontalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numberLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(requestDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(expireDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(141, 141, 141))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(unreserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(334, 334, 334))
             .addGroup(backGroundLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(back)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(back)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numberLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(topLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         backGroundLayout.setVerticalGroup(
@@ -290,28 +264,27 @@ public class BookPage extends javax.swing.JFrame {
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(topLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(122, 122, 122)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(numberLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(requestDateLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(expireDateLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)))
+                .addComponent(unreserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -353,24 +326,25 @@ public class BookPage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
 
-    private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
+    private void unreserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unreserveButtonActionPerformed
         try {
           ReservedBook existingRB = new ReservedBook(UIVars.userID);
           if (existingRB.getReservedStatus() == true) {
-              JOptionPane.showMessageDialog(null, "You already reserved a book.", "ERROR", JOptionPane.ERROR_MESSAGE);
+              existingRB.deleteRequest(UIVars.userID,book.getBookID(),requestDate);
+              JOptionPane.showMessageDialog(null, "You unreserved this book.", "Library", JOptionPane.INFORMATION_MESSAGE);
+              
+            MemberPage mp = new MemberPage();
+            mp.setVisible(true);
+            setVisible(false);
+            dispose();
           }
           else {
-             ReservedBook RB = new ReservedBook(UIVars.userID, book.getBookID());
-             if (RB.getIsReserve() == true) {
-                 JOptionPane.showMessageDialog(null, "You reserved this book.", "Library", JOptionPane.INFORMATION_MESSAGE); 
-                 updateRemainingLabel();
-             }
-             else JOptionPane.showMessageDialog(null, "There are no book left.", "ERROR", JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(null, "You can't unreserve this book... somehow.", "ERROR", JOptionPane.ERROR_MESSAGE);
           }
           
         }
         catch (Exception e){System.out.println(e);}
-    }//GEN-LAST:event_reserveButtonActionPerformed
+    }//GEN-LAST:event_unreserveButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         Main menu = new Main();
@@ -412,37 +386,6 @@ public class BookPage extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_logoActionPerformed
-
-    private void moreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreButtonActionPerformed
-        gotoBookPageExtra(bookNameLink);
-    }//GEN-LAST:event_moreButtonActionPerformed
-
-    private void favouriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favouriteButtonActionPerformed
-        try {
-            if (favoriteFlag == false) {
-                UserPickBook fav = new UserPickBook(UIVars.userID, book.getBookID());
-                JOptionPane.showMessageDialog(null, "Success.", "Library", JOptionPane.INFORMATION_MESSAGE);
-                favoriteFlag = true;
-                updateFavButton();
-            }
-            else {
-                UserPickBook fav = new UserPickBook(UIVars.userID);
-                fav.deleteUserPickBook(UIVars.userID, book.getBookID());
-                JOptionPane.showMessageDialog(null, "Removed from favorite.", "Library", JOptionPane.INFORMATION_MESSAGE);
-                favoriteFlag = false;
-                updateFavButton();
-            }
-        }
-        catch (Exception e){System.out.println(e);}
-    }//GEN-LAST:event_favouriteButtonActionPerformed
-
-    private void reviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewButtonActionPerformed
-        UIVars.prevPage = "BookPage";
-        BookReview br = new BookReview(bookNameLink);
-        br.setVisible(true);
-        setVisible(false);
-        dispose();
-    }//GEN-LAST:event_reviewButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,20 +429,19 @@ public class BookPage extends javax.swing.JFrame {
     private javax.swing.JLabel backLine;
     private javax.swing.JButton bookImage;
     private javax.swing.JLabel bookName;
-    private javax.swing.JButton favouriteButton;
+    private javax.swing.JLabel expireDateLabel;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton logo;
-    private javax.swing.JButton moreButton;
     private javax.swing.JButton notifButton;
     private javax.swing.JLabel numberLeft;
-    private javax.swing.JLabel rate;
-    private javax.swing.JButton reserveButton;
-    private javax.swing.JButton reviewButton;
+    private javax.swing.JLabel requestDateLabel;
     private javax.swing.JTextField searchField;
+    private javax.swing.JLabel topLabel;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel typeAndAuthor;
+    private javax.swing.JButton unreserveButton;
     // End of variables declaration//GEN-END:variables
 }

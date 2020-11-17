@@ -356,11 +356,17 @@ try {
     }//GEN-LAST:event_rewardButtonActionPerformed
 
     private void reservedBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservedBookButtonActionPerformed
-        // TODO add your handling code here:
+        YourReservedBook newui = new YourReservedBook();
+        newui.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_reservedBookButtonActionPerformed
 
     private void bookRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookRoomButtonActionPerformed
-        // TODO add your handling code here:
+        BookRoom newui = new BookRoom();
+        newui.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_bookRoomButtonActionPerformed
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed

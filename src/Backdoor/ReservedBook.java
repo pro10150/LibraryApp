@@ -73,6 +73,9 @@ public class ReservedBook extends Member {
         preparedStatement.setString(2,book_ID);
         preparedStatement.setDate(3,requestDate);
         preparedStatement.execute();
+        
+        PhysicalBook book = new PhysicalBook(this.book_ID);
+        book.addRemaining();
     }
     
     public boolean getReservedStatus(){
@@ -81,6 +84,10 @@ public class ReservedBook extends Member {
     
     public boolean getIsReserve(){
         return isReserve;
+    }
+    
+    public String getBookID() {
+        return book_ID;
     }
 
     public Date getRequestDate(){
