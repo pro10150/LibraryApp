@@ -290,6 +290,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="selectButton">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Select"/>
           </Properties>
           <Events>

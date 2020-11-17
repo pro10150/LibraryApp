@@ -209,8 +209,8 @@ public class YourReservedBook extends javax.swing.JFrame {
         numberLeft.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         numberLeft.setText("[Left]");
 
+        unreserveButton.setBackground(new java.awt.Color(202, 180, 138));
         unreserveButton.setText("Unreserve Book");
-        unreserveButton.setActionCommand("Unreserve Book");
         unreserveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unreserveButtonActionPerformed(evt);

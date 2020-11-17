@@ -164,6 +164,7 @@ public class YourReview extends javax.swing.JFrame {
         reviewList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(reviewList);
 
+        selectButton.setBackground(new java.awt.Color(202, 180, 138));
         selectButton.setText("Select");
         selectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

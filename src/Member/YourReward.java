@@ -168,6 +168,7 @@ public class YourReward extends javax.swing.JFrame {
         topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         topLabel.setText("YOUR REWARDS");
 
+        reward1.setBackground(new java.awt.Color(202, 180, 138));
         reward1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         reward1.setText("<html><p>[Reward name]</p>\n<p>[Redeem Date]</p></html>");
         reward1.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +177,7 @@ public class YourReward extends javax.swing.JFrame {
             }
         });
 
+        reward2.setBackground(new java.awt.Color(202, 180, 138));
         reward2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         reward2.setText("<html><p>[Reward name]</p>\n<p>[Redeem Date]</p></html>");
         reward2.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +186,7 @@ public class YourReward extends javax.swing.JFrame {
             }
         });
 
+        reward3.setBackground(new java.awt.Color(202, 180, 138));
         reward3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         reward3.setText("<html><p>[Reward name]</p>\n<p>[Redeem Date]</p></html>");
         reward3.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +195,7 @@ public class YourReward extends javax.swing.JFrame {
             }
         });
 
+        reward4.setBackground(new java.awt.Color(202, 180, 138));
         reward4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         reward4.setText("<html><p>[Reward name]</p>\n<p>[Redeem Date]</p></html>");
         reward4.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +204,7 @@ public class YourReward extends javax.swing.JFrame {
             }
         });
 
+        reward5.setBackground(new java.awt.Color(202, 180, 138));
         reward5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         reward5.setText("<html><p>[Reward name]</p>\n<p>[Redeem Date]</p></html>");
         reward5.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +213,7 @@ public class YourReward extends javax.swing.JFrame {
             }
         });
 
+        reward6.setBackground(new java.awt.Color(202, 180, 138));
         reward6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         reward6.setText("<html><p>[Reward name]</p>\n<p>[Redeem Date]</p></html>");
         reward6.addActionListener(new java.awt.event.ActionListener() {

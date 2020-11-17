@@ -61,7 +61,7 @@
           <Group type="102" attributes="0">
               <Component id="topPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-              <Component id="backGround" max="32767" attributes="0"/>
+              <Component id="backGround" pref="481" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

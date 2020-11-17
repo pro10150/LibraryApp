@@ -153,6 +153,7 @@ public class BookRoom extends javax.swing.JFrame {
         topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         topLabel.setText("BOOK A ROOM");
 
+        bookRoomButton.setBackground(new java.awt.Color(220, 146, 0));
         bookRoomButton.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         bookRoomButton.setText("BOOK");
         bookRoomButton.addActionListener(new java.awt.event.ActionListener() {

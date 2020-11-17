@@ -215,6 +215,7 @@ public class BookReview extends javax.swing.JFrame {
         });
         backGround.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 40));
 
+        sendReview.setBackground(new java.awt.Color(202, 180, 138));
         sendReview.setText("Submit");
         sendReview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,6 +224,7 @@ public class BookReview extends javax.swing.JFrame {
         });
         backGround.add(sendReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 130, 34));
 
+        removeReview.setBackground(new java.awt.Color(202, 180, 138));
         removeReview.setText("Remove");
         removeReview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,6 +233,7 @@ public class BookReview extends javax.swing.JFrame {
         });
         backGround.add(removeReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, 130, 34));
 
+        editReview.setBackground(new java.awt.Color(202, 180, 138));
         editReview.setText("Edit");
         editReview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -152,6 +152,7 @@ public class RewardPage extends javax.swing.JFrame {
         topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         topLabel.setText("REWARDS");
 
+        yourRewardButton.setBackground(new java.awt.Color(202, 180, 138));
         yourRewardButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         yourRewardButton.setText("Your rewards");
         yourRewardButton.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +161,7 @@ public class RewardPage extends javax.swing.JFrame {
             }
         });
 
+        chooseRewardButton.setBackground(new java.awt.Color(202, 180, 138));
         chooseRewardButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         chooseRewardButton.setText("Choose a reward");
         chooseRewardButton.addActionListener(new java.awt.event.ActionListener() {

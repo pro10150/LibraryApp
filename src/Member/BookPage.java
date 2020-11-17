@@ -226,6 +226,7 @@ public class BookPage extends javax.swing.JFrame {
         rate.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         rate.setText("[Rate]");
 
+        reviewButton.setBackground(new java.awt.Color(202, 180, 138));
         reviewButton.setText("Review");
         reviewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,6 +234,7 @@ public class BookPage extends javax.swing.JFrame {
             }
         });
 
+        favouriteButton.setBackground(new java.awt.Color(202, 180, 138));
         favouriteButton.setText("Add to Favourite");
         favouriteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,6 +242,7 @@ public class BookPage extends javax.swing.JFrame {
             }
         });
 
+        reserveButton.setBackground(new java.awt.Color(202, 180, 138));
         reserveButton.setText("Reserve Book");
         reserveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,6 +250,7 @@ public class BookPage extends javax.swing.JFrame {
             }
         });
 
+        moreButton.setBackground(new java.awt.Color(202, 180, 138));
         moreButton.setText("More Info");
         moreButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

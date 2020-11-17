@@ -136,14 +136,16 @@ public class MemberPage extends javax.swing.JFrame {
         memberPoint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         memberPoint.setText("Point: [Number]");
 
+        findFriendButton.setBackground(new java.awt.Color(202, 180, 138));
         findFriendButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        findFriendButton.setText("Find friend");
+        findFriendButton.setText("Find friend (userID 1234 placeholder)");
         findFriendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 findFriendButtonActionPerformed(evt);
             }
         });
 
+        bookReviewButton.setBackground(new java.awt.Color(202, 180, 138));
         bookReviewButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReviewButton.setText("Your book review");
         bookReviewButton.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +154,7 @@ public class MemberPage extends javax.swing.JFrame {
             }
         });
 
+        favBookButton.setBackground(new java.awt.Color(202, 180, 138));
         favBookButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         favBookButton.setText("Favorite books");
         favBookButton.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +163,7 @@ public class MemberPage extends javax.swing.JFrame {
             }
         });
 
+        yourFeeButton.setBackground(new java.awt.Color(202, 180, 138));
         yourFeeButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         yourFeeButton.setText("Fee");
         yourFeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +172,7 @@ public class MemberPage extends javax.swing.JFrame {
             }
         });
 
+        rewardButton.setBackground(new java.awt.Color(202, 180, 138));
         rewardButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         rewardButton.setText("Rewards");
         rewardButton.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +181,7 @@ public class MemberPage extends javax.swing.JFrame {
             }
         });
 
+        reservedBookButton.setBackground(new java.awt.Color(202, 180, 138));
         reservedBookButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         reservedBookButton.setText("Reserved book");
         reservedBookButton.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +190,7 @@ public class MemberPage extends javax.swing.JFrame {
             }
         });
 
+        bookRoomButton.setBackground(new java.awt.Color(202, 180, 138));
         bookRoomButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookRoomButton.setText("Book a room");
         bookRoomButton.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +199,7 @@ public class MemberPage extends javax.swing.JFrame {
             }
         });
 
+        logoutButton.setBackground(new java.awt.Color(202, 180, 138));
         logoutButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         logoutButton.setText("Log Out");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {

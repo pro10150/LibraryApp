@@ -314,8 +314,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="unreserveButton">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Unreserve Book"/>
-            <Property name="actionCommand" type="java.lang.String" value="Unreserve Book"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="unreserveButtonActionPerformed"/>

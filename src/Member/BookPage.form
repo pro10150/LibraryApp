@@ -323,6 +323,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="reviewButton">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Review"/>
           </Properties>
           <Events>
@@ -331,6 +334,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="favouriteButton">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Add to Favourite"/>
           </Properties>
           <Events>
@@ -339,6 +345,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="reserveButton">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Reserve Book"/>
           </Properties>
           <Events>
@@ -347,6 +356,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="moreButton">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="More Info"/>
           </Properties>
           <Events>
