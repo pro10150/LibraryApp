@@ -164,6 +164,7 @@ public class YourReview extends javax.swing.JFrame {
         reviewList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(reviewList);
 
+        selectButton.setBackground(new java.awt.Color(202, 180, 138));
         selectButton.setText("Select");
         selectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,7 +238,10 @@ public class YourReview extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
-        // TODO add your handling code here:
+        Notification notif = new Notification();
+        notif.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked

@@ -69,6 +69,8 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Password");
 
+        loginButton.setBackground(new java.awt.Color(180, 119, 0));
+        loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,9 +136,8 @@ public class LoginScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        
+    
+    private void attemptLogin() {
         String ID = idField.getText();
         String password = passField.getText();
         if (ID.equals("")) 
@@ -158,7 +159,7 @@ public class LoginScreen extends javax.swing.JFrame {
                          JOptionPane.showMessageDialog(null, "Welcome, member!");
                          Main menu = new Main();
                          UIVars.userID = userId;
-                         System.out.println(UIVars.userID);
+                         //System.out.println(UIVars.userID);
                          menu.setVisible(true);
                          setVisible(false);
                          dispose();
@@ -182,57 +183,15 @@ public class LoginScreen extends javax.swing.JFrame {
                }
             } catch (Exception e) {System.out.println(e);} 
         }
-        
+    }
+    
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        attemptLogin();
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void passFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passFieldKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER) {
-            
-            // Copy-pasted from the loginbutton's action above.
-            String ID = idField.getText();
-            String password = passField.getText();
-            if (ID.equals("")) 
-                JOptionPane.showMessageDialog(null, "The ID field must not be empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            else if (password.equals("")) 
-                JOptionPane.showMessageDialog(null, "The password field must not be empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            else {
-
-                try{
-                   String userId = idField.getText();
-
-                   User member = new Member(userId);
-                   String role = member.getRole(); 
-                   String password2 = member.getPassword(); 
-                   if (password2 != null && role.equals("member")) {
-                       if (password.equals(password2)){
-                         JOptionPane.showMessageDialog(null, "Welcome, member!");
-                         Main menu = new Main();
-                         UIVars.userID = userId;
-                         menu.setVisible(true);
-                         setVisible(false);
-                         dispose();
-                       }
-                       else {
-                          JOptionPane.showMessageDialog(null, "Invalid user ID or password.");
-                       }
-                   }
-                   else {
-                        User librarian = new Librarian(userId);
-                        password2 = librarian.getPassword();
-                        if (password.equals(password2)){
-                            JOptionPane.showMessageDialog(null, "Welcome, librarian!");
-                            UIVars.userID = userId;
-                            librarian_profile menu = new librarian_profile();
-                            menu.setVisible(true);
-                            setVisible(false);
-                            dispose();
-                        }
-                       else {
-                          JOptionPane.showMessageDialog(null, "Invalid user ID or password.");
-                       }
-                   }
-                } catch (Exception e) {System.out.println(e);} 
-            }
+            attemptLogin();
         }
     }//GEN-LAST:event_passFieldKeyPressed
 

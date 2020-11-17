@@ -2,8 +2,10 @@ package Member;
 
 import javax.swing.JOptionPane;
 import Backdoor.*;
+import java.awt.Image;
 
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Annop Boonlieng
@@ -42,6 +44,12 @@ public class BookReview extends javax.swing.JFrame {
                 editReview.setVisible(false);
                 removeReview.setVisible(false);
             }
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/0000000001.jpg"));
+            Image img = icon.getImage();
+            Image modImg = img.getScaledInstance(130,160, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            bookImage.setIcon(icon);
+            bookImage.setText("");
             
         }catch (Exception e){System.out.println(e);}
         
@@ -215,29 +223,32 @@ public class BookReview extends javax.swing.JFrame {
         });
         backGround.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 40));
 
+        sendReview.setBackground(new java.awt.Color(202, 180, 138));
         sendReview.setText("Submit");
         sendReview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendReviewActionPerformed(evt);
             }
         });
-        backGround.add(sendReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 450, 130, 34));
+        backGround.add(sendReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 130, 34));
 
+        removeReview.setBackground(new java.awt.Color(202, 180, 138));
         removeReview.setText("Remove");
         removeReview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeReviewActionPerformed(evt);
             }
         });
-        backGround.add(removeReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, 130, 34));
+        backGround.add(removeReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, 130, 34));
 
+        editReview.setBackground(new java.awt.Color(202, 180, 138));
         editReview.setText("Edit");
         editReview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editReviewActionPerformed(evt);
             }
         });
-        backGround.add(editReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 130, 34));
+        backGround.add(editReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 130, 34));
 
         bookImage.setText("BOOK");
         bookImage.addActionListener(new java.awt.event.ActionListener() {
@@ -311,12 +322,11 @@ public class BookReview extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(298, 298, 298)
+                        .addGap(307, 307, 307)
                         .addComponent(star1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(star2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,8 +335,10 @@ public class BookReview extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 337, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,14 +356,14 @@ public class BookReview extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        backGround.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 260, -1, -1));
+        backGround.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 260, 900, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(topPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,7 +388,10 @@ public class BookReview extends javax.swing.JFrame {
     }//GEN-LAST:event_accountButtonActionPerformed
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
-        // TODO add your handling code here:
+        Notification notif = new Notification();
+        notif.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void sendReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendReviewActionPerformed

@@ -266,7 +266,7 @@
                       <Component id="friend13" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="friend14" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="153" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                           <Component id="prevButton" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>

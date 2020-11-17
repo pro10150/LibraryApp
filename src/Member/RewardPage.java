@@ -2,81 +2,16 @@ package Member;
 
 import javax.swing.JOptionPane;
 import Backdoor.*;
-import java.awt.Image;
 
 import java.awt.event.KeyEvent;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
 /**
  *
  * @author Annop Boonlieng
  */
-public class BookPage extends javax.swing.JFrame {
-
-    public String bookNameLink;
-    PhysicalBook book;
-    boolean favoriteFlag = false;
+public class RewardPage extends javax.swing.JFrame {
     
-    public BookPage() {
+    public RewardPage() {
         initComponents();
-    }
-    public BookPage(String bookName){
-        initComponents();
-        
-        bookNameLink = bookName;
-        
-        try{
-            // Update Book
-            book = new PhysicalBook(bookName);
-            this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
-            this.typeAndAuthor.setText("Type: " + book.getType() 
-                    + " /  Author: " + book.getAuthor());
-            this.numberLeft.setText("Remaining: " + book.getRemaining());
-            this.rate.setText("Rating: [WIP]");
-            // Favorite
-            UserPickBook oldFav = new UserPickBook(UIVars.userID);
-            ArrayList bookList = oldFav.getBookIDList();
-            for (int i = 0 ; i < bookList.size() ; i++) {
-                // System.out.println(bookList.get(i) + book.getBookID());
-                if (bookList.get(i).equals(book.getBookID())) {
-                    favoriteFlag = true;
-                    updateFavButton();
-                }
-            }
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/0000000001.jpg"));
-            Image img = icon.getImage();
-            Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
-            icon = new ImageIcon(modImg);
-            bookImage.setIcon(icon);
-            bookImage.setText("");
-        }catch (Exception e){System.out.println(e);}
-        
-    }
-    
-    public void gotoBookPageExtra(String bookName) {
-        if (!bookName.equals("-")) {
-            BookPageExtra bp = new BookPageExtra(bookName);
-            bp.setVisible(true);
-            setVisible(false);
-            dispose();
-        }
-        else {
-            System.out.println("Empty book.");    
-        }
-    }
-    
-    public void updateFavButton() {
-        if (favoriteFlag == true) {
-            favouriteButton.setText("Remove from favourite");
-        }
-        else {
-            favouriteButton.setText("Add to favourite");
-        }
-    }
-    
-    public void updateRemainingLabel() {
-        numberLeft.setText("Remaining: " + book.getRemaining());
     }
 
     @SuppressWarnings("unchecked")
@@ -86,6 +21,7 @@ public class BookPage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         imageA2 = new javax.swing.JButton();
+        memberName = new javax.swing.JLabel();
         topPanel = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -94,16 +30,10 @@ public class BookPage extends javax.swing.JFrame {
         logo = new javax.swing.JButton();
         backGround = new javax.swing.JPanel();
         backLine = new javax.swing.JLabel();
-        bookImage = new javax.swing.JButton();
         back = new javax.swing.JButton();
-        bookName = new javax.swing.JLabel();
-        typeAndAuthor = new javax.swing.JLabel();
-        numberLeft = new javax.swing.JLabel();
-        rate = new javax.swing.JLabel();
-        reviewButton = new javax.swing.JButton();
-        favouriteButton = new javax.swing.JButton();
-        reserveButton = new javax.swing.JButton();
-        moreButton = new javax.swing.JButton();
+        topLabel = new javax.swing.JLabel();
+        yourRewardButton = new javax.swing.JButton();
+        chooseRewardButton = new javax.swing.JButton();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -114,6 +44,10 @@ public class BookPage extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backLine.png"))); // NOI18N
 
         imageA2.setText("-");
+
+        memberName.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        memberName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        memberName.setText("FRIEND LIST");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Library");
@@ -204,13 +138,6 @@ public class BookPage extends javax.swing.JFrame {
         backLine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         backLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backLine.png"))); // NOI18N
 
-        bookImage.setText("BOOK");
-        bookImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookImageActionPerformed(evt);
-            }
-        });
-
         back.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         back.setText("<< Back");
         back.setBorderPainted(false);
@@ -221,48 +148,25 @@ public class BookPage extends javax.swing.JFrame {
             }
         });
 
-        bookName.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        bookName.setText("<html>[Book Name] XX XXXX XXX XX X X X  X X XXXXXX X X XXX X XX X XXXXXXXX</html>");
-        bookName.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        topLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        topLabel.setText("REWARDS");
 
-        typeAndAuthor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        typeAndAuthor.setText("[Type] + [Author]");
-
-        numberLeft.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        numberLeft.setText("[Left]");
-
-        rate.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        rate.setText("[Rate]");
-
-        reviewButton.setBackground(new java.awt.Color(202, 180, 138));
-        reviewButton.setText("Review");
-        reviewButton.addActionListener(new java.awt.event.ActionListener() {
+        yourRewardButton.setBackground(new java.awt.Color(202, 180, 138));
+        yourRewardButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        yourRewardButton.setText("Your rewards");
+        yourRewardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reviewButtonActionPerformed(evt);
+                yourRewardButtonActionPerformed(evt);
             }
         });
 
-        favouriteButton.setBackground(new java.awt.Color(202, 180, 138));
-        favouriteButton.setText("Add to Favourite");
-        favouriteButton.addActionListener(new java.awt.event.ActionListener() {
+        chooseRewardButton.setBackground(new java.awt.Color(202, 180, 138));
+        chooseRewardButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        chooseRewardButton.setText("Choose a reward");
+        chooseRewardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                favouriteButtonActionPerformed(evt);
-            }
-        });
-
-        reserveButton.setBackground(new java.awt.Color(202, 180, 138));
-        reserveButton.setText("Reserve Book");
-        reserveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reserveButtonActionPerformed(evt);
-            }
-        });
-
-        moreButton.setBackground(new java.awt.Color(202, 180, 138));
-        moreButton.setText("More Info");
-        moreButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                moreButtonActionPerformed(evt);
+                chooseRewardButtonActionPerformed(evt);
             }
         });
 
@@ -271,70 +175,44 @@ public class BookPage extends javax.swing.JFrame {
         backGroundLayout.setHorizontalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backGroundLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(back)
+                .addGap(9, 9, 9)
+                .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(back)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numberLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(chooseRewardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                            .addComponent(topLabel)
+                            .addGap(335, 335, 335))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                            .addComponent(yourRewardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(296, 296, 296)))))
         );
         backGroundLayout.setVerticalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backGroundLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(numberLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(topLabel)
+                .addGap(50, 50, 50)
+                .addComponent(yourRewardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(chooseRewardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(backGround, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(topPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(topPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,35 +243,12 @@ public class BookPage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
 
-    private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
-        try {
-          ReservedBook existingRB = new ReservedBook(UIVars.userID);
-          if (existingRB.getReservedStatus() == true) {
-              JOptionPane.showMessageDialog(null, "You already reserved a book.", "ERROR", JOptionPane.ERROR_MESSAGE);
-          }
-          else {
-             ReservedBook RB = new ReservedBook(UIVars.userID, book.getBookID());
-             if (RB.getIsReserve() == true) {
-                 JOptionPane.showMessageDialog(null, "You reserved this book.", "Library", JOptionPane.INFORMATION_MESSAGE); 
-                 updateRemainingLabel();
-             }
-             else JOptionPane.showMessageDialog(null, "There are no book left.", "ERROR", JOptionPane.ERROR_MESSAGE);
-          }
-          
-        }
-        catch (Exception e){System.out.println(e);}
-    }//GEN-LAST:event_reserveButtonActionPerformed
-
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        Main menu = new Main();
+        MemberPage menu = new MemberPage();
         menu.setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_backActionPerformed
-
-    private void bookImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookImageActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookImageActionPerformed
 
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
         String x = searchField.getText();     
@@ -415,7 +270,6 @@ public class BookPage extends javax.swing.JFrame {
                 }
         }
         } catch (Exception e) {System.out.println(e); }
-                // TODO add your handling code here:
     }//GEN-LAST:event_searchFieldKeyPressed
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
@@ -425,36 +279,20 @@ public class BookPage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_logoActionPerformed
 
-    private void moreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreButtonActionPerformed
-        gotoBookPageExtra(bookNameLink);
-    }//GEN-LAST:event_moreButtonActionPerformed
-
-    private void favouriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favouriteButtonActionPerformed
-        try {
-            if (favoriteFlag == false) {
-                UserPickBook fav = new UserPickBook(UIVars.userID, book.getBookID());
-                JOptionPane.showMessageDialog(null, "Success.", "Library", JOptionPane.INFORMATION_MESSAGE);
-                favoriteFlag = true;
-                updateFavButton();
-            }
-            else {
-                UserPickBook fav = new UserPickBook(UIVars.userID);
-                fav.deleteUserPickBook(UIVars.userID, book.getBookID());
-                JOptionPane.showMessageDialog(null, "Removed from favorite.", "Library", JOptionPane.INFORMATION_MESSAGE);
-                favoriteFlag = false;
-                updateFavButton();
-            }
-        }
-        catch (Exception e){System.out.println(e);}
-    }//GEN-LAST:event_favouriteButtonActionPerformed
-
-    private void reviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewButtonActionPerformed
-        UIVars.prevPage = "BookPage";
-        BookReview br = new BookReview(bookNameLink);
-        br.setVisible(true);
+    private void yourRewardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yourRewardButtonActionPerformed
+        YourReward newui = new YourReward();
+        newui.setVisible(true);
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_reviewButtonActionPerformed
+    }//GEN-LAST:event_yourRewardButtonActionPerformed
+
+    private void chooseRewardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseRewardButtonActionPerformed
+        //YourRewardRedeem newui = new YourRewardRedeem();
+        //newui.setVisible(true);
+        //setVisible(false);
+        //dispose();
+        System.out.println("No page yet.");
+    }//GEN-LAST:event_chooseRewardButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,22 +334,17 @@ public class BookPage extends javax.swing.JFrame {
     private javax.swing.JButton back;
     private javax.swing.JPanel backGround;
     private javax.swing.JLabel backLine;
-    private javax.swing.JButton bookImage;
-    private javax.swing.JLabel bookName;
-    private javax.swing.JButton favouriteButton;
+    private javax.swing.JButton chooseRewardButton;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton logo;
-    private javax.swing.JButton moreButton;
+    private javax.swing.JLabel memberName;
     private javax.swing.JButton notifButton;
-    private javax.swing.JLabel numberLeft;
-    private javax.swing.JLabel rate;
-    private javax.swing.JButton reserveButton;
-    private javax.swing.JButton reviewButton;
     private javax.swing.JTextField searchField;
+    private javax.swing.JLabel topLabel;
     private javax.swing.JPanel topPanel;
-    private javax.swing.JLabel typeAndAuthor;
+    private javax.swing.JButton yourRewardButton;
     // End of variables declaration//GEN-END:variables
 }

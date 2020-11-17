@@ -67,12 +67,16 @@ public class ReservedBook extends Member {
 
     public void deleteRequest(String user_ID, String book_ID, Date requestDate) throws SQLException{
         //this.requestDate = requestDate;
+        PhysicalBook book = new PhysicalBook(user_ID);
+        this.remaining = book.getRemaining();
         String query = "DELETE FROM reserved_book WHERE user_ID = ? AND book_ID = ? AND request_date = ?";
         PreparedStatement preparedStatement = connect.prepareStatement(query);
         preparedStatement.setString(1,user_ID);
         preparedStatement.setString(2,book_ID);
         preparedStatement.setDate(3,requestDate);
         preparedStatement.execute();
+        book.updateRemaining(this.remaining++);
+        
     }
     
     public boolean getReservedStatus(){
@@ -81,6 +85,10 @@ public class ReservedBook extends Member {
     
     public boolean getIsReserve(){
         return isReserve;
+    }
+    
+    public String getBookID() {
+        return book_ID;
     }
 
     public Date getRequestDate(){

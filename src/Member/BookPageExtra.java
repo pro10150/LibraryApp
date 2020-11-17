@@ -1,8 +1,10 @@
 package Member;
 import javax.swing.JOptionPane;
 import Backdoor.*;
+import java.awt.Image;
 
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Annop Boonlieng
@@ -28,6 +30,12 @@ public class BookPageExtra extends javax.swing.JFrame {
             this.rate.setText("Rating: [WIP]");
             this.sectionAndSeries.setText("Section: " + book.getLocation());
             this.description.setText("<html>"+book.getDescription()+"</html>");
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/0000000001.jpg"));
+            Image img = icon.getImage();
+            Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            bookImage.setIcon(icon);
+            bookImage.setText("");
         }catch (Exception e){System.out.println(e);}
     }
 
@@ -259,7 +267,10 @@ public class BookPageExtra extends javax.swing.JFrame {
     }//GEN-LAST:event_accountButtonActionPerformed
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
-        // TODO add your handling code here:
+        Notification notif = new Notification();
+        notif.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

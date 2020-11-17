@@ -186,9 +186,11 @@ public class BookReviewFriend extends javax.swing.JFrame {
         );
 
         backGround.setBackground(new java.awt.Color(255, 249, 217));
+        backGround.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backLine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         backLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backLine.png"))); // NOI18N
+        backGround.add(backLine, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 11, 790, 48));
 
         back.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         back.setText("<< Back");
@@ -199,6 +201,7 @@ public class BookReviewFriend extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
+        backGround.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 40));
 
         bookImage.setText("BOOK");
         bookImage.addActionListener(new java.awt.event.ActionListener() {
@@ -206,12 +209,14 @@ public class BookReviewFriend extends javax.swing.JFrame {
                 bookImageActionPerformed(evt);
             }
         });
+        backGround.add(bookImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 65, 130, 160));
 
         AuthorName.setBackground(new java.awt.Color(102, 102, 102));
         AuthorName.setForeground(new java.awt.Color(255, 255, 255));
         AuthorName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AuthorName.setText("[Type] + [Author]");
         AuthorName.setOpaque(true);
+        backGround.add(AuthorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 231, 130, 23));
 
         jPanel1.setBackground(new java.awt.Color(195, 172, 148));
 
@@ -262,7 +267,7 @@ public class BookReviewFriend extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         reviewDesc.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        reviewDesc.setText("Insert desc here.");
+        reviewDesc.setText("<html>Insert desc here.</html>");
         reviewDesc.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -271,7 +276,7 @@ public class BookReviewFriend extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(reviewDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                .addComponent(reviewDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -286,13 +291,13 @@ public class BookReviewFriend extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(298, 298, 298)
+                        .addGap(306, 306, 306)
                         .addComponent(star1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(star2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,7 +307,7 @@ public class BookReviewFriend extends javax.swing.JFrame {
                         .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,54 +325,21 @@ public class BookReviewFriend extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
-        backGround.setLayout(backGroundLayout);
-        backGroundLayout.setHorizontalGroup(
-            backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backGroundLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(back)
-                .addGap(9, 9, 9)
-                .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(backGroundLayout.createSequentialGroup()
-                .addGap(427, 427, 427)
-                .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(backGroundLayout.createSequentialGroup()
-                .addGap(427, 427, 427)
-                .addComponent(AuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(backGroundLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        backGroundLayout.setVerticalGroup(
-            backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backGroundLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(AuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
+        backGround.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 260, 898, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(topPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backGround, javax.swing.GroupLayout.PREFERRED_SIZE, 945, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
         );
 
         pack();
@@ -385,7 +357,10 @@ public class BookReviewFriend extends javax.swing.JFrame {
     }//GEN-LAST:event_accountButtonActionPerformed
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
-        // TODO add your handling code here:
+        Notification notif = new Notification();
+        notif.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

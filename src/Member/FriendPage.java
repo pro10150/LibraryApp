@@ -141,6 +141,7 @@ public class FriendPage extends javax.swing.JFrame {
         label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label1.setText("Their book reviews");
 
+        bookReview1.setBackground(new java.awt.Color(202, 180, 138));
         bookReview1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReview1.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
         bookReview1.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +150,7 @@ public class FriendPage extends javax.swing.JFrame {
             }
         });
 
+        bookReview2.setBackground(new java.awt.Color(202, 180, 138));
         bookReview2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReview2.setText("<html>\n<p>Book name: xxxxxxxxxxxx xxxxxxxxxxxx   Rate: 5.00</p>\n<p>Date: XX/XX/XX</p>\n</html>\n");
         bookReview2.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +243,10 @@ public class FriendPage extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
-        // TODO add your handling code here:
+        Notification notif = new Notification();
+        notif.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked

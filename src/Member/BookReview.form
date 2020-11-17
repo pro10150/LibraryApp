@@ -53,7 +53,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="topPanel" alignment="0" max="32767" attributes="0"/>
-          <Component id="backGround" alignment="0" max="32767" attributes="0"/>
+          <Component id="backGround" alignment="0" pref="945" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -217,6 +217,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="sendReview">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Submit"/>
           </Properties>
           <Events>
@@ -224,12 +227,15 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="430" y="450" width="130" height="34"/>
+              <AbsoluteConstraints x="430" y="440" width="130" height="34"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="removeReview">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Remove"/>
           </Properties>
           <Events>
@@ -237,12 +243,15 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="500" y="450" width="130" height="34"/>
+              <AbsoluteConstraints x="500" y="440" width="130" height="34"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="editReview">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
           <Events>
@@ -250,7 +259,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="360" y="450" width="130" height="34"/>
+              <AbsoluteConstraints x="360" y="440" width="130" height="34"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -293,20 +302,19 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="24" y="260" width="-1" height="-1"/>
+              <AbsoluteConstraints x="24" y="260" width="900" height="-1"/>
             </Constraint>
           </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="837" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="descLabel" min="-2" pref="62" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="298" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
                               <Component id="star1" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="star2" min="-2" pref="30" max="-2" attributes="0"/>
@@ -316,9 +324,11 @@
                               <Component id="star4" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="star5" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="337" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

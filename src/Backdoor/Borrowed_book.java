@@ -11,7 +11,9 @@ public class Borrowed_book extends Member{
     private Date returnDate;
     private boolean lateCheck;
     private boolean isBorrow = false;
-
+    private long day;
+    private int additionFee ;
+    
     public Borrowed_book(String user_ID) throws SQLException{
         this.user_ID = user_ID;
         statement = connect.createStatement();
@@ -57,6 +59,7 @@ public class Borrowed_book extends Member{
             book.reduceRemaining();
             //book.updateRemaining(this.remaining--);
             isBorrow = true;
+            
         }
     }
 
@@ -89,6 +92,11 @@ public class Borrowed_book extends Member{
         preparedStatement.setString(4,this.book_ID);
         preparedStatement.setDate(5,this.dueDate);
         preparedStatement.execute();
+        if (late_check = true){
+            day = (todayDate - due) / 86399999 ;
+            additionFee = (int) day * 2;
+            super.addFee(additionFee);
+        }
     }
 
     public Date getDueDate(){
