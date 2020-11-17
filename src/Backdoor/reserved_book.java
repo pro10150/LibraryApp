@@ -12,7 +12,7 @@ import java.util.Calendar;
  * @author skooter
  */
        
-public class ReservedBook extends Member {
+public class reserved_book extends Member {
     private String book_ID;
     private int remaining;
     private Date requestDate;
@@ -20,7 +20,7 @@ public class ReservedBook extends Member {
     private boolean reservedStatus;
     private boolean isReserve;
 
-    public ReservedBook(String user_ID) throws SQLException{
+    public reserved_book(String user_ID) throws SQLException{
         this.user_ID = user_ID;
         statement = connect.createStatement();
         resultSet = statement.executeQuery("select * from reserved_book");
@@ -36,7 +36,7 @@ public class ReservedBook extends Member {
         }
     }
 
-    public ReservedBook(String user_ID, String book_ID) throws SQLException{
+    public reserved_book(String user_ID, String book_ID) throws SQLException{
         this.user_ID = user_ID;
         this.book_ID = book_ID;
         PhysicalBook book = new PhysicalBook(this.book_ID);

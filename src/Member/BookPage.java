@@ -6,9 +6,6 @@ import Backdoor.*;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.JButton;
 /**
  *
  * @author Annop Boonlieng
@@ -45,14 +42,6 @@ public class BookPage extends javax.swing.JFrame {
                     updateFavButton();
                 }
             }
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.png"));
-            Image img = icon.getImage();
-            Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
-            icon = new ImageIcon(modImg);
-            bookImage.setIcon(icon);
-            bookImage.setText("");
-            //bookImage.setSize(79,29);
-
         }catch (Exception e){System.out.println(e);}
         
     }
@@ -93,7 +82,6 @@ public class BookPage extends javax.swing.JFrame {
         logo = new javax.swing.JButton();
         backGround = new javax.swing.JPanel();
         backLine = new javax.swing.JLabel();
-
         bookImage = new javax.swing.JButton();
         back = new javax.swing.JButton();
         bookName = new javax.swing.JLabel();
@@ -410,6 +398,10 @@ public class BookPage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backActionPerformed
 
+    private void bookImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookImageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookImageActionPerformed
+
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
         String x = searchField.getText();     
         if (x.equals("search")) searchField.setText("");
@@ -443,10 +435,6 @@ public class BookPage extends javax.swing.JFrame {
     private void moreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreButtonActionPerformed
         gotoBookPageExtra(bookNameLink);
     }//GEN-LAST:event_moreButtonActionPerformed
-
-    private void bookImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookImageActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookImageActionPerformed
 
     /**
      * @param args the command line arguments

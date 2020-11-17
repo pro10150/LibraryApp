@@ -2,10 +2,8 @@ package Member;
 
 import javax.swing.JOptionPane;
 import Backdoor.*;
-import java.awt.Image;
 
 import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
 /**
  *
  * @author Annop Boonlieng
@@ -44,12 +42,6 @@ public class BookReview extends javax.swing.JFrame {
                 editReview.setVisible(false);
                 removeReview.setVisible(false);
             }
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.png"));
-            Image img = icon.getImage();
-            Image modImg = img.getScaledInstance(130,160, Image.SCALE_SMOOTH);
-            icon = new ImageIcon(modImg);
-            bookImage.setIcon(icon);
-            bookImage.setText("");
             
         }catch (Exception e){System.out.println(e);}
         

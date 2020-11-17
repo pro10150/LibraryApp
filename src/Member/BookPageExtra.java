@@ -1,10 +1,8 @@
 package Member;
 import javax.swing.JOptionPane;
 import Backdoor.*;
-import java.awt.Image;
 
 import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
 /**
  *
  * @author Annop Boonlieng
@@ -30,12 +28,6 @@ public class BookPageExtra extends javax.swing.JFrame {
             this.rate.setText("Rating: [WIP]");
             this.sectionAndSeries.setText("Section: " + book.getLocation());
             this.description.setText("<html>"+book.getDescription()+"</html>");
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.png"));
-            Image img = icon.getImage();
-            Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
-            icon = new ImageIcon(modImg);
-            bookImage.setIcon(icon);
-            bookImage.setText("");
         }catch (Exception e){System.out.println(e);}
     }
 
