@@ -66,6 +66,10 @@ public class BookPage extends javax.swing.JFrame {
             favouriteButton.setText("Add to favourite");
         }
     }
+    
+    public void updateRemainingLabel() {
+        numberLeft.setText("Remaining: " + book.getRemaining());
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -383,6 +387,7 @@ public class BookPage extends javax.swing.JFrame {
              ReservedBook RB = new ReservedBook(UIVars.userID, book.getBookID());
              if (RB.getIsReserve() == true) {
                  JOptionPane.showMessageDialog(null, "You reserved this book.", "Library", JOptionPane.INFORMATION_MESSAGE); 
+                 updateRemainingLabel();
              }
              else JOptionPane.showMessageDialog(null, "There are no book left.", "ERROR", JOptionPane.ERROR_MESSAGE);
           }
