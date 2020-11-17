@@ -1,9 +1,11 @@
 package Member;
 
 import Backdoor.*;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*; 
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -99,6 +101,12 @@ public class SearchBook extends javax.swing.JFrame {
                     + " /  Author: " + book1.getAuthor());
             numberLeft1.setText("Remaining: " + book1.getRemaining());
             rate1.setText("Rating: [WIP]");
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/0000000001.jpg"));
+            Image img = icon.getImage();
+            Image modImg = img.getScaledInstance(120,156, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageBook1.setIcon(icon);
+            imageBook1.setText("");
             
             n = 1+( (page-1) * 3);
             PhysicalBook book2 = new PhysicalBook(sc.getnthID(n));
@@ -113,6 +121,8 @@ public class SearchBook extends javax.swing.JFrame {
                     + " /  Author: " + book2.getAuthor());
             numberLeft2.setText("Remaining: " + book2.getRemaining());
             rate2.setText("Rating: [WIP]");
+            imageBook2.setIcon(icon);
+            imageBook2.setText("");
             
             n = 2+( (page-1) * 3);
             PhysicalBook book3 = new PhysicalBook(sc.getnthID(n));
@@ -128,6 +138,8 @@ public class SearchBook extends javax.swing.JFrame {
                     + " /  Author: " + book3.getAuthor());
             numberLeft3.setText("Remaining: " + book3.getRemaining());
             rate3.setText("Rating: [WIP]");
+            imageBook3.setIcon(icon);
+            imageBook3.setText("");
             
         }
     }
