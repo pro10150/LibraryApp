@@ -27,7 +27,7 @@ public class BookReviewOther extends javax.swing.JFrame {
         
         try{
             book = new PhysicalBook(bookName);
-            this.AuthorName.setText(book.getAuthor());
+            this.AuthorName.setText(book.getName());
             
             review = new Review(UIVars.currentFriendID, book.getBookID());
             ratingStars = review.getRate();
@@ -53,10 +53,30 @@ public class BookReviewOther extends javax.swing.JFrame {
             star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
         else
             star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
-        if (ratingStars == 5)
+        if (ratingStars >= 5)
             star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
         else
             star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
+        if (ratingStars >= 6)
+            star6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        else
+            star6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
+        if (ratingStars >= 7)
+            star7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        else
+            star7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
+        if (ratingStars >= 8)
+            star8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        else
+            star8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
+        if (ratingStars >= 9)
+            star9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        else
+            star9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
+        if (ratingStars >= 10)
+            star10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staron.png")));
+        else
+            star10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png")));
     }
     
     public void UpdateUI() {
@@ -87,6 +107,11 @@ public class BookReviewOther extends javax.swing.JFrame {
         star3 = new javax.swing.JButton();
         star4 = new javax.swing.JButton();
         star5 = new javax.swing.JButton();
+        star6 = new javax.swing.JButton();
+        star7 = new javax.swing.JButton();
+        star8 = new javax.swing.JButton();
+        star9 = new javax.swing.JButton();
+        star10 = new javax.swing.JButton();
         descLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         reviewDesc = new javax.swing.JLabel();
@@ -214,7 +239,7 @@ public class BookReviewOther extends javax.swing.JFrame {
         AuthorName.setBackground(new java.awt.Color(102, 102, 102));
         AuthorName.setForeground(new java.awt.Color(255, 255, 255));
         AuthorName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        AuthorName.setText("[Type] + [Author]");
+        AuthorName.setText("[Name]");
         AuthorName.setOpaque(true);
         backGround.add(AuthorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 231, 130, 23));
 
@@ -260,6 +285,46 @@ public class BookReviewOther extends javax.swing.JFrame {
             }
         });
 
+        star6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star6.setContentAreaFilled(false);
+        star6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                star6ActionPerformed(evt);
+            }
+        });
+
+        star7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star7.setContentAreaFilled(false);
+        star7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                star7ActionPerformed(evt);
+            }
+        });
+
+        star8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star8.setContentAreaFilled(false);
+        star8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                star8ActionPerformed(evt);
+            }
+        });
+
+        star9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star9.setContentAreaFilled(false);
+        star9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                star9ActionPerformed(evt);
+            }
+        });
+
+        star10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/staroff.png"))); // NOI18N
+        star10.setContentAreaFilled(false);
+        star10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                star10ActionPerformed(evt);
+            }
+        });
+
         descLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         descLabel.setForeground(new java.awt.Color(255, 255, 255));
         descLabel.setText("Desc:");
@@ -297,7 +362,7 @@ public class BookReviewOther extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(306, 306, 306)
+                        .addGap(218, 218, 218)
                         .addComponent(star1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(star2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,20 +371,36 @@ public class BookReviewOther extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(star6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(star7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(star8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(star9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(star10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(descLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(star1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(star2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(star3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(descLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(star1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(star2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(star3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(star10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(star6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(star7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(star9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(star8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -436,6 +517,31 @@ public class BookReviewOther extends javax.swing.JFrame {
         updateStars();
     }//GEN-LAST:event_star5ActionPerformed
 
+    private void star6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star6ActionPerformed
+        ratingStars = 6;
+        updateStars();
+    }//GEN-LAST:event_star6ActionPerformed
+
+    private void star7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star7ActionPerformed
+        ratingStars = 7;
+        updateStars();
+    }//GEN-LAST:event_star7ActionPerformed
+
+    private void star8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star8ActionPerformed
+        ratingStars = 8;
+        updateStars();
+    }//GEN-LAST:event_star8ActionPerformed
+
+    private void star9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star9ActionPerformed
+        ratingStars = 9;
+        updateStars();
+    }//GEN-LAST:event_star9ActionPerformed
+
+    private void star10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_star10ActionPerformed
+        ratingStars = 10;
+        updateStars();
+    }//GEN-LAST:event_star10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -490,10 +596,15 @@ public class BookReviewOther extends javax.swing.JFrame {
     private javax.swing.JLabel reviewDesc;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton star1;
+    private javax.swing.JButton star10;
     private javax.swing.JButton star2;
     private javax.swing.JButton star3;
     private javax.swing.JButton star4;
     private javax.swing.JButton star5;
+    private javax.swing.JButton star6;
+    private javax.swing.JButton star7;
+    private javax.swing.JButton star8;
+    private javax.swing.JButton star9;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 }

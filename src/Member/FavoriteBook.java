@@ -96,7 +96,7 @@ public class FavoriteBook extends javax.swing.JFrame {
             typeAndAuthor1.setText("Type: " + book1.getType() 
                     + " /  Author: " + book1.getAuthor());
             numberLeft1.setText("Remaining: " + book1.getRemaining());
-            rate1.setText("Rating: [WIP]");
+            rate1.setText("Rating: " + book1.getOverallRate());
             
             n = 1+( (page-1) * 3);
             if (n < fav.getCount()) {
@@ -108,7 +108,7 @@ public class FavoriteBook extends javax.swing.JFrame {
                 typeAndAuthor2.setText("Type: " + book2.getType() 
                     + " /  Author: " + book2.getAuthor());
                 numberLeft2.setText("Remaining: " + book2.getRemaining());
-                rate2.setText("Rating: [WIP]");
+                rate2.setText("Rating: " + book2.getOverallRate());
             }
             else HideSecondBar();
             
@@ -122,7 +122,7 @@ public class FavoriteBook extends javax.swing.JFrame {
                 typeAndAuthor3.setText("Type: " + book3.getType() 
                     + " /  Author: " + book3.getAuthor());
                 numberLeft3.setText("Remaining: " + book3.getRemaining());
-                rate3.setText("Rating: [WIP]");
+                rate3.setText("Rating: " + book3.getOverallRate());
             }
            else HideThirdBar();    
             

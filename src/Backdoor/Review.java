@@ -98,7 +98,13 @@ public class Review extends Member implements Update{
         preparedStatement.setString(1,user_ID);
         preparedStatement.setString(2,book_ID);
         preparedStatement.execute();
-
+        PhysicalBook book = new PhysicalBook(this.book_ID);
+        double overallRate = book.getOverallRate();
+        if (book.getOverallRate() != 0){
+            overallRate *= 2;
+        }
+        overallRate -= rate;
+        book.setOverallRate(overallRate);
     }
 
     public ArrayList getUserIDList(){
@@ -135,6 +141,19 @@ public class Review extends Member implements Update{
     }
 
     public void setRate(int rate) throws SQLException{
+        PhysicalBook book = new PhysicalBook(this.book_ID);
+        double overallRate = book.getOverallRate();
+        // Revert
+        if (book.getOverallRate() != 0){
+            overallRate *= 2;
+        }
+        overallRate -= this.rate;
+        // Add new rate
+        overallRate += rate;
+        if (book.getOverallRate() != 0){
+            overallRate /= 2;
+        }
+        book.setOverallRate(overallRate);
         this.rate = rate;
         updateInt(this.rate, "rate");
     }

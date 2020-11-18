@@ -100,7 +100,7 @@ public class SearchBook extends javax.swing.JFrame {
             typeAndAuthor1.setText("Type: " + book1.getType() 
                     + " /  Author: " + book1.getAuthor());
             numberLeft1.setText("Remaining: " + book1.getRemaining());
-            rate1.setText("Rating: [WIP]");
+            rate1.setText("Rating: " + book1.getOverallRate());
             javax.swing.ImageIcon icon1;
             if(book1.getImageLocation() == null){
                 icon1 = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
@@ -126,7 +126,7 @@ public class SearchBook extends javax.swing.JFrame {
             typeAndAuthor2.setText("Type: " + book2.getType() 
                     + " /  Author: " + book2.getAuthor());
             numberLeft2.setText("Remaining: " + book2.getRemaining());
-            rate2.setText("Rating: [WIP]");
+            rate2.setText("Rating: " + book2.getOverallRate());
             javax.swing.ImageIcon icon2;
             if(book2.getImageLocation() == null){
                 icon2 = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
@@ -153,7 +153,7 @@ public class SearchBook extends javax.swing.JFrame {
             typeAndAuthor3.setText("Type: " + book3.getType() 
                     + " /  Author: " + book3.getAuthor());
             numberLeft3.setText("Remaining: " + book3.getRemaining());
-            rate3.setText("Rating: [WIP]");
+            rate3.setText("Rating: " + book3.getOverallRate());
             javax.swing.ImageIcon icon3;
             if(book3.getImageLocation() == null){
                 icon3 = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));

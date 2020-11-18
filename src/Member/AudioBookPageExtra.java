@@ -9,15 +9,15 @@ import javax.swing.ImageIcon;
  *
  * @author Annop Boonlieng
  */
-public class BookPageExtra extends javax.swing.JFrame {
+public class AudioBookPageExtra extends javax.swing.JFrame {
 
     public String bookNameLink;
     
-    public BookPageExtra() {
+    public AudioBookPageExtra() {
         initComponents();
     }
     
-    public BookPageExtra(String bookName) {
+    public AudioBookPageExtra(String bookName) {
         initComponents();
         
         bookNameLink = bookName;
@@ -27,7 +27,7 @@ public class BookPageExtra extends javax.swing.JFrame {
             PhysicalBook book = new PhysicalBook(bookName);
             this.typeAndAuthor.setText("Type: " + book.getType() 
                     + " /  Author: " + book.getAuthor());
-            this.rate.setText("Rating: " + book.getOverallRate());
+            this.voiceActor.setText("Rating: " + book.getOverallRate());
             this.sectionAndSeries.setText("Section: " + book.getLocation());
             this.description.setText("<html>"+book.getDescription()+"</html>");
             javax.swing.ImageIcon icon;
@@ -65,7 +65,7 @@ public class BookPageExtra extends javax.swing.JFrame {
         descTitle = new javax.swing.JLabel();
         bookName = new javax.swing.JLabel();
         typeAndAuthor = new javax.swing.JLabel();
-        rate = new javax.swing.JLabel();
+        voiceActor = new javax.swing.JLabel();
         description = new javax.swing.JLabel();
         sectionAndSeries = new javax.swing.JLabel();
 
@@ -170,10 +170,10 @@ public class BookPageExtra extends javax.swing.JFrame {
         typeAndAuthor.setText("[Type] + [Author]");
         typeAndAuthor.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        rate.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        rate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rate.setText("[Rate]");
-        rate.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        voiceActor.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        voiceActor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        voiceActor.setText("[voice actor]");
+        voiceActor.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         description.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         description.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -209,7 +209,7 @@ public class BookPageExtra extends javax.swing.JFrame {
                                         .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(voiceActor, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(sectionAndSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(backGroundLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -228,7 +228,7 @@ public class BookPageExtra extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(voiceActor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(sectionAndSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -280,7 +280,7 @@ public class BookPageExtra extends javax.swing.JFrame {
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        BookPage bp = new BookPage(bookNameLink);
+        AudioBookPage bp = new AudioBookPage(bookNameLink);
         bp.setVisible(true);
         setVisible(false);
         dispose();
@@ -363,10 +363,10 @@ try {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton logo;
     private javax.swing.JButton notifButton;
-    private javax.swing.JLabel rate;
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel sectionAndSeries;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel typeAndAuthor;
+    private javax.swing.JLabel voiceActor;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,17 +12,17 @@ import javax.swing.ImageIcon;
  *
  * @author Annop Boonlieng
  */
-public class BookPage extends javax.swing.JFrame {
+public class AudioBookPage extends javax.swing.JFrame {
 
     public String bookNameLink;
     PhysicalBook book;
     boolean favoriteFlag = false;
     //public String bookImageLocation;
     
-    public BookPage() {
+    public AudioBookPage() {
         initComponents();
     }
-    public BookPage(String bookName){
+    public AudioBookPage(String bookName){
         initComponents();
         
         bookNameLink = bookName;
@@ -33,7 +33,7 @@ public class BookPage extends javax.swing.JFrame {
             this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
             this.typeAndAuthor.setText("Type: " + book.getType() 
                     + " /  Author: " + book.getAuthor());
-            this.numberLeft.setText("Remaining: " + book.getRemaining());
+            this.voiceActor.setText("Remaining: " + book.getRemaining());
             this.rate.setText("Rating: " + book.getOverallRate());
             // Favorite
             UserPickBook oldFav = new UserPickBook(UIVars.userID);
@@ -63,7 +63,7 @@ public class BookPage extends javax.swing.JFrame {
     
     public void gotoBookPageExtra(String bookName) {
         if (!bookName.equals("-")) {
-            BookPageExtra bp = new BookPageExtra(bookName);
+            AudioBookPageExtra bp = new AudioBookPageExtra(bookName);
             bp.setVisible(true);
             setVisible(false);
             dispose();
@@ -83,7 +83,7 @@ public class BookPage extends javax.swing.JFrame {
     }
     
     public void updateRemainingLabel() {
-        numberLeft.setText("Remaining: " + book.getRemaining());
+        voiceActor.setText("Remaining: " + book.getRemaining());
     }
 
     @SuppressWarnings("unchecked")
@@ -105,11 +105,10 @@ public class BookPage extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         bookName = new javax.swing.JLabel();
         typeAndAuthor = new javax.swing.JLabel();
-        numberLeft = new javax.swing.JLabel();
+        voiceActor = new javax.swing.JLabel();
         rate = new javax.swing.JLabel();
         reviewButton = new javax.swing.JButton();
         favouriteButton = new javax.swing.JButton();
-        reserveButton = new javax.swing.JButton();
         moreButton = new javax.swing.JButton();
         otherReviewButton = new javax.swing.JButton();
 
@@ -236,8 +235,9 @@ public class BookPage extends javax.swing.JFrame {
         typeAndAuthor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         typeAndAuthor.setText("[Type] + [Author]");
 
-        numberLeft.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        numberLeft.setText("[Left]");
+        voiceActor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        voiceActor.setText("[Voice Actor]");
+        voiceActor.setToolTipText("");
 
         rate.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         rate.setText("[Rate]");
@@ -255,14 +255,6 @@ public class BookPage extends javax.swing.JFrame {
         favouriteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 favouriteButtonActionPerformed(evt);
-            }
-        });
-
-        reserveButton.setBackground(new java.awt.Color(202, 180, 138));
-        reserveButton.setText("Reserve Book");
-        reserveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reserveButtonActionPerformed(evt);
             }
         });
 
@@ -295,7 +287,7 @@ public class BookPage extends javax.swing.JFrame {
                         .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bookName, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numberLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(voiceActor, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(backGroundLayout.createSequentialGroup()
@@ -303,7 +295,6 @@ public class BookPage extends javax.swing.JFrame {
                             .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(otherReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(0, 0, Short.MAX_VALUE))
@@ -328,7 +319,7 @@ public class BookPage extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(typeAndAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(numberLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(voiceActor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backGroundLayout.createSequentialGroup()
@@ -342,8 +333,6 @@ public class BookPage extends javax.swing.JFrame {
                 .addComponent(otherReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
@@ -385,25 +374,6 @@ public class BookPage extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
-
-    private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
-        try {
-          ReservedBook existingRB = new ReservedBook(UIVars.userID);
-          if (existingRB.getReservedStatus() == true) {
-              JOptionPane.showMessageDialog(null, "You already reserved a book.", "ERROR", JOptionPane.ERROR_MESSAGE);
-          }
-          else {
-             ReservedBook RB = new ReservedBook(UIVars.userID, book.getBookID());
-             if (RB.getIsReserve() == true) {
-                 JOptionPane.showMessageDialog(null, "You reserved this book.", "Library", JOptionPane.INFORMATION_MESSAGE); 
-                 updateRemainingLabel();
-             }
-             else JOptionPane.showMessageDialog(null, "There are no book left.", "ERROR", JOptionPane.ERROR_MESSAGE);
-          }
-          
-        }
-        catch (Exception e){System.out.println(e);}
-    }//GEN-LAST:event_reserveButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         Main menu = new Main();
@@ -531,13 +501,12 @@ public class BookPage extends javax.swing.JFrame {
     private javax.swing.JButton logo;
     private javax.swing.JButton moreButton;
     private javax.swing.JButton notifButton;
-    private javax.swing.JLabel numberLeft;
     private javax.swing.JButton otherReviewButton;
     private javax.swing.JLabel rate;
-    private javax.swing.JButton reserveButton;
     private javax.swing.JButton reviewButton;
     private javax.swing.JTextField searchField;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel typeAndAuthor;
+    private javax.swing.JLabel voiceActor;
     // End of variables declaration//GEN-END:variables
 }

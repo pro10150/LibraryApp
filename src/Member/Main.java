@@ -326,7 +326,7 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void gotoAudioBookPage(String bookName) {
-            BookPage bp = new BookPage(bookName);
+            AudioBookPage bp = new AudioBookPage(bookName);
             bp.setVisible(true);
             setVisible(false);
             dispose();
