@@ -12,6 +12,7 @@ public abstract class Book {
     protected int year;
     protected String author;
     protected boolean bookExisting = true;
+    protected String imageLocation;
 
     protected static Statement statement = null;
     protected static ResultSet resultSet = null;

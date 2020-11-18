@@ -252,7 +252,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="imageA1" min="-2" pref="101" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bookNameA1" pref="16" max="32767" attributes="0"/>
+                      <Component id="bookNameA1" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -712,7 +712,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="imageB2" min="-2" pref="101" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bookNameB2" pref="16" max="32767" attributes="0"/>
+                      <Component id="bookNameB2" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -800,7 +800,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="imageB4" min="-2" pref="101" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bookNameB4" pref="16" max="32767" attributes="0"/>
+                      <Component id="bookNameB4" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -888,7 +888,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="imageB6" min="-2" pref="101" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bookNameB6" pref="16" max="32767" attributes="0"/>
+                      <Component id="bookNameB6" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1043,7 +1043,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="45" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="nextButtonC" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       </Group>

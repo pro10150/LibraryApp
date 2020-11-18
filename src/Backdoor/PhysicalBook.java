@@ -27,6 +27,7 @@ public class PhysicalBook extends Book implements Update{
                 this.section = resultSet.getString("b.section");
                 this.serial = resultSet.getInt("b.serial");
                 this.remaining = resultSet.getInt("r.remaining");
+                this.imageLocation = resultSet.getString("b.image");
                 break;
             }
         }
@@ -46,6 +47,7 @@ public class PhysicalBook extends Book implements Update{
                     this.section = resultSet.getString("b.section");
                     this.serial = resultSet.getInt("b.serial");
                     this.remaining = resultSet.getInt("r.remaining");
+                    this.imageLocation = resultSet.getString("b.image");
                     break;
                 }
             }
@@ -126,6 +128,10 @@ public class PhysicalBook extends Book implements Update{
 
     public int getRemaining(){
         return remaining;
+    }
+    
+    public String getImageLocation(){
+        return imageLocation;
     }
 
     public String getLocation(){

@@ -17,6 +17,7 @@ public class BookPage extends javax.swing.JFrame {
     public String bookNameLink;
     PhysicalBook book;
     boolean favoriteFlag = false;
+    //public String bookImageLocation;
     
     public BookPage() {
         initComponents();
@@ -44,7 +45,13 @@ public class BookPage extends javax.swing.JFrame {
                     updateFavButton();
                 }
             }
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/0000000001.jpg"));
+            javax.swing.ImageIcon icon;
+            if(book.getImageLocation() == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(book.getImageLocation()));
+            }
             Image img = icon.getImage();
             Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
             icon = new ImageIcon(modImg);

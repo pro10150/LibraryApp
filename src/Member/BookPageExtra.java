@@ -30,7 +30,13 @@ public class BookPageExtra extends javax.swing.JFrame {
             this.rate.setText("Rating: [WIP]");
             this.sectionAndSeries.setText("Section: " + book.getLocation());
             this.description.setText("<html>"+book.getDescription()+"</html>");
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/0000000001.jpg"));
+            javax.swing.ImageIcon icon;
+            if(book.getImageLocation() == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(book.getImageLocation()));
+            }
             Image img = icon.getImage();
             Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
             icon = new ImageIcon(modImg);
