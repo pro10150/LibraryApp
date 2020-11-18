@@ -83,6 +83,13 @@ public class Review extends Member implements Update{
         preparedStatement.setString(2,this.book_ID);
         preparedStatement.setInt(3,this.rate);
         preparedStatement.execute();
+        PhysicalBook book = new PhysicalBook(this.book_ID);
+        double overallRate = book.getOverallRate();
+        overallRate += rate;
+        if (book.getOverallRate() != 0){
+            overallRate /= 2;
+        }
+        book.setOverallRate(overallRate);
     }
 
     public void deleteReview() throws SQLException{

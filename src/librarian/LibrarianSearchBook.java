@@ -3,11 +3,13 @@ package librarian;
 import Backdoor.*;
 import Member.BookPage;
 import Member.LoginScreen;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*; 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 public class LibrarianSearchBook extends javax.swing.JFrame {
         
@@ -111,6 +113,18 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
                     + " /  Author: " + book1.getAuthor());
             numberLeft1.setText("Remaining: " + book1.getRemaining());
             rate1.setText("Rating: [WIP]");
+            javax.swing.ImageIcon icon1;
+            if(book1.getImageLocation() == null){
+                icon1 = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon1 = new javax.swing.ImageIcon(getClass().getResource(book1.getImageLocation()));
+            }
+            Image img1 = icon1.getImage();
+            Image modImg1 = img1.getScaledInstance(120,156, Image.SCALE_SMOOTH);
+            icon1 = new ImageIcon(modImg1);
+            imageBook1.setIcon(icon1);
+            imageBook1.setText("");
             
             n = 1+( (page-1) * 3);
             PhysicalBook book2 = new PhysicalBook(sc.getnthID(n));
@@ -126,6 +140,18 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
                     + " /  Author: " + book2.getAuthor());
             numberLeft2.setText("Remaining: " + book2.getRemaining());
             rate2.setText("Rating: [WIP]");
+            javax.swing.ImageIcon icon2;
+            if(book2.getImageLocation() == null){
+                icon2 = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon2 = new javax.swing.ImageIcon(getClass().getResource(book2.getImageLocation()));
+            }
+            Image img2 = icon2.getImage();
+            Image modImg2 = img2.getScaledInstance(120,157, Image.SCALE_SMOOTH);
+            icon2 = new ImageIcon(modImg2);
+            imageBook2.setIcon(icon2);
+            imageBook2.setText("");
             
             n = 2+( (page-1) * 3);
             PhysicalBook book3 = new PhysicalBook(sc.getnthID(n));
@@ -141,6 +167,18 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
                     + " /  Author: " + book3.getAuthor());
             numberLeft3.setText("Remaining: " + book3.getRemaining());
             rate3.setText("Rating: [WIP]");
+            javax.swing.ImageIcon icon3;
+            if(book3.getImageLocation() == null){
+                icon3 = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon3 = new javax.swing.ImageIcon(getClass().getResource(book3.getImageLocation()));
+            }
+            Image img3 = icon3.getImage();
+            Image modImg3 = img3.getScaledInstance(120,156, Image.SCALE_SMOOTH);
+            icon3 = new ImageIcon(modImg3);
+            imageBook3.setIcon(icon3);
+            imageBook3.setText("");
             
         }
     }
