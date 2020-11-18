@@ -16,6 +16,7 @@ public class BookReview extends javax.swing.JFrame {
     public int ratingStars = 0;
     PhysicalBook book;
     Review review;
+    String image;
     
     public BookReview() {
         initComponents();
