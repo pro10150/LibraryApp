@@ -4,6 +4,7 @@ import Backdoor.*;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*; 
+import java.util.ArrayList;
 
 /**
  *
@@ -12,17 +13,18 @@ import java.sql.*;
 
 public class Main extends javax.swing.JFrame {
     
+    int favlimit = 100;
+    
     String[] featuredBook = {"Test 1", "Test 2", "Test 3", 
         "Test 4","Test 5","Test 6","Test 7","Test 8"};
     
     String[] featAudioBook = {"Test 10", "Test 9", "Test 4"};
     
-    String[] recommendedBook = {"Test 4", "Test 3", "Test 5", 
-        "Test 6","Test 7","Test 8","Test 9"};
+    String[] recommendedBook = new String[favlimit];
 
     int featutedIDCount = featuredBook.length;
     int featAudioBookIDCount = featAudioBook.length;
-    int recommendedIDCount = recommendedBook.length;
+    int recommendedIDCount;
     
     int page1 = 0;
     int page2 = 0;
@@ -30,200 +32,270 @@ public class Main extends javax.swing.JFrame {
     
     int pageCap1 = (featutedIDCount-1) / 7;
     int pageCap2 = (featAudioBookIDCount-1) / 7;
-    int pageCap3 = (recommendedIDCount-1) / 7;
+    int pageCap3;
         
-    public Main() {
+    public Main(){
         initComponents();
         
-        updateTopPick();
-        updateAudioBook();
         updateRecommended();
+        updateAudioBook();
+        
+         try{
+            UserPickBook fav = new UserPickBook(UIVars.userID);
+            pageCap3 = (fav.getCount() -1 ) / 7;
+            ArrayList bookList = fav.getBookIDList();
+            PhysicalBook bookfav;
+            
+            int i = 0;
+            while (i < fav.getCount() && i < favlimit) {
+                bookfav = new PhysicalBook( bookList.get(i).toString() );
+                recommendedBook[i] = bookfav.getBookID();
+                i++;
+            }
+            recommendedIDCount = fav.getCount();
+            updateFavorite();
+            } catch (Exception e) {System.out.println(e);} 
+        
     }
     // The update list methods are long so I have to
     // fold the methods.
     // <editor-fold defaultstate="collapsed" desc="update methods">
     int ptr;
-    public void updateTopPick() {
+    public void updateRecommended() {
         ptr = 0+7*page1;      
         if (ptr < featutedIDCount) {
             imageA1.setText(getBookImage(featuredBook[ptr]));
-            bookNameA1.setText(getAuthor(featuredBook[ptr]));
+            bookNameA1.setText(getName(featuredBook[ptr]));
+            imageA1.setVisible(true);
+            bookNameA1.setVisible(true);
         }
-        // Do not set texts of the first one
+        else {
+            imageA1.setVisible(false);
+            bookNameA1.setVisible(false);
+        }
         ptr++;
         if (ptr < featutedIDCount) {
             imageA2.setText(getBookImage(featuredBook[ptr]));
-            bookNameA2.setText(getAuthor(featuredBook[ptr]));
+            bookNameA2.setText(getName(featuredBook[ptr]));
+            imageA2.setVisible(true);
+            bookNameA2.setVisible(true);
         }
         else {
-            imageA2.setText("-");
-            bookNameA2.setText("XXXXX");
+            imageA2.setVisible(false);
+            bookNameA2.setVisible(false);
         }
         ptr++;
         if (ptr < featutedIDCount) {
             imageA3.setText(getBookImage(featuredBook[ptr]));
-            bookNameA3.setText(getAuthor(featuredBook[ptr]));
+            bookNameA3.setText(getName(featuredBook[ptr]));
+            imageA3.setVisible(true);
+            bookNameA3.setVisible(true);
         }
         else {
-            imageA3.setText("-");
-            bookNameA3.setText("XXXXX");
+            imageA3.setVisible(false);
+            bookNameA3.setVisible(false);
         }
         ptr++;
         if (ptr < featutedIDCount) {
             imageA4.setText(getBookImage(featuredBook[ptr]));
-            bookNameA4.setText(getAuthor(featuredBook[ptr]));
+            bookNameA4.setText(getName(featuredBook[ptr]));
+            imageA4.setVisible(true);
+            bookNameA4.setVisible(true);
         }
         else {
-            imageA4.setText("-");
-            bookNameA4.setText("XXXXX");
+            imageA4.setVisible(false);
+            bookNameA4.setVisible(false);
         }
         ptr++;
         if (ptr < featutedIDCount) {
             imageA5.setText(getBookImage(featuredBook[ptr]));
-            bookNameA5.setText(getAuthor(featuredBook[ptr]));
+            bookNameA5.setText(getName(featuredBook[ptr]));
+            imageA5.setVisible(true);
+            bookNameA5.setVisible(true);
         }
         else {
-            imageA5.setText("-");
-            bookNameA5.setText("XXXXX");
+            imageA5.setVisible(false);
+            bookNameA5.setVisible(false);
         }
         ptr++;
         if (ptr < featutedIDCount) {
             imageA6.setText(getBookImage(featuredBook[ptr]));
-            bookNameA6.setText(getAuthor(featuredBook[ptr]));
+            bookNameA6.setText(getName(featuredBook[ptr]));
+            imageA6.setVisible(true);
+            bookNameA6.setVisible(true);
         }
         else {
-            imageA6.setText("-");
-            bookNameA6.setText("XXXXX");
+            imageA6.setVisible(false);
+            bookNameA6.setVisible(false);
         }
         ptr++;
         if (ptr < featutedIDCount) {
             imageA7.setText(getBookImage(featuredBook[ptr]));
-            bookNameA7.setText(getAuthor(featuredBook[ptr]));
+            bookNameA7.setText(getName(featuredBook[ptr]));
+            imageA7.setVisible(true);
+            bookNameA7.setVisible(true);
         }
         else {
-            imageA7.setText("-");
-            bookNameA7.setText("XXXXX");
+            imageA7.setVisible(false);
+            bookNameA7.setVisible(false);
         }
     }
     public void updateAudioBook() {
         ptr = 0+7*page2;      
         if (ptr < featAudioBookIDCount) {
             imageB1.setText(getBookImage(featAudioBook[ptr]));
-            bookNameB1.setText(getAuthor(featAudioBook[ptr]));
+            bookNameB1.setText(getName(featAudioBook[ptr]));
+            imageB1.setVisible(true);
+            bookNameB1.setVisible(true);
+        }
+        else {
+            imageB1.setVisible(false);
+            bookNameB1.setVisible(false);
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
             imageB2.setText(getBookImage(featAudioBook[ptr]));
-            bookNameB2.setText(getAuthor(featAudioBook[ptr]));
+            bookNameB2.setText(getName(featAudioBook[ptr]));
+            imageB2.setVisible(true);
+            bookNameB2.setVisible(true);
         }
         else {
-            imageB2.setText("-");
-            bookNameB2.setText("XXXXX");
+            imageB2.setVisible(false);
+            bookNameB2.setVisible(false);
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
             imageB3.setText(getBookImage(featAudioBook[ptr]));
-            bookNameB3.setText(getAuthor(featAudioBook[ptr]));
+            bookNameB3.setText(getName(featAudioBook[ptr]));
+            imageB3.setVisible(true);
+            bookNameB3.setVisible(true);
         }
         else {
-            imageB3.setText("-");
-            bookNameB3.setText("XXXXX");
+            imageB3.setVisible(false);
+            bookNameB3.setVisible(false);
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
             imageB4.setText(getBookImage(featAudioBook[ptr]));
-            bookNameB4.setText(getAuthor(featAudioBook[ptr]));
+            bookNameB4.setText(getName(featAudioBook[ptr]));
+            imageB4.setVisible(true);
+            bookNameB4.setVisible(true);
         }
         else {
-            imageB4.setText("-");
-            bookNameB4.setText("XXXXX");
+            imageB4.setVisible(false);
+            bookNameB4.setVisible(false);
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
             imageB5.setText(getBookImage(featAudioBook[ptr]));
-            bookNameB5.setText(getAuthor(featAudioBook[ptr]));
+            bookNameB5.setText(getName(featAudioBook[ptr]));
+            imageB5.setVisible(true);
+            bookNameB5.setVisible(true);
         }
         else {
-            imageB5.setText("-");
-            bookNameB5.setText("XXXXX");
+            imageB5.setVisible(false);
+            bookNameB5.setVisible(false);
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
             imageB6.setText(getBookImage(featAudioBook[ptr]));
-            bookNameB6.setText(getAuthor(featAudioBook[ptr]));
+            bookNameB6.setText(getName(featAudioBook[ptr]));
+            imageB6.setVisible(true);
+            bookNameB6.setVisible(true);
         }
         else {
-            imageB6.setText("-");
-            bookNameB6.setText("XXXXX");
+            imageB6.setVisible(false);
+            bookNameB6.setVisible(false);
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
             imageB7.setText(getBookImage(featAudioBook[ptr]));
-            bookNameB7.setText(getAuthor(featAudioBook[ptr]));
+            bookNameB7.setText(getName(featAudioBook[ptr]));
+            imageB7.setVisible(true);
+            bookNameB7.setVisible(true);
         }
         else {
-            imageB7.setText("-");
-            bookNameB7.setText("XXXXX");
+            imageB7.setVisible(false);
+            bookNameB7.setVisible(false);
         }
     }
-    public void updateRecommended() {
+    public void updateFavorite() {
         ptr = 0+7*page3;      
         if (ptr < recommendedIDCount) {
             imageC1.setText(getBookImage(recommendedBook[ptr]));
-            bookNameC1.setText(getAuthor(recommendedBook[ptr]));
+            bookNameC1.setText(getName(recommendedBook[ptr]));
+            imageC1.setVisible(true);
+            bookNameC1.setVisible(true);
+        }
+        else {
+            imageC1.setVisible(false);
+            bookNameC1.setVisible(false);
         }
         ptr++;
         if (ptr < recommendedIDCount) {
             imageC2.setText(getBookImage(recommendedBook[ptr]));
-            bookNameC2.setText(getAuthor(recommendedBook[ptr]));
+            bookNameC2.setText(getName(recommendedBook[ptr]));
+            imageC2.setVisible(true);
+            bookNameC2.setVisible(true);
         }
+        
         else {
-            imageC2.setText("-");
-            bookNameC2.setText("XXXXX");
+            imageC2.setVisible(false);
+            bookNameC2.setVisible(false);
         }
         ptr++;
         if (ptr < recommendedIDCount) {
             imageC3.setText(getBookImage(recommendedBook[ptr]));
-            bookNameC3.setText(getAuthor(recommendedBook[ptr]));
+            bookNameC3.setText(getName(recommendedBook[ptr]));
+            imageC3.setVisible(true);
+            bookNameC3.setVisible(true);
         }
         else {
-            imageC3.setText("-");
-            bookNameC3.setText("XXXXX");
+            imageC3.setVisible(false);
+            bookNameC3.setVisible(false);
         }
         ptr++;
         if (ptr < recommendedIDCount) {
             imageC4.setText(getBookImage(recommendedBook[ptr]));
-            bookNameC4.setText(getAuthor(recommendedBook[ptr]));
+            bookNameC4.setText(getName(recommendedBook[ptr]));
+            imageC4.setVisible(true);
+            bookNameC4.setVisible(true);
         }else {
-            imageC4.setText("-");
-            bookNameC4.setText("XXXXX");
+            imageC4.setVisible(false);
+            bookNameC4.setVisible(false);
         }
         ptr++;
         if (ptr < recommendedIDCount) {
             imageC5.setText(getBookImage(recommendedBook[ptr]));
-            bookNameC5.setText(getAuthor(recommendedBook[ptr]));
+            bookNameC5.setText(getName(recommendedBook[ptr]));
+            imageC5.setVisible(true);
+            bookNameC5.setVisible(true);
         }
         else {
-            imageC5.setText("-");
-            bookNameC5.setText("XXXXX");
+            imageC5.setVisible(false);
+            bookNameC5.setVisible(false);
         }
         ptr++;
         if (ptr < recommendedIDCount) {
             imageC6.setText(getBookImage(recommendedBook[ptr]));
-            bookNameC6.setText(getAuthor(recommendedBook[ptr]));
+            bookNameC6.setText(getName(recommendedBook[ptr]));
+            imageC6.setVisible(true);
+            bookNameC6.setVisible(true);
         }
         else {
-            imageC6.setText("-");
-            bookNameC6.setText("XXXXX");
+            imageC6.setVisible(false);
+            bookNameC6.setVisible(false);
         }
         ptr++;
         if (ptr < recommendedIDCount) {
             imageC7.setText(getBookImage(recommendedBook[ptr]));
-            bookNameC7.setText(getAuthor(recommendedBook[ptr]));
+            bookNameC7.setText(getName(recommendedBook[ptr]));
+            imageC7.setVisible(true);
+            bookNameC7.setVisible(true);
         }
         else {
-            imageC7.setText("-");
-            bookNameC7.setText("XXXXX");
+            imageC7.setVisible(false);
+            bookNameC7.setVisible(false);
         }
     }
     // </editor-fold>
@@ -237,25 +309,27 @@ public class Main extends javax.swing.JFrame {
         return result;
     }
     
-    public static String getAuthor(String bookName) {
+    public static String getName(String bookName) {
         String result = null;
         try{
             Book book = new PhysicalBook(bookName);
-            result = book.getAuthor();
+            result = book.getName();
             } catch (Exception e) {System.out.println(e);} 
         return result;
     }
     
     public void gotoBookPage(String bookName) {
-        if (!bookName.equals("-")) {
+        BookPage bp = new BookPage(bookName);
+        bp.setVisible(true);
+        setVisible(false);
+        dispose();
+    }
+    
+    public void gotoAudioBookPage(String bookName) {
             BookPage bp = new BookPage(bookName);
             bp.setVisible(true);
             setVisible(false);
             dispose();
-        }
-        else {
-            System.out.println("Empty book.");    
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -268,7 +342,7 @@ public class Main extends javax.swing.JFrame {
         accountButton = new javax.swing.JButton();
         notifButton = new javax.swing.JButton();
         logo = new javax.swing.JButton();
-        topPick = new javax.swing.JPanel();
+        recommended = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         bookA1 = new javax.swing.JPanel();
         imageA1 = new javax.swing.JButton();
@@ -318,7 +392,7 @@ public class Main extends javax.swing.JFrame {
         bookNameB7 = new javax.swing.JLabel();
         nextButtonB = new javax.swing.JButton();
         prevButtonB = new javax.swing.JButton();
-        recommended = new javax.swing.JPanel();
+        favorite = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         bookC1 = new javax.swing.JPanel();
         imageC1 = new javax.swing.JButton();
@@ -405,10 +479,12 @@ public class Main extends javax.swing.JFrame {
         });
         topPanel.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 4, 100, 50));
 
-        topPick.setBackground(new java.awt.Color(255, 255, 255));
+        recommended.setBackground(new java.awt.Color(255, 255, 255));
+        recommended.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Top pick for you");
+        jLabel3.setText("Recommended");
+        recommended.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 214, 30));
 
         bookA1.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -435,8 +511,10 @@ public class Main extends javax.swing.JFrame {
             .addGroup(bookA1Layout.createSequentialGroup()
                 .addComponent(imageA1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookNameA1, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE))
+                .addComponent(bookNameA1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        recommended.add(bookA1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 36, -1, -1));
 
         bookA2.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -466,6 +544,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameA2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        recommended.add(bookA2, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 36, -1, -1));
+
         bookA3.setBackground(new java.awt.Color(102, 102, 102));
 
         imageA3.setText("-");
@@ -493,6 +573,8 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bookNameA3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        recommended.add(bookA3, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 36, -1, -1));
 
         bookA4.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -522,6 +604,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameA4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        recommended.add(bookA4, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 36, -1, -1));
+
         bookA5.setBackground(new java.awt.Color(102, 102, 102));
 
         imageA5.setText("-");
@@ -549,6 +633,8 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bookNameA5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        recommended.add(bookA5, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 36, -1, -1));
 
         bookA6.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -578,6 +664,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameA6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        recommended.add(bookA6, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 36, -1, -1));
+
         bookA7.setBackground(new java.awt.Color(102, 102, 102));
 
         imageA7.setText("-");
@@ -606,6 +694,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameA7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        recommended.add(bookA7, new org.netbeans.lib.awtextra.AbsoluteConstraints(784, 36, -1, -1));
+
         nextButtonA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrowNext.png"))); // NOI18N
         nextButtonA.setContentAreaFilled(false);
         nextButtonA.addActionListener(new java.awt.event.ActionListener() {
@@ -613,6 +703,7 @@ public class Main extends javax.swing.JFrame {
                 nextButtonAActionPerformed(evt);
             }
         });
+        recommended.add(nextButtonA, new org.netbeans.lib.awtextra.AbsoluteConstraints(895, 71, 40, 40));
 
         prevButtonA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrowPrev.png"))); // NOI18N
         prevButtonA.setContentAreaFilled(false);
@@ -621,65 +712,14 @@ public class Main extends javax.swing.JFrame {
                 prevButtonAActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout topPickLayout = new javax.swing.GroupLayout(topPick);
-        topPick.setLayout(topPickLayout);
-        topPickLayout.setHorizontalGroup(
-            topPickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topPickLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(topPickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(topPickLayout.createSequentialGroup()
-                        .addComponent(prevButtonA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bookA1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bookA2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bookA3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bookA4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bookA5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bookA6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bookA7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nextButtonA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        topPickLayout.setVerticalGroup(
-            topPickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topPickLayout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(topPickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(topPickLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(topPickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bookA1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookA2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookA3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookA4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookA5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookA6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookA7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topPickLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nextButtonA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))
-                    .addGroup(topPickLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(prevButtonA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        recommended.add(prevButtonA, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 75, 40, 40));
 
         yourAudiobook.setBackground(new java.awt.Color(255, 249, 217));
+        yourAudiobook.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Your Audiobook");
+        yourAudiobook.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 214, 30));
 
         bookB1.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -709,6 +749,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameB1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        yourAudiobook.add(bookB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 36, -1, -1));
+
         bookB2.setBackground(new java.awt.Color(102, 102, 102));
 
         bookNameB2.setForeground(new java.awt.Color(255, 255, 255));
@@ -726,7 +768,7 @@ public class Main extends javax.swing.JFrame {
         bookB2.setLayout(bookB2Layout);
         bookB2Layout.setHorizontalGroup(
             bookB2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bookNameB2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+            .addComponent(bookNameB2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(imageB2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
         );
         bookB2Layout.setVerticalGroup(
@@ -734,8 +776,10 @@ public class Main extends javax.swing.JFrame {
             .addGroup(bookB2Layout.createSequentialGroup()
                 .addComponent(imageB2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookNameB2, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE))
+                .addComponent(bookNameB2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        yourAudiobook.add(bookB2, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 36, -1, -1));
 
         bookB3.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -765,6 +809,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameB3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        yourAudiobook.add(bookB3, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 36, -1, -1));
+
         bookB4.setBackground(new java.awt.Color(102, 102, 102));
 
         bookNameB4.setForeground(new java.awt.Color(255, 255, 255));
@@ -782,7 +828,7 @@ public class Main extends javax.swing.JFrame {
         bookB4.setLayout(bookB4Layout);
         bookB4Layout.setHorizontalGroup(
             bookB4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bookNameB4, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+            .addComponent(bookNameB4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(imageB4, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
         );
         bookB4Layout.setVerticalGroup(
@@ -790,8 +836,10 @@ public class Main extends javax.swing.JFrame {
             .addGroup(bookB4Layout.createSequentialGroup()
                 .addComponent(imageB4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookNameB4, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE))
+                .addComponent(bookNameB4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        yourAudiobook.add(bookB4, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 36, -1, -1));
 
         bookB5.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -821,6 +869,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameB5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        yourAudiobook.add(bookB5, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 36, -1, -1));
+
         bookB6.setBackground(new java.awt.Color(102, 102, 102));
 
         bookNameB6.setForeground(new java.awt.Color(255, 255, 255));
@@ -838,7 +888,7 @@ public class Main extends javax.swing.JFrame {
         bookB6.setLayout(bookB6Layout);
         bookB6Layout.setHorizontalGroup(
             bookB6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bookNameB6, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+            .addComponent(bookNameB6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(imageB6, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
         );
         bookB6Layout.setVerticalGroup(
@@ -846,8 +896,10 @@ public class Main extends javax.swing.JFrame {
             .addGroup(bookB6Layout.createSequentialGroup()
                 .addComponent(imageB6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookNameB6, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE))
+                .addComponent(bookNameB6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        yourAudiobook.add(bookB6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 36, -1, -1));
 
         bookB7.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -877,6 +929,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameB7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        yourAudiobook.add(bookB7, new org.netbeans.lib.awtextra.AbsoluteConstraints(789, 36, -1, -1));
+
         nextButtonB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrowNext.png"))); // NOI18N
         nextButtonB.setContentAreaFilled(false);
         nextButtonB.addActionListener(new java.awt.event.ActionListener() {
@@ -884,6 +938,7 @@ public class Main extends javax.swing.JFrame {
                 nextButtonBActionPerformed(evt);
             }
         });
+        yourAudiobook.add(nextButtonB, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 73, 40, 40));
 
         prevButtonB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrowPrev.png"))); // NOI18N
         prevButtonB.setContentAreaFilled(false);
@@ -892,68 +947,14 @@ public class Main extends javax.swing.JFrame {
                 prevButtonBActionPerformed(evt);
             }
         });
+        yourAudiobook.add(prevButtonB, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 74, 40, 40));
 
-        javax.swing.GroupLayout yourAudiobookLayout = new javax.swing.GroupLayout(yourAudiobook);
-        yourAudiobook.setLayout(yourAudiobookLayout);
-        yourAudiobookLayout.setHorizontalGroup(
-            yourAudiobookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(yourAudiobookLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, yourAudiobookLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(prevButtonB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bookB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookB4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookB5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookB6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookB7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nextButtonB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5))
-        );
-        yourAudiobookLayout.setVerticalGroup(
-            yourAudiobookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(yourAudiobookLayout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(yourAudiobookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(yourAudiobookLayout.createSequentialGroup()
-                        .addGroup(yourAudiobookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(yourAudiobookLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(yourAudiobookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bookB1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bookB2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bookB3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bookB4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bookB5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bookB6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bookB7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(yourAudiobookLayout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(prevButtonB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, yourAudiobookLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nextButtonB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))))
-        );
-
-        recommended.setBackground(new java.awt.Color(255, 255, 255));
+        favorite.setBackground(new java.awt.Color(255, 255, 255));
+        favorite.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Recommended / Top");
+        jLabel5.setText("Your Favorites");
+        favorite.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 214, 30));
 
         bookC1.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -983,6 +984,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameC1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        favorite.add(bookC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 36, -1, -1));
+
         bookC2.setBackground(new java.awt.Color(102, 102, 102));
 
         bookNameC2.setForeground(new java.awt.Color(255, 255, 255));
@@ -1000,7 +1003,7 @@ public class Main extends javax.swing.JFrame {
         bookC2.setLayout(bookC2Layout);
         bookC2Layout.setHorizontalGroup(
             bookC2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bookNameC2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+            .addComponent(bookNameC2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(imageC2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
         );
         bookC2Layout.setVerticalGroup(
@@ -1010,6 +1013,8 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bookNameC2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        favorite.add(bookC2, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 36, -1, -1));
 
         bookC3.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -1039,6 +1044,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameC3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        favorite.add(bookC3, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 36, -1, -1));
+
         bookC4.setBackground(new java.awt.Color(102, 102, 102));
 
         bookNameC4.setForeground(new java.awt.Color(255, 255, 255));
@@ -1056,7 +1063,7 @@ public class Main extends javax.swing.JFrame {
         bookC4.setLayout(bookC4Layout);
         bookC4Layout.setHorizontalGroup(
             bookC4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bookNameC4, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+            .addComponent(bookNameC4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(imageC4, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
         );
         bookC4Layout.setVerticalGroup(
@@ -1066,6 +1073,8 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bookNameC4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        favorite.add(bookC4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 36, -1, -1));
 
         bookC5.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -1095,6 +1104,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameC5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        favorite.add(bookC5, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 36, -1, -1));
+
         bookC6.setBackground(new java.awt.Color(102, 102, 102));
 
         bookNameC6.setForeground(new java.awt.Color(255, 255, 255));
@@ -1112,7 +1123,7 @@ public class Main extends javax.swing.JFrame {
         bookC6.setLayout(bookC6Layout);
         bookC6Layout.setHorizontalGroup(
             bookC6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bookNameC6, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+            .addComponent(bookNameC6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(imageC6, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
         );
         bookC6Layout.setVerticalGroup(
@@ -1122,6 +1133,8 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bookNameC6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        favorite.add(bookC6, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 36, -1, -1));
 
         bookC7.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -1151,6 +1164,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(bookNameC7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        favorite.add(bookC7, new org.netbeans.lib.awtextra.AbsoluteConstraints(787, 36, -1, -1));
+
         nextButtonC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrowNext.png"))); // NOI18N
         nextButtonC.setContentAreaFilled(false);
         nextButtonC.addActionListener(new java.awt.event.ActionListener() {
@@ -1158,6 +1173,7 @@ public class Main extends javax.swing.JFrame {
                 nextButtonCActionPerformed(evt);
             }
         });
+        favorite.add(nextButtonC, new org.netbeans.lib.awtextra.AbsoluteConstraints(894, 74, 40, 40));
 
         prevButtonC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrowPrev.png"))); // NOI18N
         prevButtonC.setContentAreaFilled(false);
@@ -1166,83 +1182,27 @@ public class Main extends javax.swing.JFrame {
                 prevButtonCActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout recommendedLayout = new javax.swing.GroupLayout(recommended);
-        recommended.setLayout(recommendedLayout);
-        recommendedLayout.setHorizontalGroup(
-            recommendedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(recommendedLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, recommendedLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(prevButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bookC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookC3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookC4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookC5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookC6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookC7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nextButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
-        );
-        recommendedLayout.setVerticalGroup(
-            recommendedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(recommendedLayout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(recommendedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(recommendedLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(recommendedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bookC1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookC2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookC3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookC4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookC5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookC6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookC7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(14, 14, 14))
-                    .addGroup(recommendedLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(prevButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, recommendedLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addComponent(nextButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58))))
-        );
+        favorite.add(prevButtonC, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 75, 40, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(topPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(topPick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(yourAudiobook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(recommended, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(recommended, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(yourAudiobook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 945, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(favorite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(topPick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(recommended, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(yourAudiobook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(recommended, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(favorite, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
         );
 
         pack();
@@ -1290,36 +1250,32 @@ public class Main extends javax.swing.JFrame {
         gotoBookPage(imageA6.getText());
     }//GEN-LAST:event_imageA6ActionPerformed
 
-    private void imageA7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageA7ActionPerformed
-        gotoBookPage(imageA7.getText());
-    }//GEN-LAST:event_imageA7ActionPerformed
-
     private void imageB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB1ActionPerformed
-        gotoBookPage(imageB1.getText());
+        gotoAudioBookPage(imageB1.getText());
     }//GEN-LAST:event_imageB1ActionPerformed
 
     private void imageB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB2ActionPerformed
-        gotoBookPage(imageB2.getText());
+        gotoAudioBookPage(imageB2.getText());
     }//GEN-LAST:event_imageB2ActionPerformed
 
     private void imageB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB3ActionPerformed
-        gotoBookPage(imageB3.getText());
+        gotoAudioBookPage(imageB3.getText());
     }//GEN-LAST:event_imageB3ActionPerformed
 
     private void imageB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB4ActionPerformed
-        gotoBookPage(imageB4.getText());
+        gotoAudioBookPage(imageB4.getText());
     }//GEN-LAST:event_imageB4ActionPerformed
 
     private void imageB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB5ActionPerformed
-        gotoBookPage(imageB5.getText());
+        gotoAudioBookPage(imageB5.getText());
     }//GEN-LAST:event_imageB5ActionPerformed
 
     private void imageB6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB6ActionPerformed
-        gotoBookPage(imageB6.getText());
+        gotoAudioBookPage(imageB6.getText());
     }//GEN-LAST:event_imageB6ActionPerformed
 
     private void imageB7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB7ActionPerformed
-        gotoBookPage(imageB7.getText());
+        gotoAudioBookPage(imageB7.getText());
     }//GEN-LAST:event_imageB7ActionPerformed
 
     private void imageC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageC1ActionPerformed
@@ -1353,31 +1309,43 @@ public class Main extends javax.swing.JFrame {
     private void prevButtonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonAActionPerformed
         if (page1 > 0) {
             page1--;
-            updateTopPick();
+            updateRecommended();
         }
     }//GEN-LAST:event_prevButtonAActionPerformed
 
     private void nextButtonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonAActionPerformed
         if (page1 < pageCap1) {
             page1++;
-            updateTopPick();
+            updateRecommended();
         }
     }//GEN-LAST:event_nextButtonAActionPerformed
 
     private void prevButtonBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonBActionPerformed
-        // TODO add your handling code here:
+        if (page2 > 0) {
+            page2--;
+            updateAudioBook();
+        }
     }//GEN-LAST:event_prevButtonBActionPerformed
 
     private void nextButtonBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonBActionPerformed
-        // TODO add your handling code here:
+        if (page2 < pageCap2) {
+            page2++;
+            updateAudioBook();
+        }
     }//GEN-LAST:event_nextButtonBActionPerformed
 
     private void prevButtonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonCActionPerformed
-        // TODO add your handling code here:
+        if (page3 > 0) {
+            page3--;
+            updateFavorite();
+        }
     }//GEN-LAST:event_prevButtonCActionPerformed
 
     private void nextButtonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonCActionPerformed
-        // TODO add your handling code here:
+        if (page3 < pageCap3) {
+            page3++;
+            updateFavorite();
+        }
     }//GEN-LAST:event_nextButtonCActionPerformed
 
     private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
@@ -1409,6 +1377,10 @@ public class Main extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_logoActionPerformed
+
+    private void imageA7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageA7ActionPerformed
+        gotoBookPage(imageA7.getText());
+    }//GEN-LAST:event_imageA7ActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1486,6 +1458,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel bookNameC5;
     private javax.swing.JLabel bookNameC6;
     private javax.swing.JLabel bookNameC7;
+    private javax.swing.JPanel favorite;
     private javax.swing.JButton imageA1;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton imageA3;
@@ -1522,7 +1495,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel recommended;
     private javax.swing.JTextField searchField;
     private javax.swing.JPanel topPanel;
-    private javax.swing.JPanel topPick;
     private javax.swing.JPanel yourAudiobook;
     // End of variables declaration//GEN-END:variables
 }

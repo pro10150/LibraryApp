@@ -10,41 +10,36 @@ import java.util.ArrayList;
  *
  * @author Annop Boonlieng
  */
-public class YourFriendReview extends javax.swing.JFrame {
+public class YourBorrowedBooks extends javax.swing.JFrame {
 
     public String bookNameLink;
     ArrayList idIndex = new ArrayList<String>();
     ArrayList rateList = new ArrayList<Integer>();
-    Review review;
+    Borrowed_book borrowbook;
     
-    public YourFriendReview(){
+    public YourBorrowedBooks(){
         initComponents();
 
         try{  
-            User friend = new Member(UIVars.currentFriendID);
-            theirReview.setText(friend.getFirstName() + "'s Reviews");
-            noReview.setText(friend.getFirstName() + " doesn't have any reviews.");
             
-            review = new Review(UIVars.currentFriendID);
-            idIndex = review.getBookIDList();
-            rateList = review.getBookRateList();
+            borrowbook = new Borrowed_book(UIVars.userID);
             
             DefaultListModel listModel = new DefaultListModel();
             
             int i;
-            for (i = 0 ; i < review.getIDListCount() ; i++) {
-                PhysicalBook book = new PhysicalBook(idIndex.get(i).toString() );
-                listModel.addElement("Book: " + book.getName() + "    Rate: " + rateList.get(i));
-            }
-            reviewList.setModel(listModel);
+           // for (i = 0 ; i < review.getIDListCount() ; i++) {
+            //    PhysicalBook book = new PhysicalBook(idIndex.get(i).toString() );
+            //    listModel.addElement("Book: " + book.getName() + "    Rate: " + rateList.get(i));
+            //}
+            //reviewList.setModel(listModel);
             
-            if (i == 0) { // No review
-                jScrollPane1.setVisible(false);
-                selectButton.setVisible(false);
-            }
-            else {
-                noReview.setVisible(false);
-            }
+            //if (i == 0) { // No review
+            //    jScrollPane1.setVisible(false);
+            //    selectButton.setVisible(false);
+            //}
+            //else {
+            //    noReview.setVisible(false);
+            //}
             
         }catch (Exception e){System.out.println(e);}
     }
@@ -67,9 +62,8 @@ public class YourFriendReview extends javax.swing.JFrame {
         back1 = new javax.swing.JButton();
         theirReview = new javax.swing.JLabel();
         noReview = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        reviewList = new javax.swing.JList<>();
-        selectButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        borrowTable = new javax.swing.JTable();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -157,48 +151,70 @@ public class YourFriendReview extends javax.swing.JFrame {
 
         theirReview.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         theirReview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        theirReview.setText("Name's Reviews");
+        theirReview.setText("Your Reviews");
 
         noReview.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         noReview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        noReview.setText("Name doesn't have any reviews.");
+        noReview.setText("You don't have any reviews.");
 
-        reviewList.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        reviewList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(reviewList);
-
-        selectButton.setBackground(new java.awt.Color(202, 180, 138));
-        selectButton.setText("Select");
-        selectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectButtonActionPerformed(evt);
+        borrowTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"T1", "X", "X", "X", "X"},
+                {"T2", "X", "X", "X", "X"},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Book Name", "Borrow Date", "Return Date", "Status ", "Note"
             }
-        });
+        ));
+        jScrollPane2.setViewportView(borrowTable);
 
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
         backGroundLayout.setHorizontalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(114, 114, 114))
             .addGroup(backGroundLayout.createSequentialGroup()
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addGap(107, 107, 107)
-                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(back1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(backGroundLayout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         backGroundLayout.setVerticalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,11 +227,9 @@ public class YourFriendReview extends javax.swing.JFrame {
                 .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(selectButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -291,23 +305,6 @@ try {
         dispose();
     }//GEN-LAST:event_back1ActionPerformed
 
-    private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-        int index = reviewList.getSelectedIndex();
-        //System.out.println(index);
-        if (index > -1) {
-            try {
-                UIVars.prevPage = "YourFriendReview";
-                PhysicalBook book = new PhysicalBook(idIndex.get(index).toString() );
-                BookReviewOther br = new BookReviewOther(book.getName());
-                br.setVisible(true);
-                setVisible(false);
-                dispose();
-            } catch (Exception e) {System.out.println(e); }
-        }
-        else
-        JOptionPane.showMessageDialog(null, "Nothing selected.");
-    }//GEN-LAST:event_selectButtonActionPerformed
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -345,17 +342,16 @@ try {
     private javax.swing.JButton back1;
     private javax.swing.JPanel backGround;
     private javax.swing.JLabel backLine;
+    private javax.swing.JTable borrowTable;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logo;
     private javax.swing.JLabel noReview;
     private javax.swing.JButton notifButton;
-    private javax.swing.JList<String> reviewList;
     private javax.swing.JTextField searchField;
-    private javax.swing.JButton selectButton;
     private javax.swing.JLabel theirReview;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables

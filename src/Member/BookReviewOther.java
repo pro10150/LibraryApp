@@ -8,17 +8,17 @@ import java.awt.event.KeyEvent;
  *
  * @author Annop Boonlieng
  */
-public class BookReviewFriend extends javax.swing.JFrame {
+public class BookReviewOther extends javax.swing.JFrame {
 
     public String bookNameLink;
     public int ratingStars = 0;
     PhysicalBook book;
     Review review;
     
-    public BookReviewFriend() {
+    public BookReviewOther() {
         initComponents();
     }
-    public BookReviewFriend(String bookName) {
+    public BookReviewOther(String bookName) {
         initComponents();
         
         bookNameLink = bookName;

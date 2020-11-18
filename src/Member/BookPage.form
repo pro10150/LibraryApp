@@ -214,6 +214,7 @@
                               <Component id="favouriteButton" min="-2" pref="270" max="-2" attributes="0"/>
                               <Component id="reviewButton" min="-2" pref="270" max="-2" attributes="0"/>
                               <Component id="moreButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
+                              <Component id="otherReviewButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -247,13 +248,15 @@
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="reviewButton" min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="otherReviewButton" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="favouriteButton" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="reserveButton" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="moreButton" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -363,6 +366,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="moreButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="otherReviewButton">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8a" green="b4" red="ca" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Other Reviews"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="otherReviewButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

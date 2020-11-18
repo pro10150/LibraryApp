@@ -111,6 +111,7 @@ public class BookPage extends javax.swing.JFrame {
         favouriteButton = new javax.swing.JButton();
         reserveButton = new javax.swing.JButton();
         moreButton = new javax.swing.JButton();
+        otherReviewButton = new javax.swing.JButton();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -273,6 +274,14 @@ public class BookPage extends javax.swing.JFrame {
             }
         });
 
+        otherReviewButton.setBackground(new java.awt.Color(202, 180, 138));
+        otherReviewButton.setText("Other Reviews");
+        otherReviewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otherReviewButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
         backGroundLayout.setHorizontalGroup(
@@ -299,7 +308,8 @@ public class BookPage extends javax.swing.JFrame {
                             .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(otherReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         backGroundLayout.setVerticalGroup(
@@ -324,13 +334,15 @@ public class BookPage extends javax.swing.JFrame {
                         .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(otherReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -463,6 +475,10 @@ public class BookPage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_reviewButtonActionPerformed
 
+    private void otherReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherReviewButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_otherReviewButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -514,6 +530,7 @@ public class BookPage extends javax.swing.JFrame {
     private javax.swing.JButton moreButton;
     private javax.swing.JButton notifButton;
     private javax.swing.JLabel numberLeft;
+    private javax.swing.JButton otherReviewButton;
     private javax.swing.JLabel rate;
     private javax.swing.JButton reserveButton;
     private javax.swing.JButton reviewButton;

@@ -45,7 +45,7 @@ public class MemberPage extends javax.swing.JFrame {
         bookReviewButton = new javax.swing.JButton();
         favBookButton = new javax.swing.JButton();
         yourFeeButton = new javax.swing.JButton();
-        rewardButton = new javax.swing.JButton();
+        borrowedBookButton = new javax.swing.JButton();
         reservedBookButton = new javax.swing.JButton();
         bookRoomButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
@@ -172,12 +172,12 @@ public class MemberPage extends javax.swing.JFrame {
             }
         });
 
-        rewardButton.setBackground(new java.awt.Color(202, 180, 138));
-        rewardButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        rewardButton.setText("Rewards");
-        rewardButton.addActionListener(new java.awt.event.ActionListener() {
+        borrowedBookButton.setBackground(new java.awt.Color(202, 180, 138));
+        borrowedBookButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        borrowedBookButton.setText("Borrowed Books");
+        borrowedBookButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rewardButtonActionPerformed(evt);
+                borrowedBookButtonActionPerformed(evt);
             }
         });
 
@@ -239,7 +239,7 @@ public class MemberPage extends javax.swing.JFrame {
                             .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(bookReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(yourFeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(rewardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(borrowedBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(reservedBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(bookRoomButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(337, 337, 337)))))
@@ -264,7 +264,7 @@ public class MemberPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(yourFeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rewardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(borrowedBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reservedBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -356,12 +356,12 @@ try {
         dispose();
     }//GEN-LAST:event_yourFeeButtonActionPerformed
 
-    private void rewardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rewardButtonActionPerformed
-        RewardPage newui = new RewardPage();
+    private void borrowedBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowedBookButtonActionPerformed
+        YourBorrowedBooks newui = new YourBorrowedBooks();
         newui.setVisible(true);
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_rewardButtonActionPerformed
+    }//GEN-LAST:event_borrowedBookButtonActionPerformed
 
     private void reservedBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservedBookButtonActionPerformed
         YourReservedBook newui = new YourReservedBook();
@@ -444,6 +444,7 @@ try {
     private javax.swing.JLabel backLine;
     private javax.swing.JButton bookReviewButton;
     private javax.swing.JButton bookRoomButton;
+    private javax.swing.JButton borrowedBookButton;
     private javax.swing.JButton favBookButton;
     private javax.swing.JButton findFriendButton;
     private javax.swing.JButton imageA2;
@@ -456,7 +457,6 @@ try {
     private javax.swing.JLabel memberPoint;
     private javax.swing.JButton notifButton;
     private javax.swing.JButton reservedBookButton;
-    private javax.swing.JButton rewardButton;
     private javax.swing.JTextField searchField;
     private javax.swing.JPanel topPanel;
     private javax.swing.JButton yourFeeButton;

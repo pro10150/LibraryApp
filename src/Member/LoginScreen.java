@@ -157,8 +157,8 @@ public class LoginScreen extends javax.swing.JFrame {
                if (password.equals(password2)){
                   if (role.equals("member")) {
                          JOptionPane.showMessageDialog(null, "Welcome, member!");
-                         Main menu = new Main();
                          UIVars.userID = userId;
+                         Main menu = new Main();
                          //System.out.println(UIVars.userID);
                          menu.setVisible(true);
                          setVisible(false);
