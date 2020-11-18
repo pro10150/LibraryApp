@@ -10,6 +10,7 @@ public class PhysicalBook extends Book implements Update{
     private String section;
     private int serial;
     private int remaining;
+    private double overallRate;
 
     public PhysicalBook(String name) throws SQLException{
         statement = connect.createStatement();
@@ -28,6 +29,8 @@ public class PhysicalBook extends Book implements Update{
                 this.serial = resultSet.getInt("b.serial");
                 this.remaining = resultSet.getInt("r.remaining");
                 this.imageLocation = resultSet.getString("b.image");
+                this.overallRate = resultSet.getDouble("b.overall_rate");
+
                 break;
             }
         }
@@ -48,6 +51,7 @@ public class PhysicalBook extends Book implements Update{
                     this.serial = resultSet.getInt("b.serial");
                     this.remaining = resultSet.getInt("r.remaining");
                     this.imageLocation = resultSet.getString("b.image");
+                    this.overallRate = resultSet.getDouble("b.overall_rate");
                     break;
                 }
             }
@@ -64,7 +68,7 @@ public class PhysicalBook extends Book implements Update{
         this.serial = serial;
         this.remaining = remaining;
 
-        String query = "insert into book (book_ID, name, type, section, serial) values (?, ?, ?, ?, ?)";
+        String query = "insert into book (book_ID, name, type, section, serial, overall_rate) values (?, ?, ?, ?, ?, ?)";
 
         PreparedStatement preparedStmt = connect.prepareStatement(query);
         preparedStmt.setString(1,this.book_ID);
@@ -72,6 +76,7 @@ public class PhysicalBook extends Book implements Update{
         preparedStmt.setString(3,this.type);
         preparedStmt.setString(4,this.section);
         preparedStmt.setInt(5,this.serial);
+        preparedStmt.setDouble(6,0);
         preparedStmt.execute();
 
         query = "INSERT INTO remaining (book_ID, remaining, last_update) VALUES (?,?,?)";
@@ -145,6 +150,10 @@ public class PhysicalBook extends Book implements Update{
         return year;
         else return 0;
     }
+    
+    public double getOverallRate(){
+        return overallRate;
+    }
 
     @Override
     public void setName(String name) throws SQLException {
@@ -196,6 +205,12 @@ public class PhysicalBook extends Book implements Update{
         this.remaining = remaining;
         updateRemaining(this.remaining);
     }
+    
+    public void setOverallRate(double overallRate) throws SQLException{
+        this.overallRate = overallRate;
+
+        updateDouble(this.overallRate,"overall_rate");
+    }
 
     public void updateString(String x,String attribute) throws SQLException {
         String query = "update book set " + attribute + " = ? where book_ID = ?";
@@ -209,6 +224,14 @@ public class PhysicalBook extends Book implements Update{
         String query = "update book set " + attribute + " = ? where book_ID = ?";
         PreparedStatement preparedStmt = connect.prepareStatement(query);
         preparedStmt.setInt(1,x);
+        preparedStmt.setString(2,this.book_ID);
+        preparedStmt.execute();
+    }
+    
+    public void updateDouble(double x,String attribute) throws SQLException {
+        String query = "update book set " + attribute + " = ? where book_ID = ?";
+        PreparedStatement preparedStmt = connect.prepareStatement(query);
+        preparedStmt.setDouble(1,x);
         preparedStmt.setString(2,this.book_ID);
         preparedStmt.execute();
     }
