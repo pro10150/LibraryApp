@@ -1,10 +1,12 @@
 package Member;
 
 import Backdoor.*;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*; 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -91,7 +93,18 @@ public class FavoriteBook extends javax.swing.JFrame {
             PhysicalBook book1 = new PhysicalBook( bookList.get(n).toString() );
             
             bookName = book1.getName();
-            imageBook1.setText(bookName);
+            javax.swing.ImageIcon icon1;
+                if(book1.getImageLocation() == null){
+                    icon1 = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+                }
+                else{
+                icon1 = new javax.swing.ImageIcon(getClass().getResource(book1.getImageLocation()));
+                }
+                Image img1 = icon1.getImage();
+                Image modImg1 = img1.getScaledInstance(120,156, Image.SCALE_SMOOTH);
+                icon1 = new ImageIcon(modImg1);
+                imageBook1.setIcon(icon1);
+                imageBook1.setText("");
             bookName1.setText(bookName);
             typeAndAuthor1.setText("Type: " + book1.getType() 
                     + " /  Author: " + book1.getAuthor());
@@ -103,7 +116,18 @@ public class FavoriteBook extends javax.swing.JFrame {
                 ShowSecondBar();
                 PhysicalBook book2 = new PhysicalBook( bookList.get(n).toString() );
                 bookName = book2.getName();
-                imageBook2.setText(bookName);
+                javax.swing.ImageIcon icon2;
+                if(book2.getImageLocation() == null){
+                    icon2 = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+                }
+                else{
+                icon2 = new javax.swing.ImageIcon(getClass().getResource(book2.getImageLocation()));
+                }
+                Image img2 = icon2.getImage();
+                Image modImg2 = img2.getScaledInstance(120,156, Image.SCALE_SMOOTH);
+                icon2 = new ImageIcon(modImg2);
+                imageBook2.setIcon(icon2);
+                imageBook2.setText("");
                 bookName2.setText(bookName);
                 typeAndAuthor2.setText("Type: " + book2.getType() 
                     + " /  Author: " + book2.getAuthor());
@@ -117,7 +141,18 @@ public class FavoriteBook extends javax.swing.JFrame {
                 ShowThirdBar();
                  PhysicalBook book3 = new PhysicalBook( bookList.get(n).toString() );
                 bookName = book3.getName();
-                imageBook3.setText(bookName);
+                javax.swing.ImageIcon icon3;
+                if(book3.getImageLocation() == null){
+                    icon3 = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+                }
+                else{
+                icon3 = new javax.swing.ImageIcon(getClass().getResource(book3.getImageLocation()));
+                }
+                Image img3 = icon3.getImage();
+                Image modImg3 = img3.getScaledInstance(120,156, Image.SCALE_SMOOTH);
+                icon3 = new ImageIcon(modImg3);
+                imageBook3.setIcon(icon3);
+                imageBook3.setText("");
                 bookName3.setText(bookName);
                 typeAndAuthor3.setText("Type: " + book3.getType() 
                     + " /  Author: " + book3.getAuthor());

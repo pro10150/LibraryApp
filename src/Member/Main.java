@@ -1,10 +1,12 @@
 package Member;
 
 import Backdoor.*;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*; 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -25,6 +27,10 @@ public class Main extends javax.swing.JFrame {
     int featutedIDCount = featuredBook.length;
     int featAudioBookIDCount = featAudioBook.length;
     int recommendedIDCount;
+    String [] featutatedBookCover;
+    javax.swing.ImageIcon icon;
+    Image img;
+    Image modImg;
     
     int page1 = 0;
     int page2 = 0;
@@ -39,6 +45,7 @@ public class Main extends javax.swing.JFrame {
         
         updateRecommended();
         updateAudioBook();
+        //updateFavorite();
         
          try{
             UserPickBook fav = new UserPickBook(UIVars.userID);
@@ -50,6 +57,20 @@ public class Main extends javax.swing.JFrame {
             while (i < fav.getCount() && i < favlimit) {
                 bookfav = new PhysicalBook( bookList.get(i).toString() );
                 recommendedBook[i] = bookfav.getBookID();
+                featutatedBookCover [i] = bookfav.getImageLocation();
+                /*javax.swing.ImageIcon icon;
+                if(bookfav.getImageLocation() == null){
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+                }
+                else{
+                    icon = new javax.swing.ImageIcon(getClass().getResource(bookfav.getImageLocation()));
+                }
+                Image img = icon.getImage();
+                Image modImg = img.getScaledInstance(101,101, Image.SCALE_SMOOTH);
+                icon = new ImageIcon(modImg);
+                imageC1.setIcon(icon);
+                imageC1.setText("");*/
+              
                 i++;
             }
             recommendedIDCount = fav.getCount();
@@ -64,9 +85,25 @@ public class Main extends javax.swing.JFrame {
     public void updateRecommended() {
         ptr = 0+7*page1;      
         if (ptr < featutedIDCount) {
-            imageA1.setText(getBookImage(featuredBook[ptr]));
+            if (getBookImage(featuredBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featuredBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageA1.setIcon(icon);
+            //imageA1.setBounds(ptr, ptr, 95, 95);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
             bookNameA1.setText(getName(featuredBook[ptr]));
+            //imageA1.setSize(80,95);
+            imageA1.setText("");
             imageA1.setVisible(true);
+            bookNameA1.setSize(101,101);
             bookNameA1.setVisible(true);
         }
         else {
@@ -75,8 +112,23 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featutedIDCount) {
-            imageA2.setText(getBookImage(featuredBook[ptr]));
+            if (getBookImage(featuredBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featuredBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageA2.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
             bookNameA2.setText(getName(featuredBook[ptr]));
+            bookA2.setSize(95, 95);
+            imageA2.setSize(101,101);
+            imageA2.setText("");
             imageA2.setVisible(true);
             bookNameA2.setVisible(true);
         }
@@ -86,8 +138,22 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featutedIDCount) {
-            imageA3.setText(getBookImage(featuredBook[ptr]));
+            if (getBookImage(featuredBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featuredBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageA3.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
             bookNameA3.setText(getName(featuredBook[ptr]));
+            imageA3.setSize(101,101);
+            imageA3.setText("");
             imageA3.setVisible(true);
             bookNameA3.setVisible(true);
         }
@@ -97,8 +163,22 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featutedIDCount) {
-            imageA4.setText(getBookImage(featuredBook[ptr]));
+            if (getBookImage(featuredBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featuredBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageA4.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
             bookNameA4.setText(getName(featuredBook[ptr]));
+            imageA4.setSize(101,101);
+            imageA4.setText("");
             imageA4.setVisible(true);
             bookNameA4.setVisible(true);
         }
@@ -108,8 +188,22 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featutedIDCount) {
-            imageA5.setText(getBookImage(featuredBook[ptr]));
+            if (getBookImage(featuredBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featuredBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageA5.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
             bookNameA5.setText(getName(featuredBook[ptr]));
+            imageA5.setSize(101,101);
+            imageA5.setText("");
             imageA5.setVisible(true);
             bookNameA5.setVisible(true);
         }
@@ -119,8 +213,22 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featutedIDCount) {
-            imageA6.setText(getBookImage(featuredBook[ptr]));
+            if (getBookImage(featuredBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featuredBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageA6.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
             bookNameA6.setText(getName(featuredBook[ptr]));
+            imageA6.setSize(101,101);
+            imageA6.setText("");
             imageA6.setVisible(true);
             bookNameA6.setVisible(true);
         }
@@ -130,8 +238,22 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featutedIDCount) {
-            imageA7.setText(getBookImage(featuredBook[ptr]));
+            if (getBookImage(featuredBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featuredBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageA7.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
             bookNameA7.setText(getName(featuredBook[ptr]));
+            imageA7.setSize(101,101);
+            imageA7.setText("");
             imageA7.setVisible(true);
             bookNameA7.setVisible(true);
         }
@@ -143,8 +265,24 @@ public class Main extends javax.swing.JFrame {
     public void updateAudioBook() {
         ptr = 0+7*page2;      
         if (ptr < featAudioBookIDCount) {
-            imageB1.setText(getBookImage(featAudioBook[ptr]));
+            if (getBookImage(featAudioBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featAudioBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageB1.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
             bookNameB1.setText(getName(featAudioBook[ptr]));
+            imageB1.setSize(101,101);
+            imageB1.setText("");
+            imageB1.setVisible(true);
+            bookNameB1.setVisible(true);
             imageB1.setVisible(true);
             bookNameB1.setVisible(true);
         }
@@ -156,6 +294,24 @@ public class Main extends javax.swing.JFrame {
         if (ptr < featAudioBookIDCount) {
             imageB2.setText(getBookImage(featAudioBook[ptr]));
             bookNameB2.setText(getName(featAudioBook[ptr]));
+            if (getBookImage(featAudioBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featAudioBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageB2.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
+            bookNameB2.setText(getName(featAudioBook[ptr]));
+            imageB2.setSize(101,101);
+            imageB2.setText("");
+            imageB2.setVisible(true);
+            bookNameB1.setVisible(true);
             imageB2.setVisible(true);
             bookNameB2.setVisible(true);
         }
@@ -167,6 +323,24 @@ public class Main extends javax.swing.JFrame {
         if (ptr < featAudioBookIDCount) {
             imageB3.setText(getBookImage(featAudioBook[ptr]));
             bookNameB3.setText(getName(featAudioBook[ptr]));
+            if (getBookImage(featAudioBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featAudioBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageB3.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
+            bookNameB3.setText(getName(featAudioBook[ptr]));
+            imageB3.setSize(101,101);
+            imageB3.setText("");
+            imageB3.setVisible(true);
+            bookNameB3.setVisible(true);
             imageB3.setVisible(true);
             bookNameB3.setVisible(true);
         }
@@ -176,8 +350,24 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
-            imageB4.setText(getBookImage(featAudioBook[ptr]));
+            if (getBookImage(featAudioBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featAudioBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageB4.setIcon(icon);
+            //imageC1.setVisible(true);
+            //imageC1.setText(getBookImage(recommendedBook[ptr]));
+            //imageA1.setVisible(true);
             bookNameB4.setText(getName(featAudioBook[ptr]));
+            imageB4.setSize(101,101);
+            imageB4.setText("");
+            imageB4.setVisible(true);
+            bookNameB4.setVisible(true);
             imageB4.setVisible(true);
             bookNameB4.setVisible(true);
         }
@@ -187,8 +377,21 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
-            imageB5.setText(getBookImage(featAudioBook[ptr]));
+            if (getBookImage(featAudioBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featAudioBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageB5.setIcon(icon);
             bookNameB5.setText(getName(featAudioBook[ptr]));
+            imageB5.setSize(101,101);
+            imageB5.setText("");
+            imageB5.setVisible(true);
+            bookNameB5.setVisible(true);
             imageB5.setVisible(true);
             bookNameB5.setVisible(true);
         }
@@ -198,8 +401,21 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
-            imageB6.setText(getBookImage(featAudioBook[ptr]));
+            if (getBookImage(featAudioBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featAudioBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageB6.setIcon(icon);
             bookNameB6.setText(getName(featAudioBook[ptr]));
+            imageB6.setSize(101,101);
+            imageB6.setText("");
+            imageB6.setVisible(true);
+            bookNameB6.setVisible(true);
             imageB6.setVisible(true);
             bookNameB6.setVisible(true);
         }
@@ -209,8 +425,21 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < featAudioBookIDCount) {
-            imageB7.setText(getBookImage(featAudioBook[ptr]));
+            if (getBookImage(featAudioBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(featAudioBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageB7.setIcon(icon);
             bookNameB7.setText(getName(featAudioBook[ptr]));
+            imageB7.setSize(101,101);
+            imageB7.setText("");
+            imageB7.setVisible(true);
+            bookNameB7.setVisible(true);
             imageB7.setVisible(true);
             bookNameB7.setVisible(true);
         }
@@ -222,10 +451,34 @@ public class Main extends javax.swing.JFrame {
     public void updateFavorite() {
         ptr = 0+7*page3;      
         if (ptr < recommendedIDCount) {
-            imageC1.setText(getBookImage(recommendedBook[ptr]));
+            if (getBookImage(recommendedBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(recommendedBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageC1.setIcon(icon);
             bookNameC1.setText(getName(recommendedBook[ptr]));
+            imageC1.setSize(101,101);
+            imageC1.setText("");
             imageC1.setVisible(true);
             bookNameC1.setVisible(true);
+            imageC1.setVisible(true);
+            bookNameC1.setVisible(true);/*
+            if(featutatedBookCover[ptr] == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(featutatedBookCover[ptr]));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(101,101, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageC1.setIcon(icon);
+            imageC1.setVisible(true);*/
         }
         else {
             imageC1.setVisible(false);
@@ -237,6 +490,7 @@ public class Main extends javax.swing.JFrame {
             bookNameC2.setText(getName(recommendedBook[ptr]));
             imageC2.setVisible(true);
             bookNameC2.setVisible(true);
+            
         }
         
         else {
@@ -249,6 +503,7 @@ public class Main extends javax.swing.JFrame {
             bookNameC3.setText(getName(recommendedBook[ptr]));
             imageC3.setVisible(true);
             bookNameC3.setVisible(true);
+            
         }
         else {
             imageC3.setVisible(false);
@@ -260,6 +515,7 @@ public class Main extends javax.swing.JFrame {
             bookNameC4.setText(getName(recommendedBook[ptr]));
             imageC4.setVisible(true);
             bookNameC4.setVisible(true);
+            
         }else {
             imageC4.setVisible(false);
             bookNameC4.setVisible(false);
@@ -270,6 +526,7 @@ public class Main extends javax.swing.JFrame {
             bookNameC5.setText(getName(recommendedBook[ptr]));
             imageC5.setVisible(true);
             bookNameC5.setVisible(true);
+            
         }
         else {
             imageC5.setVisible(false);
@@ -281,6 +538,7 @@ public class Main extends javax.swing.JFrame {
             bookNameC6.setText(getName(recommendedBook[ptr]));
             imageC6.setVisible(true);
             bookNameC6.setVisible(true);
+            
         }
         else {
             imageC6.setVisible(false);
@@ -292,6 +550,7 @@ public class Main extends javax.swing.JFrame {
             bookNameC7.setText(getName(recommendedBook[ptr]));
             imageC7.setVisible(true);
             bookNameC7.setVisible(true);
+            
         }
         else {
             imageC7.setVisible(false);
@@ -303,8 +562,8 @@ public class Main extends javax.swing.JFrame {
     public static String getBookImage(String bookName) {
         String result = null;
         try{
-            Book book = new PhysicalBook(bookName);
-            result = book.getName();
+            PhysicalBook book = new PhysicalBook(bookName);
+            result = book.getImageLocation();
             } catch (Exception e) {System.out.println(e);} 
         return result;
     }
@@ -1227,83 +1486,83 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void imageA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageA1ActionPerformed
-        gotoBookPage(imageA1.getText());
+        gotoBookPage(bookNameA1.getText());
     }//GEN-LAST:event_imageA1ActionPerformed
 
     private void imageA2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageA2ActionPerformed
-        gotoBookPage(imageA2.getText());
+        gotoBookPage(bookNameA2.getText());
     }//GEN-LAST:event_imageA2ActionPerformed
 
     private void imageA3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageA3ActionPerformed
-        gotoBookPage(imageA3.getText());
+        gotoBookPage(bookNameA3.getText());
     }//GEN-LAST:event_imageA3ActionPerformed
 
     private void imageA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageA4ActionPerformed
-        gotoBookPage(imageA4.getText());
+        gotoBookPage(bookNameA4.getText());
     }//GEN-LAST:event_imageA4ActionPerformed
 
     private void imageA5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageA5ActionPerformed
-        gotoBookPage(imageA5.getText());
+        gotoBookPage(bookNameA5.getText());
     }//GEN-LAST:event_imageA5ActionPerformed
 
     private void imageA6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageA6ActionPerformed
-        gotoBookPage(imageA6.getText());
+        gotoBookPage(bookNameA6.getText());
     }//GEN-LAST:event_imageA6ActionPerformed
 
     private void imageB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB1ActionPerformed
-        gotoAudioBookPage(imageB1.getText());
+        gotoAudioBookPage(bookNameB1.getText());
     }//GEN-LAST:event_imageB1ActionPerformed
 
     private void imageB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB2ActionPerformed
-        gotoAudioBookPage(imageB2.getText());
+        gotoAudioBookPage(bookNameB2.getText());
     }//GEN-LAST:event_imageB2ActionPerformed
 
     private void imageB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB3ActionPerformed
-        gotoAudioBookPage(imageB3.getText());
+        gotoAudioBookPage(bookNameB3.getText());
     }//GEN-LAST:event_imageB3ActionPerformed
 
     private void imageB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB4ActionPerformed
-        gotoAudioBookPage(imageB4.getText());
+        gotoAudioBookPage(bookNameB4.getText());
     }//GEN-LAST:event_imageB4ActionPerformed
 
     private void imageB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB5ActionPerformed
-        gotoAudioBookPage(imageB5.getText());
+        gotoAudioBookPage(bookNameB5.getText());
     }//GEN-LAST:event_imageB5ActionPerformed
 
     private void imageB6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB6ActionPerformed
-        gotoAudioBookPage(imageB6.getText());
+        gotoAudioBookPage(bookNameB6.getText());
     }//GEN-LAST:event_imageB6ActionPerformed
 
     private void imageB7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageB7ActionPerformed
-        gotoAudioBookPage(imageB7.getText());
+        gotoAudioBookPage(bookNameB7.getText());
     }//GEN-LAST:event_imageB7ActionPerformed
 
     private void imageC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageC1ActionPerformed
-        gotoBookPage(imageC1.getText());
+        gotoBookPage(bookNameC1.getText());
     }//GEN-LAST:event_imageC1ActionPerformed
 
     private void imageC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageC2ActionPerformed
-        gotoBookPage(imageC2.getText());
+        gotoBookPage(bookNameC2.getText());
     }//GEN-LAST:event_imageC2ActionPerformed
 
     private void imageC3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageC3ActionPerformed
-        gotoBookPage(imageC3.getText());
+        gotoBookPage(bookNameC3.getText());
     }//GEN-LAST:event_imageC3ActionPerformed
 
     private void imageC4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageC4ActionPerformed
-        gotoBookPage(imageC4.getText());
+        gotoBookPage(bookNameC4.getText());
     }//GEN-LAST:event_imageC4ActionPerformed
 
     private void imageC5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageC5ActionPerformed
-        gotoBookPage(imageC5.getText());
+        gotoBookPage(bookNameC5.getText());
     }//GEN-LAST:event_imageC5ActionPerformed
 
     private void imageC6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageC6ActionPerformed
-        gotoBookPage(imageC6.getText());
+        gotoBookPage(bookNameC6.getText());
     }//GEN-LAST:event_imageC6ActionPerformed
 
     private void imageC7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageC7ActionPerformed
-        gotoBookPage(imageC7.getText());
+        gotoBookPage(bookNameC7.getText());
     }//GEN-LAST:event_imageC7ActionPerformed
 
     private void prevButtonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonAActionPerformed
