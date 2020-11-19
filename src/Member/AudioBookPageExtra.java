@@ -25,9 +25,10 @@ public class AudioBookPageExtra extends javax.swing.JFrame {
         this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
         try{
             PhysicalBook book = new PhysicalBook(bookName);
+            AudioBook abook = new AudioBook(bookName);
             this.typeAndAuthor.setText("Type: " + book.getType() 
                     + " /  Author: " + book.getAuthor());
-            this.voiceActor.setText("Rating: " + book.getOverallRate());
+            this.voiceActor.setText("Voice Actor: " + abook.getVoiceActor() + " / Rating: " + book.getOverallRate());
             this.sectionAndSeries.setText("Section: " + book.getLocation());
             this.description.setText("<html>"+book.getDescription()+"</html>");
             javax.swing.ImageIcon icon;

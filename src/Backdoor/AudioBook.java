@@ -8,23 +8,20 @@ public class AudioBook extends Book{
 
     public AudioBook(String name) throws SQLException {
         statement = connect.createStatement();
-        resultSet = statement.executeQuery("SELECT * FROM audio_book NATURAL JOIN book");
-
         this.name = name;
-        PhysicalBook book = new PhysicalBook(this.name);
-        this.name = book.getName();
-        this.book_ID = book.getBookID();
-        this.type = book.getType();
-        this.description = book.getDescription();
-        this.published_location = book.getPublished_location();
-        this.year = book.getYear();
-        this.author = book.getAuthor();
-
 
         resultSet = statement.executeQuery("SELECT * FROM audio_book NATURAL JOIN book");
         while (resultSet.next()){
             if (resultSet.getString("name").equals(this.name)){
                     this.voice_actor = resultSet.getString("voice_actor");
+                    PhysicalBook book = new PhysicalBook(this.name);
+                    this.name = book.getName();
+                    this.book_ID = book.getBookID();
+                    this.type = book.getType();
+                    this.description = book.getDescription();
+                    this.published_location = book.getPublished_location();
+                    this.year = book.getYear();
+                    this.author = book.getAuthor();
             }
         }
 
@@ -54,8 +51,10 @@ public class AudioBook extends Book{
 
     }
 
-
-
+    public boolean getBookExisting() {
+        return bookExisting;
+    }
+    
     @Override
     public String getBookID() {
         return book_ID;

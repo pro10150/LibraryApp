@@ -16,6 +16,7 @@ public class AudioBookPage extends javax.swing.JFrame {
 
     public String bookNameLink;
     PhysicalBook book;
+    AudioBook abook;
     boolean favoriteFlag = false;
     //public String bookImageLocation;
     
@@ -30,10 +31,11 @@ public class AudioBookPage extends javax.swing.JFrame {
         try{
             // Update Book
             book = new PhysicalBook(bookName);
+            abook = new AudioBook(bookName);
             this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
             this.typeAndAuthor.setText("Type: " + book.getType() 
                     + " /  Author: " + book.getAuthor());
-            this.voiceActor.setText("Remaining: " + book.getRemaining());
+            this.voiceActor.setText("Voice Actor: " + abook.getVoiceActor());
             this.rate.setText("Rating: " + book.getOverallRate());
             // Favorite
             UserPickBook oldFav = new UserPickBook(UIVars.userID);

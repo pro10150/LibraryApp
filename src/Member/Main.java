@@ -20,12 +20,12 @@ public class Main extends javax.swing.JFrame {
     String[] featuredBook = {"Test 1", "Test 2", "Test 3", 
         "Test 4","Test 5","Test 6","Test 7","Test 8"};
     
-    String[] featAudioBook = {"Test 10", "Test 9", "Test 4"};
+    String[] featAudioBook = new String[rowLimit];
     
     String[] recommendedBook = new String[rowLimit];
 
     int featutedIDCount = featuredBook.length;
-    int featAudioBookIDCount = featAudioBook.length;
+    int featAudioBookIDCount;
     int recommendedIDCount;
     String [] featutatedBookCover;
     javax.swing.ImageIcon icon;
@@ -37,15 +37,37 @@ public class Main extends javax.swing.JFrame {
     int page3 = 0;
     
     int pageCap1 = (featutedIDCount-1) / 7;
-    int pageCap2 = (featAudioBookIDCount-1) / 7;
+    int pageCap2;
     int pageCap3;
         
     public Main(){
         initComponents();
         
         updateRecommended();
-        updateAudioBook();
-        //updateFavorite();
+        
+        try{
+            UserPickBook fav = new UserPickBook(UIVars.userID);
+            int i = 0;
+            int bookAudioCount = 0;
+            AudioBook bookAudio;
+            ArrayList bookList = fav.getBookIDList();
+            PhysicalBook bookfav;
+            
+            while (i < fav.getCount()) {
+                bookfav = new PhysicalBook( bookList.get(i).toString() );
+                bookAudio = new AudioBook(bookfav.getName());
+                if (bookAudio.getBookExisting() == true) {
+                    featAudioBook[bookAudioCount] = bookAudio.getBookID();
+                    bookAudioCount++;
+                }
+
+                i++;
+            }
+            pageCap2 = (bookAudioCount -1 ) / 7;
+
+            featAudioBookIDCount = bookAudioCount;
+            updateAudioBook();
+            } catch (Exception e) {System.out.println(e);} 
         
          try{
             UserPickBook fav = new UserPickBook(UIVars.userID);
@@ -71,7 +93,6 @@ public class Main extends javax.swing.JFrame {
                 icon = new ImageIcon(modImg);
                 imageC1.setIcon(icon);
                 imageC1.setText("");*/
-              
                 i++;
             }
             recommendedIDCount = fav.getCount();

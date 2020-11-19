@@ -23,7 +23,7 @@ public class Borrowed_book extends Member{
     public Borrowed_book(String user_ID) throws SQLException{
         this.user_ID = user_ID;
         statement = connect.createStatement();
-        resultSet = statement.executeQuery("SELECT * FROM borrowed_book");
+        resultSet = statement.executeQuery("SELECT * FROM borrowed_book ORDER BY start_date");
 
         while (resultSet.next()){
             if (this.user_ID.equals(resultSet.getString("user_ID"))){
