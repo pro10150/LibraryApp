@@ -5,6 +5,7 @@
  */
 package librarian;
 
+import Backdoor.Book;
 import Backdoor.PhysicalBook;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -31,9 +32,9 @@ public class Edit extends javax.swing.JFrame {
         nameTextField.setText(book.getName());
         typeTextField.setText(book.getType());
         sectionTextField.setText(book.getSection());
-        Integer.toString(book.getSerial());
-        Integer.toString(book.getRemaining());
-        Integer.toString(book.getYear());
+        serialTextField.setText(Integer.toString(book.getSerial()));
+        remainingTextField.setText(Integer.toString(book.getRemaining()));
+        yearTextField.setText(Integer.toString(book.getYear()));
         authorTextField.setText(book.getAuthor());
         descriptionTextField.setText(book.getDescription());
     }
@@ -273,21 +274,23 @@ public class Edit extends javax.swing.JFrame {
 
     private void sendReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendReviewActionPerformed
 
-        PhysicalBook book = null; 
-        try {
-            book = new PhysicalBook(bookID);
+        String name = nameTextField.getText();
+        String type = typeTextField.getText();
+        String section = sectionTextField.getText();
+        int serial = (int)(Double.parseDouble(serialTextField.getText()));
+        int remaining = (int)(Double.parseDouble(remainingTextField.getText()));
+        int year = (int)(Double.parseDouble(yearTextField.getText()));
+        String author = authorTextField.getText();
+        String description = descriptionTextField.getText();  
+         try {
+            PhysicalBook physicalBook = new PhysicalBook(bookID);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String name = book.getName();
-        String type = book.getType();
-        String section = book.getSection();
-        int serial = book.getSerial();
-        int remaining = book.getRemaining();
-        int year = book.getYear();
-        String author = book.getAuthor();
-        String description = book.getDescription();  
-        
+        JOptionPane.showMessageDialog(null, "Done");
+        LibrarianSearchBook LSB = new LibrarianSearchBook();
+        LSB.setVisible(true);
+        dispose();
     }//GEN-LAST:event_sendReviewActionPerformed
 
     private void bookImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookImageActionPerformed
