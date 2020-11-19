@@ -15,14 +15,14 @@ import javax.swing.ImageIcon;
 
 public class Main extends javax.swing.JFrame {
     
-    int favlimit = 100;
+    int rowLimit = 100;
     
     String[] featuredBook = {"Test 1", "Test 2", "Test 3", 
         "Test 4","Test 5","Test 6","Test 7","Test 8"};
     
     String[] featAudioBook = {"Test 10", "Test 9", "Test 4"};
     
-    String[] recommendedBook = new String[favlimit];
+    String[] recommendedBook = new String[rowLimit];
 
     int featutedIDCount = featuredBook.length;
     int featAudioBookIDCount = featAudioBook.length;
@@ -54,7 +54,7 @@ public class Main extends javax.swing.JFrame {
             PhysicalBook bookfav;
             
             int i = 0;
-            while (i < fav.getCount() && i < favlimit) {
+            while (i < fav.getCount() && i < rowLimit) {
                 bookfav = new PhysicalBook( bookList.get(i).toString() );
                 recommendedBook[i] = bookfav.getBookID();
                 //featutatedBookCover [i] = bookfav.getImageLocation();

@@ -13,6 +13,12 @@ public class Borrowed_book extends Member{
     private boolean isBorrow = false;
     private long day;
     private int additionFee ;
+    private int IDListCount = 0;
+    
+    private ArrayList bookIDList = new ArrayList<String>();
+    private ArrayList startDateList = new ArrayList<Date>();
+    private ArrayList returnDateList = new ArrayList<Date>();
+    private ArrayList lateList = new ArrayList<Boolean>();
     
     public Borrowed_book(String user_ID) throws SQLException{
         this.user_ID = user_ID;
@@ -24,8 +30,13 @@ public class Borrowed_book extends Member{
                 this.book_ID = resultSet.getString("book_ID");
                 this.startDate = resultSet.getDate("start_date");
                 this.dueDate = resultSet.getDate("due_date");
-                this.returnDate = resultSet.getDate("start_date");
+                this.returnDate = resultSet.getDate("return_date");
                 this.lateCheck = resultSet.getBoolean("late_check");
+                bookIDList.add(this.book_ID);
+                startDateList.add(this.startDate);
+                returnDateList.add(this.returnDate);
+                lateList.add(this.lateCheck);
+                IDListCount++;
                 //System.out.println(toString());
             }
 
@@ -97,6 +108,26 @@ public class Borrowed_book extends Member{
             additionFee = (int) day * 2;
             super.addFee(additionFee);
         }
+    }
+    
+    public ArrayList getBookIDList() {
+        return bookIDList;
+    }
+    
+    public ArrayList getStartDateList() {
+        return startDateList;
+    }
+    
+    public ArrayList getReturnDateList() {
+        return returnDateList;
+    }
+    
+    public ArrayList getLateList() {
+        return lateList;
+    }
+    
+    public int getIDListCount() {
+        return IDListCount;
     }
 
     public Date getDueDate(){

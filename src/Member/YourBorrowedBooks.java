@@ -1,6 +1,7 @@
 package Member;
 
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import Backdoor.*;
 import java.awt.event.KeyEvent;
@@ -12,34 +13,60 @@ import java.util.ArrayList;
  */
 public class YourBorrowedBooks extends javax.swing.JFrame {
 
-    public String bookNameLink;
-    ArrayList idIndex = new ArrayList<String>();
-    ArrayList rateList = new ArrayList<Integer>();
     Borrowed_book borrowbook;
+
+    String[][] data;
+    String[] column = {"Book Name", "Borrow Date", "Return Date", "Status", "Note"};
+    
+    ArrayList startDateList = new ArrayList<Date>();
+    ArrayList returnDateList = new ArrayList<Date>();
+    ArrayList lateList = new ArrayList<Boolean>();
     
     public YourBorrowedBooks(){
         initComponents();
 
         try{  
             
+            Member member = new Member(UIVars.userID);
+            
+            userName.setText("Name: " + member.getFirstName());
+            userSurname.setText("Surname: " + member.getLastName());
+
             borrowbook = new Borrowed_book(UIVars.userID);
             
+            startDateList = borrowbook.getStartDateList();
+            returnDateList = borrowbook.getReturnDateList();
+            lateList = borrowbook.getLateList();
+            
+            ArrayList bookList = borrowbook.getBookIDList();
             DefaultListModel listModel = new DefaultListModel();
             
-            int i;
-           // for (i = 0 ; i < review.getIDListCount() ; i++) {
-            //    PhysicalBook book = new PhysicalBook(idIndex.get(i).toString() );
-            //    listModel.addElement("Book: " + book.getName() + "    Rate: " + rateList.get(i));
-            //}
-            //reviewList.setModel(listModel);
+            data = new String[borrowbook.getIDListCount()][5];
             
-            //if (i == 0) { // No review
-            //    jScrollPane1.setVisible(false);
-            //    selectButton.setVisible(false);
-            //}
-            //else {
-            //    noReview.setVisible(false);
-            //}
+            for (int i = 0 ; i < borrowbook.getIDListCount() ; i++) {
+                String bookName = bookList.get(i).toString();
+                PhysicalBook book = new PhysicalBook(bookName);
+                System.out.println(book.getBookID());
+                
+                data[i][0] = bookName;
+                data[i][1] = startDateList.get(i).toString();
+                data[i][2] = returnDateList.get(i).toString();
+                
+                if (returnDateList.get(i) == null)
+                   data[i][3] = "Not returned";
+                else data[i][3] = "Returned";
+                
+                data[i][4] = lateList.get(i).toString();
+                
+            //    System.out.println(data[i][0]);
+            //    System.out.println(data[i][1]);
+            //    System.out.println(data[i][2]);
+            //    System.out.println(data[i][3]);
+            //    System.out.println(data[i][4]);
+            }
+            
+            DefaultTableModel model = new DefaultTableModel(data, column);   
+            borrowTable.setModel(model);
             
         }catch (Exception e){System.out.println(e);}
     }

@@ -347,7 +347,7 @@ public class YourReservedBook extends javax.swing.JFrame {
     }//GEN-LAST:event_unreserveButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        Main menu = new Main();
+        MemberPage menu = new MemberPage();
         menu.setVisible(true);
         setVisible(false);
         dispose();
