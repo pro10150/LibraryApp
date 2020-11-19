@@ -57,7 +57,8 @@ public class Main extends javax.swing.JFrame {
             while (i < fav.getCount() && i < favlimit) {
                 bookfav = new PhysicalBook( bookList.get(i).toString() );
                 recommendedBook[i] = bookfav.getBookID();
-                featutatedBookCover [i] = bookfav.getImageLocation();
+                //featutatedBookCover [i] = bookfav.getImageLocation();
+                
                 /*javax.swing.ImageIcon icon;
                 if(bookfav.getImageLocation() == null){
                     icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
@@ -486,8 +487,21 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < recommendedIDCount) {
-            imageC2.setText(getBookImage(recommendedBook[ptr]));
+            if (getBookImage(recommendedBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(recommendedBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageC2.setIcon(icon);
             bookNameC2.setText(getName(recommendedBook[ptr]));
+            imageC2.setSize(101,101);
+            imageC2.setText("");
+            imageC2.setVisible(true);
+            bookNameC2.setVisible(true);
             imageC2.setVisible(true);
             bookNameC2.setVisible(true);
             
@@ -499,8 +513,21 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < recommendedIDCount) {
-            imageC3.setText(getBookImage(recommendedBook[ptr]));
+            if (getBookImage(recommendedBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(recommendedBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageC3.setIcon(icon);
             bookNameC3.setText(getName(recommendedBook[ptr]));
+            imageC3.setSize(101,101);
+            imageC3.setText("");
+            imageC3.setVisible(true);
+            bookNameC3.setVisible(true);
             imageC3.setVisible(true);
             bookNameC3.setVisible(true);
             
@@ -511,8 +538,21 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < recommendedIDCount) {
-            imageC4.setText(getBookImage(recommendedBook[ptr]));
+            if (getBookImage(recommendedBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(recommendedBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageC4.setIcon(icon);
             bookNameC4.setText(getName(recommendedBook[ptr]));
+            imageC4.setSize(101,101);
+            imageC4.setText("");
+            imageC4.setVisible(true);
+            bookNameC4.setVisible(true);
             imageC4.setVisible(true);
             bookNameC4.setVisible(true);
             
@@ -522,8 +562,21 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < recommendedIDCount) {
-            imageC5.setText(getBookImage(recommendedBook[ptr]));
+            if (getBookImage(recommendedBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(recommendedBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageC5.setIcon(icon);
             bookNameC5.setText(getName(recommendedBook[ptr]));
+            imageC5.setSize(101,101);
+            imageC5.setText("");
+            imageC5.setVisible(true);
+            bookNameC5.setVisible(true);
             imageC5.setVisible(true);
             bookNameC5.setVisible(true);
             
@@ -534,8 +587,21 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < recommendedIDCount) {
-            imageC6.setText(getBookImage(recommendedBook[ptr]));
+            if (getBookImage(recommendedBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(recommendedBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageC6.setIcon(icon);
             bookNameC6.setText(getName(recommendedBook[ptr]));
+            imageC6.setSize(101,101);
+            imageC6.setText("");
+            imageC6.setVisible(true);
+            bookNameC6.setVisible(true);
             imageC6.setVisible(true);
             bookNameC6.setVisible(true);
             
@@ -546,8 +612,21 @@ public class Main extends javax.swing.JFrame {
         }
         ptr++;
         if (ptr < recommendedIDCount) {
-            imageC7.setText(getBookImage(recommendedBook[ptr]));
+            if (getBookImage(recommendedBook[ptr]) == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(getBookImage(recommendedBook[ptr])));
+            }
+            img = icon.getImage();
+            modImg = img.getScaledInstance(80,95, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            imageC7.setIcon(icon);
             bookNameC7.setText(getName(recommendedBook[ptr]));
+            imageC7.setSize(101,101);
+            imageC7.setText("");
+            imageC7.setVisible(true);
+            bookNameC7.setVisible(true);
             imageC7.setVisible(true);
             bookNameC7.setVisible(true);
             
