@@ -282,14 +282,56 @@ public class Edit extends javax.swing.JFrame {
         int year = (int)(Double.parseDouble(yearTextField.getText()));
         String author = authorTextField.getText();
         String description = descriptionTextField.getText();  
-         try {
-            PhysicalBook physicalBook = new PhysicalBook(bookID);
+        PhysicalBook book = null; 
+        try {
+            book = new PhysicalBook(this.bookID);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setName(name);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setType(type);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setSection(section);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setSerial(serial);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setRemaining(remaining);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setYear(year);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setAuthor(author);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setDescription(description);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, "Done");
-        LibrarianSearchBook LSB = new LibrarianSearchBook();
-        LSB.setVisible(true);
+        findpage fp = new findpage();
+        fp.setVisible(true);
+        setVisible(false);
         dispose();
     }//GEN-LAST:event_sendReviewActionPerformed
 
