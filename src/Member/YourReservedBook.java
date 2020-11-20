@@ -2,11 +2,13 @@ package Member;
 
 import javax.swing.JOptionPane;
 import Backdoor.*;
+import java.awt.Image;
 
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Annop Boonlieng
@@ -30,6 +32,18 @@ public class YourReservedBook extends javax.swing.JFrame {
             String bookID = existingRB.getBookID();
             
             book = new PhysicalBook(bookID);
+            javax.swing.ImageIcon icon;
+            if(book.getImageLocation() == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(book.getImageLocation()));
+            }
+            Image img = icon.getImage();
+            Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            bookImage.setIcon(icon);
+            bookImage.setText("");
             String bookName = book.getName();
             requestDate = existingRB.getRequestDate();
             //System.out.println(existingRB.toString());
@@ -330,7 +344,8 @@ public class YourReservedBook extends javax.swing.JFrame {
         try {
           ReservedBook existingRB = new ReservedBook(UIVars.userID);
           if (existingRB.getReservedStatus() == true) {
-              existingRB.deleteRequest(UIVars.userID,book.getBookID(),requestDate);
+              String bookID = book.getBookID();
+              existingRB.deleteRequest(UIVars.userID,bookID,requestDate);
               JOptionPane.showMessageDialog(null, "You unreserved this book.", "Library", JOptionPane.INFORMATION_MESSAGE);
               
             MemberPage mp = new MemberPage();

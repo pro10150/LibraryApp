@@ -67,7 +67,7 @@ public class ReservedBook extends Member {
 
     public void deleteRequest(String user_ID, String book_ID, Date requestDate) throws SQLException{
         //this.requestDate = requestDate;
-        PhysicalBook book = new PhysicalBook(user_ID);
+        PhysicalBook book = new PhysicalBook(book_ID);
         this.remaining = book.getRemaining();
         String query = "DELETE FROM reserved_book WHERE user_ID = ? AND book_ID = ? AND request_date = ?";
         PreparedStatement preparedStatement = connect.prepareStatement(query);

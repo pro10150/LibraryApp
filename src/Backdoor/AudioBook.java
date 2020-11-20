@@ -5,8 +5,9 @@ import java.util.*;
 
 public class AudioBook extends Book{
     private String voice_actor;
+    private String audio;
 
-    public AudioBook(String name) throws SQLException {
+    public AudioBook(String name) throws SQLException{
         statement = connect.createStatement();
         this.name = name;
 
@@ -140,6 +141,15 @@ public class AudioBook extends Book{
 
     public String getVoiceActor(){
         return voice_actor;
+    }
+    
+    public String getAudio(){
+        return audio;
+    }
+    
+    public void setAudio(String filePath) throws SQLException{
+        this.audio = filePath;
+        updateStringAudioBook(this.audio,"audio");
     }
 
     public void updateStringAudioBook(String string,String attribute) throws SQLException {
