@@ -8,12 +8,19 @@ import javax.swing.JOptionPane;
 
 public class main {
     public static void main(String[] args) throws SQLException{
+        
+        Search s1 = new Search("rating");
+        String searchQuery = "est 3";
+        s1.searchBook(null);
+        
         Calendar calendar = Calendar.getInstance();
         //long calendar = System.currentTimeMillis();
         //Timestamp timestamp = new Timestamp(calendar);
         //System.out.println(timestamp);
         int sec = calendar.get(calendar.SECOND);
-        System.out.println(sec);
+        //System.out.println(sec);
+        
+        
         
         UserPickBook fav = new UserPickBook("1234");
         ArrayList bookList = fav.getBookIDList();
@@ -35,11 +42,6 @@ public class main {
         
         Book book2 = new PhysicalBook("Test X");
         System.out.println(book2.getName());
-    
-        Search sc = new Search();
-        sc.searchBook("te");
-        System.out.println(sc.getnthID(9));
-        
 
         //    System.out.println(sc.getnthID(0));
     

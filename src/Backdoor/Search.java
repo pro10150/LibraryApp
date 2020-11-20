@@ -11,7 +11,7 @@ public class Search{
 
     private String[] resultID = new String[limit];
     private int IDCount = 0;
-
+    private String searchMode = "name"; // default
 
     public static Statement statement = null;
     public static ResultSet resultSet = null;
@@ -22,22 +22,34 @@ public class Search{
     public Search() throws SQLException{
         this.connect = DriverManager.getConnection(url,user,pass);
     }
+    public Search(String key) throws SQLException{
+        this.connect = DriverManager.getConnection(url,user,pass);
+        if (key.equals("rating")) {
+            searchMode = "rating";
+        }
+    }
 
     public void searchBook(String searchQuery) throws SQLException{
 
         statement = connect.createStatement();
-        String query = "select book_ID from book where name like ? order by name";
-        // name query will be replaced with author.
-
-        PreparedStatement preparedStmt = connect.prepareStatement(query);
-        preparedStmt.setString(1,"%"+searchQuery+"%");
-        resultSet = preparedStmt.executeQuery();
-
-        while (resultSet.next() && IDCount < limit){
-            resultID[IDCount] = resultSet.getString("book_ID");
-            IDCount++;
-            System.out.println(IDCount);
+        String query;
+        
+        if (searchMode.equals("rating")) {
+            query = "select * from book order by overall_rate desc";
+            resultSet = statement.executeQuery(query);
         }
+        else {
+            query = "select book_ID from book where name like ? order by name";
+            PreparedStatement preparedStmt = connect.prepareStatement(query);
+            preparedStmt.setString(1,"%"+searchQuery+"%");
+            resultSet = preparedStmt.executeQuery();
+        }
+         while (resultSet.next() && IDCount < limit){
+             resultID[IDCount] = resultSet.getString("book_ID");
+             IDCount++;
+             PhysicalBook book = new PhysicalBook(resultID[IDCount]);
+             
+         }
     }
 
     public int getIDCount() {

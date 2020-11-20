@@ -32,7 +32,7 @@ public class YourReservedBook extends javax.swing.JFrame {
             book = new PhysicalBook(bookID);
             String bookName = book.getName();
             requestDate = existingRB.getRequestDate();
-            System.out.println(existingRB.toString());
+            //System.out.println(existingRB.toString());
             this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
             this.typeAndAuthor.setText("Type: " + book.getType() 
                     + " /  Author: " + book.getAuthor());

@@ -2,8 +2,14 @@ package Member;
 
 import javax.swing.JOptionPane;
 import Backdoor.*;
+import java.awt.Image;
 
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import librarian.borrowedpage;
 /**
  *
  * @author Annop Boonlieng
@@ -34,7 +40,22 @@ public class BookReviewOther extends javax.swing.JFrame {
             updateStars();
             reviewDesc.setText("<html>" + review.getDescription() + "</html>");
             
-        }catch (Exception e){System.out.println(e);}
+            javax.swing.ImageIcon icon;
+            if(book.getImageLocation() == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(book.getImageLocation()));
+            }
+            Image img = icon.getImage();
+            Image modImg = img.getScaledInstance(130,160, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            bookImage.setIcon(icon);
+            bookImage.setText("");
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(borrowedpage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
@@ -445,7 +466,13 @@ public class BookReviewOther extends javax.swing.JFrame {
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        if (UIVars.prevPage.equals("FriendPage")) {
+        if (UIVars.prevPage.equals("BookPage")) {
+            BookPage menu = new BookPage(bookNameLink);
+            menu.setVisible(true);
+            setVisible(false);
+            dispose();
+        }
+        else if (UIVars.prevPage.equals("FriendPage")) {
             FriendPage menu = new FriendPage();
             menu.setVisible(true);
             setVisible(false);

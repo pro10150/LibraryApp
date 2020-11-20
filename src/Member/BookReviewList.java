@@ -1,7 +1,6 @@
 package Member;
 
 import javax.swing.DefaultListModel;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import Backdoor.*;
 import java.awt.event.KeyEvent;
@@ -9,73 +8,56 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import librarian.borrowedpage;
 /**
  *
  * @author Annop Boonlieng
  */
-public class YourBorrowedBooks extends javax.swing.JFrame {
+public class BookReviewList extends javax.swing.JFrame {
 
-    Borrowed_book borrowbook;
-
-    String[][] data;
-    String[] column = {"Book Name", "Borrow Date", "Return Date", "Status", "Note"};
+    public String bookNameLink;
+    ArrayList rateList = new ArrayList<Integer>();
+    ArrayList userIDList = new ArrayList<String>();
+    Review review;
     
-    ArrayList startDateList = new ArrayList<Date>();
-    ArrayList returnDateList = new ArrayList<Date>();
-    ArrayList lateList = new ArrayList<Boolean>();
-    
-    public YourBorrowedBooks(){
+    //getUserIDList
+    public BookReviewList(){
         initComponents();
 
+    }
+    public BookReviewList(String bookName) {
+        initComponents();
         try{  
             
-            Member member = new Member(UIVars.userID);
-            
-            userName.setText("Name: " + member.getFirstName());
-            userSurname.setText("Surname: " + member.getLastName());
+            bookNameLink = bookName;
+            PhysicalBook book = new PhysicalBook(bookName);
 
-            borrowbook = new Borrowed_book(UIVars.userID);
+            theirReview.setText(book.getName());
+            noReview.setText("There are no reviews yet.");
             
-            startDateList = borrowbook.getStartDateList();
-            returnDateList = borrowbook.getReturnDateList();
-            lateList = borrowbook.getLateList();
+            review = new Review(book.getBookID());
             
-            ArrayList bookList = borrowbook.getBookIDList();
+            rateList = review.getBookRateList();
+            userIDList = review.getUserIDList();
+            
             DefaultListModel listModel = new DefaultListModel();
             
-            data = new String[borrowbook.getIDListCount()][5];
+            int i;
+            for (i = 0 ; i < review.getIDListCount() ; i++) {
+                listModel.addElement("User: " + userIDList.get(i) + "    Rate: " + rateList.get(i));
+            }
+            reviewList.setModel(listModel);
             
-            for (int i = 0 ; i < borrowbook.getIDListCount() ; i++) {
-                String bookName = bookList.get(i).toString();
-                PhysicalBook book = new PhysicalBook(bookName);
-                System.out.println(book.getBookID());
-                
-                data[i][0] = bookName;
-                data[i][1] = startDateList.get(i).toString();
-                
-                if (returnDateList.get(i) == null){
-                   data[i][2] = "-";
-                   data[i][3] = "Not returned";
-                }
-                else {
-                   data[i][2] = returnDateList.get(i).toString();
-                   data[i][3] = "Returned";      
-                   }
-                
-                data[i][4] = lateList.get(i).toString();
-                
-            //    System.out.println(data[i][0]);
-            //    System.out.println(data[i][1]);
-            //    System.out.println(data[i][2]);
-            //    System.out.println(data[i][3]);
-            //    System.out.println(data[i][4]);
+            if (i == 0) { // No review
+                jScrollPane1.setVisible(false);
+                selectButton.setVisible(false);
+            }
+            else {
+                noReview.setVisible(false);
             }
             
-            DefaultTableModel model = new DefaultTableModel(data, column);   
-            borrowTable.setModel(model);
-            
         }catch (SQLException ex) {
-            Logger.getLogger(YourBorrowedBooks.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookReviewList.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -95,13 +77,11 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
         backGround = new javax.swing.JPanel();
         backLine = new javax.swing.JLabel();
         back1 = new javax.swing.JButton();
-        topLabel = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        borrowTable = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        userName = new javax.swing.JLabel();
-        userSurname = new javax.swing.JLabel();
+        theirReview = new javax.swing.JLabel();
+        noReview = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        reviewList = new javax.swing.JList<>();
+        selectButton = new javax.swing.JButton();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -187,105 +167,50 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
             }
         });
 
-        topLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        topLabel.setText("Borrowed Book");
+        theirReview.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        theirReview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        theirReview.setText("Book Name");
 
-        borrowTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"T1", "X", "X", "X", "X"},
-                {"T2", "X", "X", "X", "X"},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Book Name", "Borrow Date", "Return Date", "Status ", "Note"
+        noReview.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        noReview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        noReview.setText("There are no reviews yet.");
+
+        reviewList.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        reviewList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(reviewList);
+
+        selectButton.setBackground(new java.awt.Color(202, 180, 138));
+        selectButton.setText("Select");
+        selectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectButtonActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(borrowTable);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account.png"))); // NOI18N
-        jLabel4.setPreferredSize(new java.awt.Dimension(80, 70));
-
-        userName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        userName.setText("Name:");
-
-        userSurname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        userSurname.setText("Surname:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(userSurname, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userSurname)
-                .addContainerGap(169, Short.MAX_VALUE))
-        );
+        });
 
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
         backGroundLayout.setHorizontalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                .addContainerGap(107, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
             .addGroup(backGroundLayout.createSequentialGroup()
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addGap(107, 107, 107)
-                        .addComponent(topLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(backGroundLayout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(back1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         backGroundLayout.setVerticalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,16 +220,14 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
                     .addComponent(back1)
                     .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(topLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(theirReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(noReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(selectButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -342,7 +265,7 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldMouseClicked
 
     private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
-try {
+    try {
             if(evt.getKeyCode()==KeyEvent.VK_ENTER) {
                 String query = searchField.getText();
                 if (!query.equals("")) {
@@ -374,11 +297,28 @@ try {
     }//GEN-LAST:event_logoActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
-        MemberPage mp = new MemberPage();
-        mp.setVisible(true);
+        BookPage bp = new BookPage(bookNameLink);
+        bp.setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_back1ActionPerformed
+
+    private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
+        int index = reviewList.getSelectedIndex();
+        //System.out.println(index);
+        if (index > -1) {
+            try {
+                UIVars.currentFriendID = userIDList.get(index).toString();
+                UIVars.prevPage = "BookPage";
+                BookReviewOther br = new BookReviewOther(bookNameLink);
+                br.setVisible(true);
+                setVisible(false);
+                dispose();
+            } catch (Exception e) {System.out.println(e); }
+        }
+        else
+        JOptionPane.showMessageDialog(null, "Nothing selected.");
+    }//GEN-LAST:event_selectButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -417,20 +357,18 @@ try {
     private javax.swing.JButton back1;
     private javax.swing.JPanel backGround;
     private javax.swing.JLabel backLine;
-    private javax.swing.JTable borrowTable;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logo;
+    private javax.swing.JLabel noReview;
     private javax.swing.JButton notifButton;
+    private javax.swing.JList<String> reviewList;
     private javax.swing.JTextField searchField;
-    private javax.swing.JLabel topLabel;
+    private javax.swing.JButton selectButton;
+    private javax.swing.JLabel theirReview;
     private javax.swing.JPanel topPanel;
-    private javax.swing.JLabel userName;
-    private javax.swing.JLabel userSurname;
     // End of variables declaration//GEN-END:variables
 }

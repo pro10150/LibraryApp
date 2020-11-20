@@ -17,14 +17,13 @@ public class Main extends javax.swing.JFrame {
     
     int rowLimit = 100;
     
-    String[] featuredBook = {"Test 1", "Test 2", "Test 3", 
-        "Test 4","Test 5","Test 6","Test 7","Test 8"};
+    String[] featuredBook = new String[rowLimit];
     
     String[] featAudioBook = new String[rowLimit];
     
     String[] recommendedBook = new String[rowLimit];
 
-    int featutedIDCount = featuredBook.length;
+    int featuredIDCount;
     int featAudioBookIDCount;
     int recommendedIDCount;
     String [] featutatedBookCover;
@@ -36,15 +35,28 @@ public class Main extends javax.swing.JFrame {
     int page2 = 0;
     int page3 = 0;
     
-    int pageCap1 = (featutedIDCount-1) / 7;
+    int pageCap1 = (featuredIDCount-1) / 7;
     int pageCap2;
     int pageCap3;
         
     public Main(){
         initComponents();
-        
+        // Tab 1
+        try{
+          Search sc = new Search("rating");
+          sc.searchBook(null);
+          pageCap1 = (sc.getIDCount() - 1) / 7;
+          int i = 0;
+          PhysicalBook bookfav;
+          while (i < sc.getIDCount()) {
+              bookfav = new PhysicalBook( sc.getnthID(i));
+              featuredBook[i] = bookfav.getBookID();
+              i++;
+          } 
+          featuredIDCount = sc.getIDCount();
+        } catch (Exception e) {System.out.println(e);} 
         updateRecommended();
-        
+        // Tab 2
         try{
             UserPickBook fav = new UserPickBook(UIVars.userID);
             int i = 0;
@@ -68,7 +80,7 @@ public class Main extends javax.swing.JFrame {
             featAudioBookIDCount = bookAudioCount;
             updateAudioBook();
             } catch (Exception e) {System.out.println(e);} 
-        
+        // Tab 3
          try{
             UserPickBook fav = new UserPickBook(UIVars.userID);
             pageCap3 = (fav.getCount() -1 ) / 7;
@@ -106,7 +118,7 @@ public class Main extends javax.swing.JFrame {
     int ptr;
     public void updateRecommended() {
         ptr = 0+7*page1;      
-        if (ptr < featutedIDCount) {
+        if (ptr < featuredIDCount) {
             if (getBookImage(featuredBook[ptr]) == null){
                 icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
             }
@@ -133,7 +145,7 @@ public class Main extends javax.swing.JFrame {
             bookNameA1.setVisible(false);
         }
         ptr++;
-        if (ptr < featutedIDCount) {
+        if (ptr < featuredIDCount) {
             if (getBookImage(featuredBook[ptr]) == null){
                 icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
             }
@@ -159,7 +171,7 @@ public class Main extends javax.swing.JFrame {
             bookNameA2.setVisible(false);
         }
         ptr++;
-        if (ptr < featutedIDCount) {
+        if (ptr < featuredIDCount) {
             if (getBookImage(featuredBook[ptr]) == null){
                 icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
             }
@@ -184,7 +196,7 @@ public class Main extends javax.swing.JFrame {
             bookNameA3.setVisible(false);
         }
         ptr++;
-        if (ptr < featutedIDCount) {
+        if (ptr < featuredIDCount) {
             if (getBookImage(featuredBook[ptr]) == null){
                 icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
             }
@@ -209,7 +221,7 @@ public class Main extends javax.swing.JFrame {
             bookNameA4.setVisible(false);
         }
         ptr++;
-        if (ptr < featutedIDCount) {
+        if (ptr < featuredIDCount) {
             if (getBookImage(featuredBook[ptr]) == null){
                 icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
             }
@@ -234,7 +246,7 @@ public class Main extends javax.swing.JFrame {
             bookNameA5.setVisible(false);
         }
         ptr++;
-        if (ptr < featutedIDCount) {
+        if (ptr < featuredIDCount) {
             if (getBookImage(featuredBook[ptr]) == null){
                 icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
             }
@@ -259,7 +271,7 @@ public class Main extends javax.swing.JFrame {
             bookNameA6.setVisible(false);
         }
         ptr++;
-        if (ptr < featutedIDCount) {
+        if (ptr < featuredIDCount) {
             if (getBookImage(featuredBook[ptr]) == null){
                 icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
             }
@@ -1738,7 +1750,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_logoActionPerformed
 
     private void imageA7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageA7ActionPerformed
-        gotoBookPage(imageA7.getText());
+        gotoBookPage(bookNameA7.getText());
     }//GEN-LAST:event_imageA7ActionPerformed
     
     public static void main(String args[]) {

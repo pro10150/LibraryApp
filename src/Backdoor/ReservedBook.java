@@ -75,7 +75,7 @@ public class ReservedBook extends Member {
         preparedStatement.setString(2,book_ID);
         preparedStatement.setDate(3,requestDate);
         preparedStatement.execute();
-        book.updateRemaining(this.remaining++);
+        book.increaseRemaining();
         
     }
     

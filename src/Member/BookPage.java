@@ -61,6 +61,15 @@ public class BookPage extends javax.swing.JFrame {
         
     }
     
+    
+            
+    public void gotoBookReviewList(String bookName) {
+        BookReviewList brl = new BookReviewList(bookName);
+        brl.setVisible(true);
+        setVisible(false);
+        dispose();
+    }
+    
     public void gotoBookPageExtra(String bookName) {
         if (!bookName.equals("-")) {
             BookPageExtra bp = new BookPageExtra(bookName);
@@ -478,7 +487,7 @@ public class BookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_reviewButtonActionPerformed
 
     private void otherReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherReviewButtonActionPerformed
-        // TODO add your handling code here:
+        gotoBookReviewList(bookNameLink);
     }//GEN-LAST:event_otherReviewButtonActionPerformed
 
     /**
