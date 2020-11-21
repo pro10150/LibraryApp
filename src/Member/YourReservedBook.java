@@ -2,11 +2,13 @@ package Member;
 
 import javax.swing.JOptionPane;
 import Backdoor.*;
+import java.awt.Image;
 
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Annop Boonlieng
@@ -27,18 +29,30 @@ public class YourReservedBook extends javax.swing.JFrame {
             existingRB = new ReservedBook(UIVars.userID);
             
             if (existingRB.getReservedStatus() == true) {
-            String bookID = existingRB.getBookID();
-            
-            book = new PhysicalBook(bookID);
-            String bookName = book.getName();
-            requestDate = existingRB.getRequestDate();
-            //System.out.println(existingRB.toString());
-            this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
-            this.typeAndAuthor.setText("Type: " + book.getType() 
-                    + " /  Author: " + book.getAuthor());
-            this.numberLeft.setText("Remaining: " + book.getRemaining());
-            this.requestDateLabel.setText("Request Date: " + requestDate);
-            this.expireDateLabel.setText("Expire Date: " + existingRB.getRequestExpiredDate());
+                String bookID = existingRB.getBookID();
+
+                book = new PhysicalBook(bookID);
+                String bookName = book.getName();
+                requestDate = existingRB.getRequestDate();
+                //System.out.println(existingRB.toString());
+                this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
+                this.typeAndAuthor.setText("Type: " + book.getType() 
+                        + " /  Author: " + book.getAuthor());
+                this.numberLeft.setText("Remaining: " + book.getRemaining());
+                this.requestDateLabel.setText("Request Date: " + requestDate);
+                this.expireDateLabel.setText("Expire Date: " + existingRB.getRequestExpiredDate());
+                javax.swing.ImageIcon icon;
+                if(book.getImageLocation() == null){
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+                }
+                else{
+                    icon = new javax.swing.ImageIcon(getClass().getResource(book.getImageLocation()));
+                }
+                Image img = icon.getImage();
+                Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
+                icon = new ImageIcon(modImg);
+                bookImage.setIcon(icon);
+                bookImage.setText("");
             }
             else {
                 this.topLabel.setText("You don't have a reserved book.");
