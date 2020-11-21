@@ -207,10 +207,7 @@
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="reviewButton" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <EmptySpace min="53" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="reviewButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                           <Component id="playButton" min="-2" max="-2" attributes="0"/>
@@ -246,6 +243,7 @@
                           <Component id="bookName" min="-2" pref="60" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="typeAndAuthor" min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="voiceActor" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="rate" min="-2" pref="30" max="-2" attributes="0"/>
