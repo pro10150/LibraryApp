@@ -15,6 +15,7 @@ public class AudioBook extends Book{
         while (resultSet.next()){
             if (resultSet.getString("name").equals(this.name)){
                     this.voice_actor = resultSet.getString("voice_actor");
+                    //this.audio = resultSet.getString("audio");
                     PhysicalBook book = new PhysicalBook(this.name);
                     this.name = book.getName();
                     this.book_ID = book.getBookID();

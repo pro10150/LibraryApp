@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.sound.sampled.*;
 /**
@@ -22,6 +24,7 @@ public class AudioBookPage extends javax.swing.JFrame {
     AudioBook abook;
     boolean favoriteFlag = false;
     private Clip clip;
+    private static long clipTimePosition;
     //private musicPlayer musicPlayer = new musicPlayer();
     //public String bookImageLocation;
     
@@ -118,6 +121,7 @@ public class AudioBookPage extends javax.swing.JFrame {
         favouriteButton = new javax.swing.JButton();
         moreButton = new javax.swing.JButton();
         otherReviewButton = new javax.swing.JButton();
+        playButton = new javax.swing.JButton();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -281,6 +285,13 @@ public class AudioBookPage extends javax.swing.JFrame {
             }
         });
 
+        playButton.setText("play");
+        playButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
         backGroundLayout.setHorizontalGroup(
@@ -304,7 +315,9 @@ public class AudioBookPage extends javax.swing.JFrame {
                             .addGroup(backGroundLayout.createSequentialGroup()
                                 .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(356, 356, 356))
+                        .addGap(133, 133, 133)
+                        .addComponent(playButton)
+                        .addGap(126, 126, 126))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
                         .addGap(250, 250, 250)
                         .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,7 +351,9 @@ public class AudioBookPage extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(playButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(otherReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -461,6 +476,24 @@ public class AudioBookPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_otherReviewButtonActionPerformed
 
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            loadAudio(bookNameLink);
+            clip.setMicrosecondPosition(0);
+            clipTimePosition = 0;
+            clip.start();
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioBookPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(AudioBookPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AudioBookPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(AudioBookPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_playButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -520,6 +553,7 @@ public class AudioBookPage extends javax.swing.JFrame {
     private javax.swing.JButton moreButton;
     private javax.swing.JButton notifButton;
     private javax.swing.JButton otherReviewButton;
+    private javax.swing.JButton playButton;
     private javax.swing.JLabel rate;
     private javax.swing.JButton reviewButton;
     private javax.swing.JTextField searchField;
