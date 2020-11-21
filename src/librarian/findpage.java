@@ -48,7 +48,7 @@ public class findpage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Find book");
 
-        searchField.setText("Book name or Book ID");
+        searchField.setText("Book name");
         searchField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchFieldMouseClicked(evt);
@@ -154,7 +154,7 @@ public class findpage extends javax.swing.JFrame {
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
         // TODO add your handling code here:
         String x = searchField.getText();
-        if (x.equals("Book name or Book ID")) searchField.setText("");
+        if (x.equals("Book name")) searchField.setText("");
     }//GEN-LAST:event_searchFieldMouseClicked
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed

@@ -149,7 +149,7 @@
                           <Component id="rate1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -229,6 +229,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Edit1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Delete1">
           <Properties>
@@ -350,6 +353,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Edit2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Delete2">
           <Properties>
@@ -536,6 +542,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Edit3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Delete3">
           <Properties>

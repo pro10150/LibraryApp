@@ -124,7 +124,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="searchField">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Book name or Book ID"/>
+            <Property name="text" type="java.lang.String" value="Book name"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchFieldMouseClicked"/>

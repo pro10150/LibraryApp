@@ -292,6 +292,11 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         noResult.setText("There are no results.");
 
         Edit1.setText("Edit");
+        Edit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Edit1ActionPerformed(evt);
+            }
+        });
 
         Delete1.setText("Delete");
         Delete1.addActionListener(new java.awt.event.ActionListener() {
@@ -309,7 +314,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
                 .addComponent(back)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(imageBook1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -357,7 +362,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
                         .addComponent(numberLeft1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rate1)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 61, 945, -1));
@@ -385,6 +390,11 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         rate2.setText("Rate");
 
         Edit2.setText("Edit");
+        Edit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Edit2ActionPerformed(evt);
+            }
+        });
 
         Delete2.setText("Delete");
         Delete2.addActionListener(new java.awt.event.ActionListener() {
@@ -480,6 +490,11 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         pageCount.setText("Page 1 of 5");
 
         Edit3.setText("Edit");
+        Edit3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Edit3ActionPerformed(evt);
+            }
+        });
 
         Delete3.setText("Delete");
         Delete3.addActionListener(new java.awt.event.ActionListener() {
@@ -685,6 +700,46 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         dispose();
         }
     }//GEN-LAST:event_Delete3ActionPerformed
+
+    private void Edit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit1ActionPerformed
+        // TODO add your handling code here:
+        Edit edit1 = null;
+        try{
+            edit1 = new Edit (bookID1);
+        }catch (SQLException ex) {
+            Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        edit1.setVisible(true);
+        setVisible(false);
+        dispose();
+        
+    }//GEN-LAST:event_Edit1ActionPerformed
+
+    private void Edit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit2ActionPerformed
+        // TODO add your handling code here:
+        Edit edit2 = null;
+        try{
+            edit2 = new Edit (bookID1);
+        }catch (SQLException ex) {
+            Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        edit2.setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_Edit2ActionPerformed
+
+    private void Edit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit3ActionPerformed
+        // TODO add your handling code here:
+        Edit edit3 = null;
+        try{
+            edit3 = new Edit (bookID1);
+        }catch (SQLException ex) {
+            Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        edit3.setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_Edit3ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
