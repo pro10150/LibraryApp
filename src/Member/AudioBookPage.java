@@ -27,6 +27,7 @@ public class AudioBookPage extends javax.swing.JFrame {
     private static long clipTimePosition = 0;
     private static boolean isPlaying = true;
     private static int flag = 0;
+    private boolean isLoaded = false;
     //private musicPlayer musicPlayer = new musicPlayer();
     //public String bookImageLocation;
     
@@ -425,9 +426,11 @@ public class AudioBookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        clipTimePosition = 0;
-        clip.stop();
-        flag = 0;
+        if (isLoaded == true) {
+            clipTimePosition = 0;
+            clip.stop();
+            flag = 0;
+        }
         MemberPage mp = new MemberPage();
         mp.setVisible(true);
         setVisible(false);
@@ -435,9 +438,11 @@ public class AudioBookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_accountButtonActionPerformed
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
-        clipTimePosition = 0;
-        clip.stop();
-        flag = 0;
+        if (isLoaded == true) {
+            clipTimePosition = 0;
+            clip.stop();
+            flag = 0;
+        }
         Notification notif = new Notification();
         notif.setVisible(true);
         setVisible(false);
@@ -445,9 +450,11 @@ public class AudioBookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        clipTimePosition = 0;
-        clip.stop();
-        flag = 0;
+        if (isLoaded == true) {
+            clipTimePosition = 0;
+            clip.stop();
+            flag = 0;
+        }
         Main menu = new Main();
         menu.setVisible(true);
         setVisible(false);
@@ -468,9 +475,11 @@ public class AudioBookPage extends javax.swing.JFrame {
             if(evt.getKeyCode()==KeyEvent.VK_ENTER) {
                 String query = searchField.getText();
                 if (!query.equals("")) {
-                    clipTimePosition = 0;
-                    clip.stop();
-                    flag = 0;
+                    if (isLoaded == true) {
+                        clipTimePosition = 0;
+                        clip.stop();
+                        flag = 0;
+                   }
                     SearchBook sp = new SearchBook(query);
                     sp.setVisible(true);
                     setVisible(false);
@@ -485,9 +494,11 @@ public class AudioBookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldKeyPressed
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
-        clipTimePosition = 0;
-        clip.stop();
-        flag = 0;
+        if (isLoaded == true) {
+            clipTimePosition = 0;
+            clip.stop();
+            flag = 0;
+        }
         Main menu = new Main();
         menu.setVisible(true);
         setVisible(false);
@@ -518,9 +529,11 @@ public class AudioBookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_favouriteButtonActionPerformed
 
     private void reviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewButtonActionPerformed
-        clipTimePosition = 0;
-        clip.stop();
-        flag = 0;
+        if (isLoaded == true) {
+            clipTimePosition = 0;
+            clip.stop();
+            flag = 0;
+        }
         UIVars.prevPage = "BookPage";
         BookReview br = new BookReview(bookNameLink);
         br.setVisible(true);
@@ -553,6 +566,7 @@ public class AudioBookPage extends javax.swing.JFrame {
         try {
         // TODO add your handling code here:
         loadAudio(bookNameLink);
+        isLoaded = true;
         clip.setMicrosecondPosition(0);
         clipTimePosition = 0;
         clip.start();
@@ -574,22 +588,27 @@ public class AudioBookPage extends javax.swing.JFrame {
     private void stopButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopButtonMouseClicked
         // TODO add your handling code here:
         
-        clipTimePosition = 0;
-        clip.stop();
-        flag = 0;
+       if (isLoaded == true) {
+            clipTimePosition = 0;
+            clip.stop();
+            flag = 0;
+        }
         playButton1.setText("􀊕 ");
     }//GEN-LAST:event_stopButtonMouseClicked
 
     private void backwardFifteenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backwardFifteenMouseClicked
-        clip.stop();
-        clipTimePosition = clip.getMicrosecondLength();
-        clipTimePosition -= 15000;
-        clip.setMicrosecondPosition(clipTimePosition);
-        clip.start();
+         if (isLoaded == true) {
+            clip.stop();
+            clipTimePosition = clip.getMicrosecondLength();
+            clipTimePosition -= 15000;
+            clip.setMicrosecondPosition(clipTimePosition);
+            clip.start();
+         }
     }//GEN-LAST:event_backwardFifteenMouseClicked
 
     private void forwardFifteenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forwardFifteenMouseClicked
         // TODO add your handling code here:
+        if (isLoaded == true) {
         clipTimePosition = clip.getMicrosecondLength();
         //clip.stop();
         //System.out.println(clipTimePosition);
@@ -597,6 +616,7 @@ public class AudioBookPage extends javax.swing.JFrame {
         //clip.stop();
         clip.setMicrosecondPosition(clipTimePosition);
         //clip.start();
+        }
     }//GEN-LAST:event_forwardFifteenMouseClicked
 
     /**
