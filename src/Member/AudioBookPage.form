@@ -191,36 +191,42 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="back" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="backLine" min="-2" pref="790" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="340" pref="340" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="moreButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
+                                      <Component id="favouriteButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
+                                      <Component id="otherReviewButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="reviewButton" min="-2" pref="270" max="-2" attributes="0"/>
+                                  <EmptySpace min="53" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
                           <Component id="bookImage" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="bookName" min="-2" pref="440" max="-2" attributes="0"/>
                               <Component id="typeAndAuthor" min="-2" pref="440" max="-2" attributes="0"/>
-                              <Component id="voiceActor" min="-2" pref="440" max="-2" attributes="0"/>
-                              <Component id="rate" min="-2" pref="440" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="340" pref="340" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="reviewButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <Component id="moreButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <Component id="favouriteButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <Component id="otherReviewButton" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="back" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="backLine" min="-2" pref="790" max="-2" attributes="0"/>
+                              <Component id="voiceActor" alignment="0" min="-2" pref="440" max="-2" attributes="0"/>
+                              <Component id="rate" alignment="0" min="-2" pref="440" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -238,7 +244,6 @@
                           <Component id="bookName" min="-2" pref="60" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="typeAndAuthor" min="-2" pref="30" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="voiceActor" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="rate" min="-2" pref="30" max="-2" attributes="0"/>
@@ -252,7 +257,7 @@
                   <Component id="moreButton" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="reviewButton" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="otherReviewButton" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="favouriteButton" min="-2" pref="34" max="-2" attributes="0"/>
