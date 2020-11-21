@@ -70,6 +70,7 @@ public class AudioBookPage extends javax.swing.JFrame {
             icon = new ImageIcon(modImg);
             bookImage.setIcon(icon);
             bookImage.setText("");
+            System.out.println(abook.getBookExisting());
         }catch (Exception e){System.out.println(e);}
         
     }
@@ -599,8 +600,8 @@ public class AudioBookPage extends javax.swing.JFrame {
     private void backwardFifteenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backwardFifteenMouseClicked
          if (isLoaded == true) {
             clip.stop();
-            clipTimePosition = clip.getMicrosecondLength();
-            clipTimePosition -= 15000;
+            clipTimePosition = clip.getMicrosecondPosition();
+            clipTimePosition -= 15000000;
             clip.setMicrosecondPosition(clipTimePosition);
             clip.start();
          }
@@ -609,13 +610,13 @@ public class AudioBookPage extends javax.swing.JFrame {
     private void forwardFifteenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forwardFifteenMouseClicked
         // TODO add your handling code here:
         if (isLoaded == true) {
-        clipTimePosition = clip.getMicrosecondLength();
-        //clip.stop();
-        //System.out.println(clipTimePosition);
-        //clipTimePosition += 15000000;
+        clipTimePosition = clip.getMicrosecondPosition();
+        clip.stop();
+        System.out.println(clipTimePosition);
+        clipTimePosition += 15000000;
         //clip.stop();
         clip.setMicrosecondPosition(clipTimePosition);
-        //clip.start();
+        clip.start();
         }
     }//GEN-LAST:event_forwardFifteenMouseClicked
 
@@ -656,7 +657,11 @@ public class AudioBookPage extends javax.swing.JFrame {
     
     public void loadAudio(String bookname) throws SQLException, UnsupportedAudioFileException, IOException, LineUnavailableException{
         AudioBook book = new AudioBook(bookname);
-        File filePath = new File(DBVars.DBPath + "/Audio/1235.wav");
+        String path = "src";
+        File file = new File(path);
+        String absolutePath = file.getAbsolutePath();
+        File filePath = new File(absolutePath + book.getAudio());
+        System.out.println(filePath);
         AudioInputStream audioInput = AudioSystem.getAudioInputStream(filePath);
         clip = AudioSystem.getClip();
         clip.open(audioInput);

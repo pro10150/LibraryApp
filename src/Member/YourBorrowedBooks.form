@@ -390,7 +390,7 @@
                       <Data value="null"/>
                       <Data value="null"/>
                     </Column>
-                    <Column editable="true" title="Note" type="java.lang.Object">
+                    <Column editable="true" title="Late" type="java.lang.Object">
                       <Data value="X"/>
                       <Data value="X"/>
                       <Data value="null"/>

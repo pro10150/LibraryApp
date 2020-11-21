@@ -224,7 +224,7 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Book Name", "Borrow Date", "Return Date", "Status ", "Note"
+                "Book Name", "Borrow Date", "Return Date", "Status ", "Late"
             }
         ));
         jScrollPane2.setViewportView(borrowTable);
