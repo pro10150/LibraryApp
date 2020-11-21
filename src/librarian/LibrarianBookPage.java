@@ -6,6 +6,7 @@
 package librarian;
 
 import Backdoor.PhysicalBook;
+import Member.BookPageExtra;
 import Member.UIVars;
 import java.awt.Image;
 import java.sql.SQLException;
@@ -52,6 +53,17 @@ public class LibrarianBookPage extends javax.swing.JFrame {
             bookImage.setIcon(icon);
             bookImage.setText("");
         }catch (Exception e){System.out.println(e);}
+    }
+    public void gotoLibrarianBookPageExtra(String bookName) {
+        if (!bookName.equals("-")) {
+            LibrarianBookPageExtra lbp = new LibrarianBookPageExtra(bookName);
+            lbp.setVisible(true);
+            setVisible(false);
+            dispose();
+        }
+        else {
+            System.out.println("Empty book.");    
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -243,7 +255,7 @@ public class LibrarianBookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void moreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreButtonActionPerformed
-        
+        gotoLibrarianBookPageExtra(bookNameLink);
     }//GEN-LAST:event_moreButtonActionPerformed
 
     /**
