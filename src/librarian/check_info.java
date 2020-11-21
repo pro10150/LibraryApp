@@ -70,7 +70,7 @@ public class check_info extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backLine.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel3.setText("Check the borowing information");
+        jLabel3.setText("Check the borrowing information");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
