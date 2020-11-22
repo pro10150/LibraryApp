@@ -35,7 +35,7 @@ public class AudioBook extends Book{
         this.voice_actor = voiceActor;
 
         PhysicalBook book = new PhysicalBook(this.name);
-
+        this.name = book.getName();
         this.book_ID = book.getBookID();
         this.type = book.getType();
         this.description = book.getDescription();

@@ -14,9 +14,9 @@ public class add_book_more extends javax.swing.JFrame {
      * Creates new form add_book
      */
     
-    public String description, published_location, author,book_ID, name, type, 
+    private String description = null, published_location = null, author = null,book_ID, name, type, 
             section;
-    private int year,remainig,serial;
+    private int year = 0,remainig ,serial ;
    
     
     public add_book_more(){
@@ -52,7 +52,7 @@ public class add_book_more extends javax.swing.JFrame {
         Add = new javax.swing.JButton();
         descriptionTextField = new javax.swing.JTextField();
         Cancel = new javax.swing.JButton();
-        Add1 = new javax.swing.JButton();
+        audioButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 153, 102));
@@ -154,11 +154,11 @@ public class add_book_more extends javax.swing.JFrame {
             }
         });
 
-        Add1.setBackground(new java.awt.Color(153, 102, 0));
-        Add1.setText("ADD Audio Book");
-        Add1.addActionListener(new java.awt.event.ActionListener() {
+        audioButton.setBackground(new java.awt.Color(153, 102, 0));
+        audioButton.setText("ADD AUDIO BOOK");
+        audioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Add1ActionPerformed(evt);
+                audioButtonActionPerformed(evt);
             }
         });
 
@@ -193,7 +193,7 @@ public class add_book_more extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(Add1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(audioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(Cancel)
                 .addGap(234, 234, 234))
@@ -220,7 +220,7 @@ public class add_book_more extends javax.swing.JFrame {
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Add1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(audioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
 
@@ -236,7 +236,7 @@ public class add_book_more extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -298,10 +298,35 @@ public class add_book_more extends javax.swing.JFrame {
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:d
-        description = descriptionTextField.getText();
-        published_location = publishedLocationTextField.getText();
-        year = (int)(Double.parseDouble(yearTextField.getText()));
-        author = authorTextField.getText();
+        String x;
+            x = descriptionTextField.getText(); 
+        if(!x.equals("") || !x.equals("Description")) {
+            description = null;
+        }
+        else{
+            description = descriptionTextField.getText();
+        }
+        x = publishedLocationTextField.getText(); 
+        if(!x.equals("") || !x.equals("Published location")) {
+            published_location = null;
+        }
+        else{
+            published_location = publishedLocationTextField.getText();
+        }
+        x = yearTextField.getText();  
+        if(!x.equals("") || !x.equals("Year")){ 
+            year = 0;
+        }
+        else{
+            year = (int)(Double.parseDouble(yearTextField.getText()));
+        }
+        x = authorTextField.getText(); 
+        if(!authorTextField.getText().equals("") || !authorTextField.getText().equals("Author")){ 
+            author = null;
+        }
+        else{
+            author = authorTextField.getText(); 
+        }
         
         PhysicalBook book = null; 
         try {
@@ -383,9 +408,78 @@ public class add_book_more extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_logoMouseClicked
 
-    private void Add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Add1ActionPerformed
+    private void audioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audioButtonActionPerformed
+        try {                                            
+            // TODO add your handling code here:
+            String x;
+            x = descriptionTextField.getText(); 
+        if(!x.equals("") || !x.equals("Description")) {
+            description = null;
+        }
+        else{
+            description = descriptionTextField.getText();
+        }
+        x = publishedLocationTextField.getText(); 
+        if(!x.equals("") || !x.equals("Published location")) {
+            published_location = null;
+        }
+        else{
+            published_location = publishedLocationTextField.getText();
+        }
+        x = yearTextField.getText();  
+        if(!x.equals("") || !x.equals("Year")){ 
+            year = 0;
+        }
+        else{
+            year = (int)(Double.parseDouble(yearTextField.getText()));
+        }
+        x = authorTextField.getText(); 
+        if(!authorTextField.getText().equals("") || !authorTextField.getText().equals("Author")){ 
+            author = null;
+        }
+        else{
+            author = authorTextField.getText(); 
+        }
+            
+            PhysicalBook book = null;
+            try {
+                book = new PhysicalBook(this.book_ID);
+            } catch (SQLException ex) {
+                Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                book.setDescription(description);
+            } catch (SQLException ex) {
+                Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                book.setPublished_location(published_location);
+            } catch (SQLException ex) {
+                Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                book.setYear(year);
+            } catch (SQLException ex) {
+                Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                book.setAuthor(author);
+            } catch (SQLException ex) {
+                Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            AddAudioBook ad = new AddAudioBook(book_ID);
+            ad.setVisible(true);
+            dispose();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }//GEN-LAST:event_audioButtonActionPerformed
 
  
     /**
@@ -426,8 +520,8 @@ public class add_book_more extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Add;
-    public javax.swing.JButton Add1;
     public javax.swing.JButton Cancel;
+    public javax.swing.JButton audioButton;
     private javax.swing.JTextField authorTextField;
     private javax.swing.JPanel backGround;
     private javax.swing.JTextField descriptionTextField;

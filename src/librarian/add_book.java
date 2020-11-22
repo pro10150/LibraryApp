@@ -340,19 +340,6 @@ public class add_book extends javax.swing.JFrame {
         addPicture.setText("");
     }//GEN-LAST:event_addPictureActionPerformed
 
-    private String getJPG(){
-        return "JPG Images (*.jpg)";
-    }
-    
-    private boolean accept(File f){
-        if(f.isDirectory()){
-            return true;
-        }
-        else{
-            String filename = f.getName().toLowerCase();
-            return filename.endsWith(".jpg") || filename.endsWith(".jpeg");
-        }
-    }
     
     
     
@@ -459,6 +446,24 @@ public class add_book extends javax.swing.JFrame {
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
         // TODO add your handling code here:
+        String imagesName = null;
+        if(addingImages != null){
+                Writer output = null;
+                String path = "src/bookCover";
+                File file = new File(path);
+                String dirName = file.getAbsolutePath();
+                File dir = new File (dirName);
+                Path source = Paths.get(addingImages);
+                Path targetDir = Paths.get(dirName);
+                imagesName = bookIDTextField.getText() + ".jpg";
+                Path target = targetDir.resolve(imagesName);
+            try {
+                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ex) {
+                Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
         book_ID = bookIDTextField.getText();
         name = nameTextField.getText();
         type = typeTextField.getText();

@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class Edit extends javax.swing.JFrame {
     private String bookID;
-    
+    PhysicalBook book;
     /**
      * Creates new form Edit
      */
@@ -28,7 +28,7 @@ public class Edit extends javax.swing.JFrame {
     public Edit(String bookID) throws SQLException {
         initComponents();
         this.bookID = bookID;
-        PhysicalBook book = new PhysicalBook(this.bookID);
+        book = new PhysicalBook(this.bookID);
         nameTextField.setText(book.getName());
         typeTextField.setText(book.getType());
         sectionTextField.setText(book.getSection());
@@ -63,6 +63,8 @@ public class Edit extends javax.swing.JFrame {
         descriptionTextField = new javax.swing.JTextField();
         yearTextField = new javax.swing.JTextField();
         authorTextField = new javax.swing.JTextField();
+        publishedLocationTextField = new javax.swing.JTextField();
+        audioButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,7 +121,7 @@ public class Edit extends javax.swing.JFrame {
                 sendReviewActionPerformed(evt);
             }
         });
-        backGround.add(sendReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 510, 130, 34));
+        backGround.add(sendReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 130, 40));
 
         bookImage.setText("BOOK");
         bookImage.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +168,7 @@ public class Edit extends javax.swing.JFrame {
                 sectionTextFieldActionPerformed(evt);
             }
         });
-        backGround.add(sectionTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 380, 30));
+        backGround.add(sectionTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 160, 30));
 
         serialTextField.setText("Serial");
         serialTextField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -179,7 +181,7 @@ public class Edit extends javax.swing.JFrame {
                 serialTextFieldActionPerformed(evt);
             }
         });
-        backGround.add(serialTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 380, 30));
+        backGround.add(serialTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 210, 30));
 
         remainingTextField.setText("Remaining");
         remainingTextField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -234,6 +236,17 @@ public class Edit extends javax.swing.JFrame {
         });
         backGround.add(authorTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 380, 30));
 
+        publishedLocationTextField.setText("Published location");
+        backGround.add(publishedLocationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 380, 30));
+
+        audioButton.setText("Add audio");
+        audioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                audioButtonActionPerformed(evt);
+            }
+        });
+        backGround.add(audioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,17 +284,26 @@ public class Edit extends javax.swing.JFrame {
             setVisible(false);
             dispose();
     }//GEN-LAST:event_backActionPerformed
-
+        String name = null;
+        String type = null;
+        String section = null;
+        String author = null;
+        String description = null;
+        String publishedLocation = null;
+        int serial = 0;
+        int remaining = 0;
+        int year = 0;
     private void sendReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendReviewActionPerformed
-
-        String name = nameTextField.getText();
-        String type = typeTextField.getText();
-        String section = sectionTextField.getText();
-        int serial = (int)(Double.parseDouble(serialTextField.getText()));
-        int remaining = (int)(Double.parseDouble(remainingTextField.getText()));
-        int year = (int)(Double.parseDouble(yearTextField.getText()));
-        String author = authorTextField.getText();
-        String description = descriptionTextField.getText();  
+        
+        if(!nameTextField.getText().equals("") || !nameTextField.getText().equals(book.getName())) name = nameTextField.getText();
+        if(!typeTextField.getText().equals("") || !typeTextField.getText().equals(book.getType())) type = typeTextField.getText();
+        if(!sectionTextField.getText().equals("") || !sectionTextField.getText().equals(book.getSection())) section = sectionTextField.getText();
+        if(!serialTextField.getText().equals("") || !serialTextField.getText().equals(book.getSerial())) serial = (int)(Double.parseDouble(serialTextField.getText()));        
+        if(!remainingTextField.getText().equals("") || !remainingTextField.getText().equals(book.getRemaining())) remaining = (int)(Double.parseDouble(remainingTextField.getText()));        
+        if(!yearTextField.getText().equals("") || !yearTextField.getText().equals(book.getYear())) year = (int)(Double.parseDouble(yearTextField.getText()));                
+        if(!authorTextField.getText().equals("") || !authorTextField.getText().equals(book.getAuthor())) author = authorTextField.getText(); 
+        if(!descriptionTextField.getText().equals("") || !descriptionTextField.getText().equals(book.getDescription())) description = descriptionTextField.getText();
+        if(!publishedLocationTextField.getText().equals("") || !publishedLocationTextField.getText().equals(book.getPublished_location())) publishedLocation = publishedLocationTextField.getText();
         PhysicalBook book = null; 
         try {
             book = new PhysicalBook(this.bookID);
@@ -417,6 +439,72 @@ public class Edit extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_authorTextFieldActionPerformed
 
+    private void audioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audioButtonActionPerformed
+        try {
+            if(!nameTextField.getText().equals("") || !nameTextField.getText().equals(book.getName())) name = nameTextField.getText();
+        if(!typeTextField.getText().equals("") || !typeTextField.getText().equals(book.getType())) type = typeTextField.getText();
+        if(!sectionTextField.getText().equals("") || !sectionTextField.getText().equals(book.getSection())) section = sectionTextField.getText();
+        if(!serialTextField.getText().equals("") || !serialTextField.getText().equals(book.getSerial())) serial = (int)(Double.parseDouble(serialTextField.getText()));        
+        if(!remainingTextField.getText().equals("") || !remainingTextField.getText().equals(book.getRemaining())) remaining = (int)(Double.parseDouble(remainingTextField.getText()));        
+        if(!yearTextField.getText().equals("") || !yearTextField.getText().equals(book.getYear())) year = (int)(Double.parseDouble(yearTextField.getText()));                
+        if(!authorTextField.getText().equals("") || !authorTextField.getText().equals(book.getAuthor())) author = authorTextField.getText(); 
+        if(!descriptionTextField.getText().equals("") || !descriptionTextField.getText().equals(book.getDescription())) description = descriptionTextField.getText();
+        if(!publishedLocationTextField.getText().equals("") || !publishedLocationTextField.getText().equals(book.getPublished_location())) publishedLocation = publishedLocationTextField.getText();
+        PhysicalBook book = null; 
+        try {
+            book = new PhysicalBook(this.bookID);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setName(name);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setType(type);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setSection(section);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setSerial(serial);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setRemaining(remaining);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setYear(year);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setAuthor(author);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            book.setDescription(description);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            AddAudioBook ad = new AddAudioBook(bookID);
+            ad.setVisible(true);
+            ad.backButton.setVisible(false);
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_audioButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -453,6 +541,7 @@ public class Edit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton audioButton;
     private javax.swing.JTextField authorTextField;
     private javax.swing.JButton back;
     private javax.swing.JPanel backGround;
@@ -461,6 +550,7 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JTextField descriptionTextField;
     private javax.swing.JButton logo;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JTextField publishedLocationTextField;
     private javax.swing.JTextField remainingTextField;
     private javax.swing.JTextField sectionTextField;
     private javax.swing.JButton sendReview;

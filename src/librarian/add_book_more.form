@@ -41,7 +41,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="topPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="backGround" pref="506" max="32767" attributes="0"/>
+              <Component id="backGround" pref="514" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -132,7 +132,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="Add" min="-2" pref="73" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="Add1" min="-2" pref="127" max="-2" attributes="0"/>
+                  <Component id="audioButton" min="-2" pref="127" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="Cancel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="234" max="-2" attributes="0"/>
@@ -163,7 +163,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Add" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="Cancel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="Add1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="audioButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="94" max="32767" attributes="0"/>
               </Group>
@@ -265,15 +265,15 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="Add1">
+        <Component class="javax.swing.JButton" name="audioButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="66" red="99" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ADD Audio Book"/>
+            <Property name="text" type="java.lang.String" value="ADD AUDIO BOOK"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Add1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="audioButtonActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
