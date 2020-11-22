@@ -52,6 +52,7 @@ public class add_book_more extends javax.swing.JFrame {
         Add = new javax.swing.JButton();
         descriptionTextField = new javax.swing.JTextField();
         Cancel = new javax.swing.JButton();
+        Add1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 153, 102));
@@ -153,6 +154,14 @@ public class add_book_more extends javax.swing.JFrame {
             }
         });
 
+        Add1.setBackground(new java.awt.Color(153, 102, 0));
+        Add1.setText("ADD Audio Book");
+        Add1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Add1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
         backGroundLayout.setHorizontalGroup(
@@ -183,9 +192,11 @@ public class add_book_more extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(26, 26, 26)
+                .addComponent(Add1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(Cancel)
-                .addGap(296, 296, 296))
+                .addGap(234, 234, 234))
         );
         backGroundLayout.setVerticalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,8 +219,9 @@ public class add_book_more extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                    .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Add1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,7 +236,7 @@ public class add_book_more extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                .addComponent(backGround, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -371,6 +383,10 @@ public class add_book_more extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_logoMouseClicked
 
+    private void Add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Add1ActionPerformed
+
  
     /**
      * @param args the command line arguments
@@ -410,6 +426,7 @@ public class add_book_more extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Add;
+    public javax.swing.JButton Add1;
     public javax.swing.JButton Cancel;
     private javax.swing.JTextField authorTextField;
     private javax.swing.JPanel backGround;
