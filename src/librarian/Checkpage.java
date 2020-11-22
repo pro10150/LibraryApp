@@ -3,6 +3,8 @@ package librarian;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Backdoor.*;
+import javax.swing.JOptionPane;
 
 
 public class Checkpage extends javax.swing.JFrame {
@@ -18,8 +20,8 @@ public class Checkpage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Icon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        searchField = new javax.swing.JTextField();
+        enterButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,23 +40,23 @@ public class Checkpage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Check the borrowing information");
 
-        jTextField1.setText("User ID");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        searchField.setText("User ID");
+        searchField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
+                searchFieldMouseClicked(evt);
             }
         });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        searchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                searchFieldActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 102, 0));
-        jButton1.setText("ENTER");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        enterButton.setBackground(new java.awt.Color(153, 102, 0));
+        enterButton.setText("ENTER");
+        enterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                enterButtonActionPerformed(evt);
             }
         });
 
@@ -75,10 +77,10 @@ public class Checkpage extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(301, 301, 301)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(429, 429, 429)
-                        .addComponent(jButton1)))
+                        .addComponent(enterButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,9 +91,9 @@ public class Checkpage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
-                .addComponent(jButton1)
+                .addComponent(enterButton)
                 .addContainerGap(106, Short.MAX_VALUE))
         );
 
@@ -122,19 +124,41 @@ public class Checkpage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_IconMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
+        String query = searchField.getText();
+        // Check if user exists
+        try {
+            User member = new Member(query);
+            if (member.getRole() == null) {
+                JOptionPane.showMessageDialog(null, "No user found.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else if (member.getRole().equals("librarian")) {
+                JOptionPane.showMessageDialog(null, "That user is a librarian.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+               check_info page = null;
+               page = new check_info(query);
+               page.setVisible(true);
+               setVisible(false);
+               dispose(); 
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Checkpage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_enterButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchFieldActionPerformed
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+    private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
         // TODO add your handling code here:
-        String x = jTextField1.getText();
-        if (x.equals("User ID")) jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1MouseClicked
+        String x = searchField.getText();
+        if (x.equals("User ID")) searchField.setText("");
+    }//GEN-LAST:event_searchFieldMouseClicked
 
     /**
      * @param args the command line arguments
@@ -173,9 +197,9 @@ public class Checkpage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Icon;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton enterButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
 }

@@ -157,7 +157,7 @@ public class Member extends User {
         preparedStatement.execute();
     }
 
-    public  void updateString(String string,String attribute) throws SQLException{
+    public void updateString(String string,String attribute) throws SQLException{
         String query = "UPDATE " + attribute + " = ? where user_ID = ?";
         PreparedStatement preparedStatement = connect.prepareStatement(query);
         preparedStatement.setString(1,string);

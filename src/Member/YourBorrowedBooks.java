@@ -19,7 +19,7 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
 
     String[][] data;
     String[] column = {"Book Name", "Borrow Date", "Return Date", "Status", "Note"};
-    
+
     ArrayList startDateList = new ArrayList<Date>();
     ArrayList returnDateList = new ArrayList<Date>();
     ArrayList lateList = new ArrayList<Boolean>();
@@ -41,16 +41,15 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
             lateList = borrowbook.getLateList();
             
             ArrayList bookList = borrowbook.getBookIDList();
-            DefaultListModel listModel = new DefaultListModel();
             
-            data = new String[borrowbook.getIDListCount()][5];
+            data = new String[borrowbook.getIDListCount()][borrowTable.getColumnCount()];
             
             for (int i = 0 ; i < borrowbook.getIDListCount() ; i++) {
-                String bookName = bookList.get(i).toString();
-                PhysicalBook book = new PhysicalBook(bookName);
-                System.out.println(book.getBookID());
+                String bookID = bookList.get(i).toString();
+                PhysicalBook book = new PhysicalBook(bookID);
+                //System.out.println(book.getBookID());
                 
-                data[i][0] = bookName;
+                data[i][0] = book.getName();
                 data[i][1] = startDateList.get(i).toString();
                 
                 if (returnDateList.get(i) == null){
@@ -63,6 +62,8 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
                    }
                 
                 data[i][4] = lateList.get(i).toString();
+                if (data[i][4].equals("true")) data[i][4] = "Late";
+                else data[i][4] = "-";
                 
             //    System.out.println(data[i][0]);
             //    System.out.println(data[i][1]);

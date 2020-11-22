@@ -6,7 +6,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*; 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import librarian.check_fee;
 
 /**
  *
@@ -79,7 +82,9 @@ public class Main extends javax.swing.JFrame {
 
             featAudioBookIDCount = bookAudioCount;
             updateAudioBook();
-            } catch (Exception e) {System.out.println(e);} 
+            } catch (SQLException ex) {
+                  Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+             }
         // Tab 3
          try{
             UserPickBook fav = new UserPickBook(UIVars.userID);

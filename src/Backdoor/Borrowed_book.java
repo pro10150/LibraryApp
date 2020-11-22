@@ -108,6 +108,9 @@ public class Borrowed_book extends Member{
             additionFee = (int) day * 2;
             super.addFee(additionFee);
         }
+        // Add remaining back
+        PhysicalBook book = new PhysicalBook(book_ID);
+        book.increaseRemaining();
     }
     
     public ArrayList getBookIDList() {

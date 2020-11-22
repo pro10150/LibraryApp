@@ -1,20 +1,92 @@
 package librarian;
 
+import Backdoor.*;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class check_info extends javax.swing.JFrame {
 
-    /**
-     * Creates new form check_info
-     */
+    Borrowed_book borrowbook;
+
+    String[][] data;
+    String[] column = {"Book ID", "Book Name", "Borrow Date", "Return Date", "Status", "Note"};
+    String userID;
+    
+    ArrayList startDateList = new ArrayList<Date>();
+    ArrayList returnDateList = new ArrayList<Date>();
+    ArrayList lateList = new ArrayList<Boolean>();
+    
     public check_info() {
         initComponents();
     }
 
-    check_info(String query) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public check_info(String query) {
+    //    throw new UnsupportedOperationException("Not supported yet.");
+        initComponents();
+            
+        userID = query;
+        updateTable();
+    }
+    
+    public void updateTable() {
+        try {
+            Member member = new Member(userID);
+            
+            userName.setText("Name: " + member.getFirstName());
+            userSurname.setText("Surname: " + member.getLastName());
+
+            borrowbook = new Borrowed_book(userID);
+            
+            startDateList = borrowbook.getStartDateList();
+            returnDateList = borrowbook.getReturnDateList();
+            lateList = borrowbook.getLateList();
+            
+            ArrayList bookList = borrowbook.getBookIDList();
+            
+            data = new String[borrowbook.getIDListCount()][borrowTable.getColumnCount()];
+            
+            for (int i = 0 ; i < borrowbook.getIDListCount() ; i++) {
+                String bookID = bookList.get(i).toString();
+                PhysicalBook book = new PhysicalBook(bookID);
+                //System.out.println(book.getBookID());
+                
+                data[i][0] = bookID;
+                data[i][1] = book.getName();
+                data[i][2] = startDateList.get(i).toString();
+                
+                if (returnDateList.get(i) == null){
+                   data[i][3] = "-";
+                   data[i][4] = "Not returned";
+                }
+                else {
+                   data[i][3] = returnDateList.get(i).toString();
+                   data[i][4] = "Returned";      
+                   }
+                
+                data[i][5] = lateList.get(i).toString();
+                if (data[i][5].equals("true")) data[i][5] = "Late";
+                else data[i][5] = "-";
+                
+            //    System.out.println(data[i][0]);
+            //    System.out.println(data[i][1]);
+            //    System.out.println(data[i][2]);
+            //    System.out.println(data[i][3]);
+            //    System.out.println(data[i][4]);
+            //    System.out.println(data[i][5]);
+            }
+            
+            DefaultTableModel model = new DefaultTableModel(data, column);   
+            borrowTable.setModel(model);
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(check_info.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -33,11 +105,12 @@ public class check_info extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        borrowTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        userName = new javax.swing.JLabel();
+        userSurname = new javax.swing.JLabel();
+        returnButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,7 +145,7 @@ public class check_info extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel3.setText("Check the borrowing information");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        borrowTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -92,52 +165,52 @@ public class check_info extends javax.swing.JFrame {
                 "Book ID", "Book", "Borrow date", "Return date", "status", "noted"
             }
         ));
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(jTable1);
+        borrowTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(borrowTable);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account.png"))); // NOI18N
         jLabel4.setPreferredSize(new java.awt.Dimension(80, 70));
 
-        jTextField1.setText("Name  ");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        userName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        userName.setText("Name:");
 
-        jTextField2.setText("surname ");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
+        userSurname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        userSurname.setText("Surname:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2))
-                .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(userSurname, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(userName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(userName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userSurname)
+                .addContainerGap(158, Short.MAX_VALUE))
         );
+
+        returnButton.setText("Return Book");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
         backGround.setLayout(backGroundLayout);
@@ -152,13 +225,16 @@ public class check_info extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(224, 224, 224))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(259, 259, 259))))
+                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(backGroundLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(backGroundLayout.createSequentialGroup()
+                                .addGap(217, 217, 217)
+                                .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(224, 224, 224))
         );
         backGroundLayout.setVerticalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,14 +246,14 @@ public class check_info extends javax.swing.JFrame {
                         .addComponent(jLabel1)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(10, 10, 10)
+                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,22 +276,16 @@ public class check_info extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Checkpage check = new Checkpage();
+        check.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
-        // TODO add your handling code here:
+
          librarian_profile profile = null;
         try {
-            // TODO add your handling code here:
             profile = new librarian_profile();
         } catch (SQLException ex) {
             Logger.getLogger(findpage.class.getName()).log(Level.SEVERE, null, ex);
@@ -224,6 +294,22 @@ public class check_info extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_logoMouseClicked
+
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+        try {
+           Borrowed_book borrow = new Borrowed_book(userID);
+           System.out.println(borrow.toString()); // Choose the last one
+           if (borrow.getReturnDate() == null) {
+               borrow.returnBook();
+           }
+           else {
+               JOptionPane.showMessageDialog(null, "This user doesn't borrow any book yet.", "ERROR", JOptionPane.ERROR_MESSAGE);
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(findpage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_returnButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,16 +348,17 @@ public class check_info extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backGround;
+    private javax.swing.JTable borrowTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel logo;
+    private javax.swing.JButton returnButton;
     private javax.swing.JPanel topPanel;
+    private javax.swing.JLabel userName;
+    private javax.swing.JLabel userSurname;
     // End of variables declaration//GEN-END:variables
 }
