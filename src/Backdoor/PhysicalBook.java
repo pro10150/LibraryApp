@@ -206,6 +206,11 @@ public class PhysicalBook extends Book implements Update{
         updateRemaining(this.remaining);
     }
     
+    public void setImageLocation(String filePath) throws SQLException{
+        this.imageLocation = filePath;
+        updateString(filePath,"image");
+    }
+    
     public void setOverallRate(double overallRate) throws SQLException{
         this.overallRate = overallRate;
 

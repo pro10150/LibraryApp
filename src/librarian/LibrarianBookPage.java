@@ -23,6 +23,7 @@ public class LibrarianBookPage extends javax.swing.JFrame {
 
     String bookNameLink;
     PhysicalBook book;
+    String query;
     
     public LibrarianBookPage() {
         initComponents();
@@ -54,6 +55,36 @@ public class LibrarianBookPage extends javax.swing.JFrame {
             bookImage.setText("");
         }catch (Exception e){System.out.println(e);}
     }
+    
+    public LibrarianBookPage(String bookName,String query) {
+        initComponents();
+        
+        this.query = query;
+        bookNameLink = bookName;
+        try{
+            // Update Book
+            book = new PhysicalBook(bookName);
+            this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
+            this.typeAndAuthor.setText("Type: " + book.getType() 
+                    + " /  Author: " + book.getAuthor());
+            this.numberLeft.setText("Remaining: " + book.getRemaining());
+            this.rate.setText("Rating: " + book.getOverallRate());
+            javax.swing.ImageIcon icon;
+            if(book.getImageLocation() == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(book.getImageLocation()));
+            }
+            Image img = icon.getImage();
+            Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            bookImage.setIcon(icon);
+            bookImage.setText("");
+        }catch (Exception e){System.out.println(e);}
+    }
+    
+    
     public void gotoLibrarianBookPageExtra(String bookName) {
         if (!bookName.equals("-")) {
             LibrarianBookPageExtra lbp = new LibrarianBookPageExtra(bookName);
@@ -244,7 +275,8 @@ public class LibrarianBookPage extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         try {
-            librarian_profile menu = new librarian_profile();
+            //librarian_profile menu = new librarian_profile();
+            LibrarianSearchBook menu = new LibrarianSearchBook(query);
             menu.setVisible(true);
             setVisible(false);
            dispose();

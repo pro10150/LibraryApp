@@ -7,6 +7,8 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 /**
  *
@@ -17,6 +19,7 @@ public class BookPage extends javax.swing.JFrame {
     public String bookNameLink;
     PhysicalBook book;
     boolean favoriteFlag = false;
+    private String query;
     //public String bookImageLocation;
     
     public BookPage() {
@@ -24,6 +27,47 @@ public class BookPage extends javax.swing.JFrame {
     }
     public BookPage(String bookName){
         initComponents();
+        
+        bookNameLink = bookName;
+        
+        try{
+            // Update Book
+            book = new PhysicalBook(bookName);
+            this.bookName.setText("<html>"+bookName+"</html>"); // makes it cover multiple lines
+            this.typeAndAuthor.setText("Type: " + book.getType() 
+                    + " /  Author: " + book.getAuthor());
+            this.numberLeft.setText("Remaining: " + book.getRemaining());
+            this.rate.setText("Rating: " + book.getOverallRate());
+            // Favorite
+            UserPickBook oldFav = new UserPickBook(UIVars.userID);
+            ArrayList bookList = oldFav.getBookIDList();
+            for (int i = 0 ; i < bookList.size() ; i++) {
+                // System.out.println(bookList.get(i) + book.getBookID());
+                if (bookList.get(i).equals(book.getBookID())) {
+                    favoriteFlag = true;
+                    updateFavButton();
+                }
+            }
+            javax.swing.ImageIcon icon;
+            if(book.getImageLocation() == null){
+                icon = new javax.swing.ImageIcon(getClass().getResource("/bookCover/Untitled.jpg"));
+            }
+            else{
+                icon = new javax.swing.ImageIcon(getClass().getResource(book.getImageLocation()));
+            }
+            Image img = icon.getImage();
+            Image modImg = img.getScaledInstance(200,260, Image.SCALE_SMOOTH);
+            icon = new ImageIcon(modImg);
+            bookImage.setIcon(icon);
+            bookImage.setText("");
+        }catch (Exception e){System.out.println(e);}
+        
+    }
+    
+    public BookPage(String bookName,String query){
+        initComponents();
+        
+        this.query = query;
         
         bookNameLink = bookName;
         
@@ -415,10 +459,15 @@ public class BookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_reserveButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        Main menu = new Main();
-        menu.setVisible(true);
-        setVisible(false);
-        dispose();
+        try {
+            //Main menu = new Main();
+            SearchBook menu = new SearchBook(query);
+            menu.setVisible(true);
+            setVisible(false);
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_backActionPerformed
 
     private void bookImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookImageActionPerformed
