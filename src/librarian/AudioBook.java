@@ -163,102 +163,19 @@ public class AudioBook extends javax.swing.JFrame {
 
     private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
         // TODO add your handling code here:
-        PhysicalBook book = null;
-        try {
-            // TODO add your handling code here:
-            book = new PhysicalBook(this.book_ID);
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            book.deletePhysicalBook();
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        librarian_profile menu = null;
-        try {
-            menu = new librarian_profile();
-        } catch (SQLException ex) {
-            Logger.getLogger(librarian_profile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        menu.setVisible(true);
-        setVisible(false);
-        dispose();
     }//GEN-LAST:event_logoMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        librarian_profile profile = null;
-        try {
-            // TODO add your handling code here:
-            profile = new librarian_profile();
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        profile.setVisible(true);
-        setVisible(false);
-        dispose();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:d
-        description = descriptionTextField.getText();
-        published_location = publishedLocationTextField.getText();
-        year = (int)(Double.parseDouble(yearTextField.getText()));
-        author = authorTextField.getText();
-
-        PhysicalBook book = null;
-        try {
-            book = new PhysicalBook(this.book_ID);
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            book.setDescription(description);
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            book.setPublished_location(published_location);
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            book.setYear(year);
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            book.setAuthor(author);
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JOptionPane.showMessageDialog(null, "Done");
-        add_book ad = new add_book();
-        ad.setVisible(true);
-        dispose();
+        
     }//GEN-LAST:event_AddActionPerformed
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
-        PhysicalBook book = null;
-        try {
-            // TODO add your handling code here:
-            book = new PhysicalBook(this.book_ID);
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            book.deletePhysicalBook();
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        add_book ad = new add_book();
-        ad.setVisible(true);
-        dispose();
+        
     }//GEN-LAST:event_CancelActionPerformed
 
     private void authorTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_authorTextField1MouseClicked
