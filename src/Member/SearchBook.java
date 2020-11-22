@@ -172,7 +172,7 @@ public class SearchBook extends javax.swing.JFrame {
     
     public void gotoBookPage(String bookName) {
         if (!bookName.equals("-") && !bookName.equals("")) {
-            BookPage bp = new BookPage(bookName);
+            BookPage bp = new BookPage(bookName, searchQuery);
             bp.setVisible(true);
             setVisible(false);
             dispose();

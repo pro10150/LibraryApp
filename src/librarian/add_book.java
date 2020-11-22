@@ -2,11 +2,28 @@ package librarian;
 
 import javax.swing.JOptionPane;
 import Backdoor.*;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.Image;
 
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class add_book extends javax.swing.JFrame {
 
@@ -16,6 +33,7 @@ public class add_book extends javax.swing.JFrame {
     
     public String book_ID, name, type, section;
     public int serial, remaining;
+    private String addingImages = null;
    
     
     public add_book(){
@@ -38,7 +56,7 @@ public class add_book extends javax.swing.JFrame {
         backGround = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        addPicture = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         typeTextField = new javax.swing.JTextField();
@@ -81,10 +99,10 @@ public class add_book extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backLine.png"))); // NOI18N
 
-        jButton2.setText("Add picture");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addPicture.setText("Add picture");
+        addPicture.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addPictureActionPerformed(evt);
             }
         });
 
@@ -194,7 +212,7 @@ public class add_book extends javax.swing.JFrame {
                         .addGap(0, 172, Short.MAX_VALUE)
                         .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -233,7 +251,7 @@ public class add_book extends javax.swing.JFrame {
                         .addComponent(bookIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(backGroundLayout.createSequentialGroup()
                                 .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -285,10 +303,59 @@ public class add_book extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPictureActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        /*
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG Images", "jpg");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: " +
+                    chooser.getSelectedFile().getName());
+        }*/
+        
+        FileDialog dialog = new FileDialog((Frame)null, "Select File to Open");
+        dialog.setFilenameFilter(new FilenameFilter(){
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".jpg") || name.endsWith(".jpeg");
+                }
+            });
+        dialog.setMode(FileDialog.LOAD);
+        dialog.setVisible(true);
+        String images = dialog.getFile();
+        String file = dialog.getDirectory();
+        System.out.println(images + " chosen.");
+        addingImages = file + images;
+        javax.swing.ImageIcon icon;
+        
+        //addingImages = chooser.getSelectedFile().getAbsolutePath();
+        icon = new javax.swing.ImageIcon(addingImages);
+        Image img = icon.getImage();
+        Image modImg = img.getScaledInstance(128,140, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(modImg);
+        addPicture.setIcon(icon);
+        addPicture.setText("");
+    }//GEN-LAST:event_addPictureActionPerformed
 
+    private String getJPG(){
+        return "JPG Images (*.jpg)";
+    }
+    
+    private boolean accept(File f){
+        if(f.isDirectory()){
+            return true;
+        }
+        else{
+            String filename = f.getName().toLowerCase();
+            return filename.endsWith(".jpg") || filename.endsWith(".jpeg");
+        }
+    }
+    
+    
+    
     private void typeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_typeTextFieldActionPerformed
@@ -348,22 +415,46 @@ public class add_book extends javax.swing.JFrame {
     }//GEN-LAST:event_bookIDTextFieldActionPerformed
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
-        // TODO add your handling code here:d
-        book_ID = bookIDTextField.getText();
-        name = nameTextField.getText();
-        type = typeTextField.getText();
-        section = sectionTextField.getText();
-        serial = (int)(Double.parseDouble(serialTextField.getText()));
-        remaining = (int)(Double.parseDouble(remainingTextField.getText()));
-        try {
-            Book physicalBook = new PhysicalBook(book_ID,name,type,section,serial,remaining);
-        } catch (SQLException ex) {
-            Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
+        String imagesName = null;
+        if(addingImages != null){
+                Writer output = null;
+                String path = "src/bookCover";
+                File file = new File(path);
+                String dirName = file.getAbsolutePath();
+                File dir = new File (dirName);
+                Path source = Paths.get(addingImages);
+                Path targetDir = Paths.get(dirName);
+                imagesName = bookIDTextField.getText() + ".jpg";
+                Path target = targetDir.resolve(imagesName);
+            try {
+                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ex) {
+                Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-        JOptionPane.showMessageDialog(null, "Done");
-        add_book ad = new add_book();
-        ad.setVisible(true);
-        dispose();
+       
+        
+            // TODO add your handling code here:d
+            
+            book_ID = bookIDTextField.getText();
+            name = nameTextField.getText();
+            type = typeTextField.getText();
+            section = sectionTextField.getText();
+            serial = (int)(Double.parseDouble(serialTextField.getText()));
+            remaining = (int)(Double.parseDouble(remainingTextField.getText()));
+            try {
+                PhysicalBook physicalBook = new PhysicalBook(book_ID,name,type,section,serial,remaining);
+                if(imagesName != null)physicalBook.setImageLocation("/bookCover/" + imagesName);
+            } catch (SQLException ex) {
+                Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null, "Done");
+            add_book ad = new add_book();
+            ad.setVisible(true);
+            dispose();
+        
+        
     }//GEN-LAST:event_AddActionPerformed
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
@@ -441,10 +532,10 @@ public class add_book extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Add;
     private javax.swing.JButton Next;
+    private javax.swing.JButton addPicture;
     private javax.swing.JPanel backGround;
     private javax.swing.JTextField bookIDTextField;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel logo;

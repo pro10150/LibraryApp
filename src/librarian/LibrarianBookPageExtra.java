@@ -245,7 +245,7 @@ public class LibrarianBookPageExtra extends javax.swing.JFrame {
     }//GEN-LAST:event_bookImageActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        LibrarianBookPage menu = new LibrarianBookPage();
+        LibrarianBookPage menu = new LibrarianBookPage(bookNameLink);
         menu.setVisible(true);
         setVisible(false);
         dispose();

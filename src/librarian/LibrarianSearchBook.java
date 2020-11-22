@@ -185,7 +185,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
     
     public void gotoBookPage(String bookName) {
         if (!bookName.equals("-") && !bookName.equals("")) {
-            LibrarianBookPage bp = new LibrarianBookPage(bookName);
+            LibrarianBookPage bp = new LibrarianBookPage(bookName,searchQuery);
             bp.setVisible(true);
             setVisible(false);
             dispose();
