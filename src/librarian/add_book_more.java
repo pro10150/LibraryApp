@@ -336,29 +336,34 @@ public class add_book_more extends javax.swing.JFrame {
             book = new PhysicalBook(this.book_ID);
         } catch (SQLException ex) {
             Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         try {
             book.setDescription(description);
         } catch (SQLException ex) {
             Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
         try {
             book.setPublished_location(published_location);
         } catch (SQLException ex) {
             Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
         try {
             book.setYear(year);
         } catch (SQLException ex) {
             Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
         try {
             book.setAuthor(author);
         } catch (SQLException ex) {
             Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         JOptionPane.showMessageDialog(null, "Done");
         add_book ad = new add_book();

@@ -313,46 +313,55 @@ public class Edit extends javax.swing.JFrame {
             book = new PhysicalBook(this.bookID);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         try {
             book.setName(name);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         try {
             book.setType(type);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         try {
             book.setSection(section);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         try {
             book.setSerial(serial);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         try {
             book.setRemaining(remaining);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         try {
             book.setYear(year);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         try {
             book.setAuthor(author);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         try {
             book.setDescription(description);
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         JOptionPane.showMessageDialog(null, "Done");
         findpage fp = new findpage();

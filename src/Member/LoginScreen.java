@@ -15,8 +15,8 @@ import java.awt.Toolkit;
 public class LoginScreen extends javax.swing.JFrame {
     
     public LoginScreen() {
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/LibraryLogo.png"));
         initComponents();
-        setLocation(getLocation());
     }
 
     @SuppressWarnings("unchecked")
@@ -226,7 +226,6 @@ public class LoginScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/LibraryLogo.png"));
                 new LoginScreen().setVisible(true);
             }
         });

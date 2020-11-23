@@ -306,6 +306,8 @@ public class AddAudioBook extends javax.swing.JFrame {
                         Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
                     } catch (IOException ex) {
                         Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
+
                     }
                     
                 }
