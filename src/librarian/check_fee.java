@@ -116,6 +116,7 @@ public class check_fee extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(check_fee.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();
@@ -129,6 +130,7 @@ public class check_fee extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(check_fee.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();

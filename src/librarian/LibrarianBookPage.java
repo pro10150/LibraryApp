@@ -88,6 +88,7 @@ public class LibrarianBookPage extends javax.swing.JFrame {
     public void gotoLibrarianBookPageExtra(String bookName) {
         if (!bookName.equals("-")) {
             LibrarianBookPageExtra lbp = new LibrarianBookPageExtra(bookName);
+            lbp.setLocation(getLocation());
             lbp.setVisible(true);
             setVisible(false);
             dispose();
@@ -264,6 +265,7 @@ public class LibrarianBookPage extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
         }
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -277,6 +279,7 @@ public class LibrarianBookPage extends javax.swing.JFrame {
         try {
             //librarian_profile menu = new librarian_profile();
             LibrarianSearchBook menu = new LibrarianSearchBook(query);
+            menu.setLocation(getLocation());
             menu.setVisible(true);
             setVisible(false);
            dispose();

@@ -21,10 +21,12 @@ public class add_book_more extends javax.swing.JFrame {
     
     public add_book_more(){
         initComponents();
+        setLocation(getLocation());
     }
     
     public add_book_more(String book_ID) throws SQLException{
         initComponents();
+        setLocation(getLocation());
         PhysicalBook physicalBook = new PhysicalBook(book_ID);
         this.book_ID = physicalBook.getBookID();
     }
@@ -253,6 +255,7 @@ public class add_book_more extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();
@@ -359,6 +362,7 @@ public class add_book_more extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "Done");
         add_book ad = new add_book();
+        ad.setLocation(getLocation());
         ad.setVisible(true);
         dispose();
     }//GEN-LAST:event_AddActionPerformed
@@ -378,6 +382,7 @@ public class add_book_more extends javax.swing.JFrame {
             Logger.getLogger(add_book_more.class.getName()).log(Level.SEVERE, null, ex);
         }
         add_book ad = new add_book();
+        ad.setLocation(getLocation());
         ad.setVisible(true);
         dispose();
     }//GEN-LAST:event_CancelActionPerformed
@@ -403,6 +408,7 @@ public class add_book_more extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(librarian_profile.class.getName()).log(Level.SEVERE, null, ex);
         }
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -472,6 +478,7 @@ public class add_book_more extends javax.swing.JFrame {
             }
             
             AddAudioBook ad = new AddAudioBook(book_ID);
+            ad.setLocation(getLocation());
             ad.setVisible(true);
             dispose();
             

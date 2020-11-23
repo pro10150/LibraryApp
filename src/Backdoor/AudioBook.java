@@ -13,9 +13,9 @@ public class AudioBook extends Book{
 
         resultSet = statement.executeQuery("SELECT * FROM audio_book NATURAL JOIN book");
         while (resultSet.next()){
-            if (resultSet.getString("name").equals(this.name)){
-                    this.voice_actor = resultSet.getString("voice_actor");
-                    this.audio = resultSet.getString("audio");
+            if (resultSet.getString("name").equals(this.name) || resultSet.getString("book_ID").equals(this.name)){
+                    this.voice_actor = resultSet.getString("audio_book.voice_actor");
+                    this.audio = resultSet.getString("audio_book.audio");
                     PhysicalBook book = new PhysicalBook(this.name);
                     this.name = book.getName();
                     this.book_ID = book.getBookID();

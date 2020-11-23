@@ -269,6 +269,7 @@ public class AudioBookPageExtra extends javax.swing.JFrame {
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
         MemberPage mp = new MemberPage();
         mp.setVisible(true);
+        mp.setLocation(getLocation());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_accountButtonActionPerformed
@@ -276,12 +277,14 @@ public class AudioBookPageExtra extends javax.swing.JFrame {
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
         Notification notif = new Notification();
         notif.setVisible(true);
+        notif.setLocation(getLocation());
         setVisible(false);
         dispose();
     }//GEN-LAST:event_notifButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         AudioBookPage bp = new AudioBookPage(bookNameLink);
+        bp.setLocation(getLocation());
         bp.setVisible(true);
         setVisible(false);
         dispose();
@@ -298,6 +301,7 @@ try {
                 String query = searchField.getText();
                 if (!query.equals("")) {
                     SearchBook sp = new SearchBook(query);
+                    sp.setLocation(getLocation());
                     sp.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -312,6 +316,7 @@ try {
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         Main menu = new Main();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();

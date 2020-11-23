@@ -173,6 +173,7 @@ public class borrow_book extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(findpage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();
@@ -197,6 +198,7 @@ public class borrow_book extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(borrow_book.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();
@@ -215,6 +217,7 @@ public class borrow_book extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "Done");
         borrow_book br = new borrow_book();
+        br.setLocation(getLocation());
         br.setVisible(true);
         dispose(); 
     }//GEN-LAST:event_jButton2ActionPerformed

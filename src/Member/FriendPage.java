@@ -244,6 +244,7 @@ public class FriendPage extends javax.swing.JFrame {
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
         Notification notif = new Notification();
+        notif.setLocation(getLocation());
         notif.setVisible(true);
         setVisible(false);
         dispose();
@@ -260,6 +261,7 @@ try {
                 String query = searchField.getText();
                 if (!query.equals("")) {
                     SearchBook sp = new SearchBook(query);
+                    sp.setLocation(getLocation());
                     sp.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -274,6 +276,7 @@ try {
 
     private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
         MemberPage mp = new MemberPage();
+        mp.setLocation(getLocation());
         mp.setVisible(true);
         setVisible(false);
         dispose();
@@ -285,6 +288,7 @@ try {
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         Main menu = new Main();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -300,6 +304,7 @@ try {
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
         FriendList fl = new FriendList();
+        fl.setLocation(getLocation());
         fl.setVisible(true);
         setVisible(false);
         dispose();

@@ -277,6 +277,7 @@ public class check_info extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Checkpage check = new Checkpage();
+        check.setLocation(getLocation());
         check.setVisible(true);
         setVisible(false);
         dispose();
@@ -290,6 +291,7 @@ public class check_info extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(findpage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();

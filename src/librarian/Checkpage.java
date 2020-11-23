@@ -119,6 +119,7 @@ public class Checkpage extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Checkpage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();
@@ -138,6 +139,7 @@ public class Checkpage extends javax.swing.JFrame {
             else {
                check_info page = null;
                page = new check_info(query);
+               page.setLocation(getLocation());
                page.setVisible(true);
                setVisible(false);
                dispose(); 

@@ -38,6 +38,7 @@ public class add_book extends javax.swing.JFrame {
     
     public add_book(){
         initComponents();
+        setLocation(getLocation());
     }
     
     
@@ -298,6 +299,7 @@ public class add_book extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();
@@ -438,6 +440,7 @@ public class add_book extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "Done");
             add_book ad = new add_book();
+            ad.setLocation(getLocation());
             ad.setVisible(true);
             dispose();
         
@@ -481,6 +484,7 @@ public class add_book extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
         }
+        ad.setLocation(getLocation());
         ad.setVisible(true);
         dispose();
     }//GEN-LAST:event_NextActionPerformed
@@ -493,6 +497,7 @@ public class add_book extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(librarian_profile.class.getName()).log(Level.SEVERE, null, ex);
         }
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();

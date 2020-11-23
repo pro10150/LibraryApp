@@ -2,10 +2,13 @@
 package Backdoor;
 
 public class DBVars {
+    //Everone's url and users
+    public static String DBUrl = "jdbc:mysql://localhost:3306/library";
+    public static String DBUser = "root";
     //Por's Passoword
     public static String DBPassword = "@Pro3083711";
     //Por's path
-    public static String DBPath = "/Users/skooter/Downloads/Library/src";
+    //public static String DBPath = "/Users/skooter/Downloads/Library/src";
     
     //Job's Password
     //public static String DBPassword = "!KdHwE@WRUAU#uon$2";
@@ -13,4 +16,8 @@ public class DBVars {
     //Arm's Password
     //public static String DBPassword = "css225";
     //test
+    
+    //publicDB
+    //public static String DCPassword = " Av7frwoqEf";
+    
 }

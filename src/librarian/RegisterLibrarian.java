@@ -17,6 +17,7 @@ public class RegisterLibrarian extends javax.swing.JFrame {
     
     public RegisterLibrarian() {
         initComponents();
+        setLocation(getLocation());
     }
 
     /**
@@ -34,12 +35,12 @@ public class RegisterLibrarian extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        userIDTextField = new javax.swing.JTextField();
+        firstNameTextField = new javax.swing.JTextField();
+        lastNameTextField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        passwordTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,39 +75,39 @@ public class RegisterLibrarian extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel3.setText("Register Librarian");
 
-        jTextField1.setText("User ID");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        userIDTextField.setText("User ID");
+        userIDTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
+                userIDTextFieldMouseClicked(evt);
             }
         });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        userIDTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                userIDTextFieldActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("First name");
-        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+        firstNameTextField.setText("First name");
+        firstNameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField2MouseClicked(evt);
+                firstNameTextFieldMouseClicked(evt);
             }
         });
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        firstNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                firstNameTextFieldActionPerformed(evt);
             }
         });
 
-        jTextField3.setText("Last name");
-        jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
+        lastNameTextField.setText("Last name");
+        lastNameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField3MouseClicked(evt);
+                lastNameTextFieldMouseClicked(evt);
             }
         });
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        lastNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                lastNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -120,15 +121,15 @@ public class RegisterLibrarian extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account.png"))); // NOI18N
 
-        jTextField7.setText("Password");
-        jTextField7.addMouseListener(new java.awt.event.MouseAdapter() {
+        passwordTextField.setText("Password");
+        passwordTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField7MouseClicked(evt);
+                passwordTextFieldMouseClicked(evt);
             }
         });
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        passwordTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                passwordTextFieldActionPerformed(evt);
             }
         });
 
@@ -145,13 +146,13 @@ public class RegisterLibrarian extends javax.swing.JFrame {
                 .addGap(352, 352, 352)
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backGroundLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(userIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(backGroundLayout.createSequentialGroup()
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,13 +180,13 @@ public class RegisterLibrarian extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(jLabel4)
                 .addGap(51, 51, 51)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -217,6 +218,7 @@ public class RegisterLibrarian extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(RegisterMember.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();
@@ -225,66 +227,68 @@ public class RegisterLibrarian extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         RegisterPage Page = null;
         Page = new RegisterPage();
+        Page.setLocation(getLocation());
         Page.setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+    private void userIDTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userIDTextFieldMouseClicked
         // TODO add your handling code here:
-        String x = jTextField1.getText();
-        if (x.equals("User ID")) jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1MouseClicked
+        String x = userIDTextField.getText();
+        if (x.equals("User ID")) userIDTextField.setText("");
+    }//GEN-LAST:event_userIDTextFieldMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_userIDTextFieldActionPerformed
 
-    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+    private void firstNameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstNameTextFieldMouseClicked
         // TODO add your handling code here:
-        String x = jTextField2.getText();
-        if (x.equals("First name")) jTextField2.setText("");
-    }//GEN-LAST:event_jTextField2MouseClicked
+        String x = firstNameTextField.getText();
+        if (x.equals("First name")) firstNameTextField.setText("");
+    }//GEN-LAST:event_firstNameTextFieldMouseClicked
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_firstNameTextFieldActionPerformed
 
-    private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
+    private void lastNameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lastNameTextFieldMouseClicked
         // TODO add your handling code here:
-        String x = jTextField3.getText();
-        if (x.equals("Last name")) jTextField3.setText("");
-    }//GEN-LAST:event_jTextField3MouseClicked
+        String x = lastNameTextField.getText();
+        if (x.equals("Last name")) lastNameTextField.setText("");
+    }//GEN-LAST:event_lastNameTextFieldMouseClicked
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void lastNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_lastNameTextFieldActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        user_ID = jTextField1.getText();
-        first_name = jTextField2.getText();
-        last_name = jTextField3.getText();
-        password = jTextField7.getText();
+        user_ID = userIDTextField.getText();
+        first_name = firstNameTextField.getText();
+        last_name = lastNameTextField.getText();
+        password = passwordTextField.getText();
         try {
-            Librarian librarian = new Librarian(user_ID,first_name,last_name,password);
+            Librarian librarian = new Librarian(user_ID,password,first_name,last_name);
         } catch (SQLException ex) {
             Logger.getLogger(RegisterLibrarian.class.getName()).log(Level.SEVERE, null, ex);
         } 
         JOptionPane.showMessageDialog(null, "Done");
         RegisterPage rp = new RegisterPage();
+        rp.setLocation(getLocation());
         rp.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseClicked
+    private void passwordTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextFieldMouseClicked
         // TODO add your handling code here:
-        String x = jTextField7.getText();
-        if (x.equals("Password")) jTextField7.setText("");
-    }//GEN-LAST:event_jTextField7MouseClicked
+        String x = passwordTextField.getText();
+        if (x.equals("Password")) passwordTextField.setText("");
+    }//GEN-LAST:event_passwordTextFieldMouseClicked
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_passwordTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,16 +327,16 @@ public class RegisterLibrarian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backGround;
+    private javax.swing.JTextField firstNameTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField lastNameTextField;
     private javax.swing.JLabel logo;
+    private javax.swing.JTextField passwordTextField;
     private javax.swing.JPanel topPanel;
+    private javax.swing.JTextField userIDTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,10 +23,12 @@ public class Edit extends javax.swing.JFrame {
      * Creates new form Edit
      */
     public Edit(){
+        setLocation(getLocation());
         
     }
     public Edit(String bookID) throws SQLException {
         initComponents();
+        setLocation(getLocation());
         this.bookID = bookID;
         book = new PhysicalBook(this.bookID);
         nameTextField.setText(book.getName());
@@ -273,6 +275,7 @@ public class Edit extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
         }
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -280,6 +283,7 @@ public class Edit extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
             LibrarianSearchBook menu = new LibrarianSearchBook();
+            menu.setLocation(getLocation());
             menu.setVisible(true);
             setVisible(false);
             dispose();
@@ -352,6 +356,7 @@ public class Edit extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "Done");
         findpage fp = new findpage();
+        fp.setLocation(getLocation());
         fp.setVisible(true);
         setVisible(false);
         dispose();
@@ -497,6 +502,7 @@ public class Edit extends javax.swing.JFrame {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
         }
             AddAudioBook ad = new AddAudioBook(bookID);
+            ad.setLocation(getLocation());
             ad.setVisible(true);
             ad.backButton.setVisible(false);
             dispose();

@@ -9,8 +9,8 @@ public class Librarian extends User {
 
     public static Statement statement = null;
     public static ResultSet resultSet = null;
-    private static String url = "jdbc:mysql://localhost:3306/library";
-    private static String user = "root",pass = DBVars.DBPassword;
+    protected static String url = DBVars.DBUrl;
+    protected static String user = DBVars.DBUser,pass = DBVars.DBPassword;
     private Connection connect = DriverManager.getConnection(url,user,pass);
 
     public Librarian() throws SQLException{

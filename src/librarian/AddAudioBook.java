@@ -268,6 +268,7 @@ public class AddAudioBook extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
         }
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -278,6 +279,7 @@ public class AddAudioBook extends javax.swing.JFrame {
             PhysicalBook physicalBook = new PhysicalBook(book_ID);
             physicalBook.deletePhysicalBook();
             librarian_profile main = new librarian_profile();
+            main.setLocation(getLocation());
             main.setVisible(true);
             dispose();
         } catch (SQLException ex) {
@@ -318,6 +320,7 @@ public class AddAudioBook extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "Done");
         add_book ad = new add_book();
+        ad.setLocation(getLocation());
         ad.setVisible(true);
         dispose();
     }//GEN-LAST:event_AddActionPerformed
@@ -330,6 +333,7 @@ public class AddAudioBook extends javax.swing.JFrame {
             PhysicalBook physicalBook = new PhysicalBook(book_ID);
             physicalBook.deletePhysicalBook();
             librarian_profile main = new librarian_profile();
+            main.setLocation(getLocation());
             main.setVisible(true);
             dispose();
         } catch (SQLException ex) {

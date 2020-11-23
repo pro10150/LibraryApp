@@ -186,6 +186,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
     public void gotoBookPage(String bookName) {
         if (!bookName.equals("-") && !bookName.equals("")) {
             LibrarianBookPage bp = new LibrarianBookPage(bookName,searchQuery);
+            bp.setLocation(getLocation());
             bp.setVisible(true);
             setVisible(false);
             dispose();
@@ -574,6 +575,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         findpage menu = new findpage();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -620,6 +622,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
         }
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -644,6 +647,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Done");
             findpage fp = new findpage();
+            fp.setLocation(getLocation());
             fp.setVisible(true);
             setVisible(false);
             dispose();
@@ -669,6 +673,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Done");
             findpage fp = new findpage();
+            fp.setLocation(getLocation());
             fp.setVisible(true);
             setVisible(false);
             dispose();
@@ -695,6 +700,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "Done");
         findpage fp = new findpage();
+        fp.setLocation(getLocation());
         fp.setVisible(true);
         setVisible(false);
         dispose();
@@ -709,6 +715,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         }catch (SQLException ex) {
             Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
         }
+        edit1.setLocation(getLocation());
         edit1.setVisible(true);
         setVisible(false);
         dispose();
@@ -723,6 +730,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         }catch (SQLException ex) {
             Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
         }
+        edit2.setLocation(getLocation());
         edit2.setVisible(true);
         setVisible(false);
         dispose();
@@ -736,6 +744,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         }catch (SQLException ex) {
             Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
         }
+        edit3.setLocation(getLocation());
         edit3.setVisible(true);
         setVisible(false);
         dispose();

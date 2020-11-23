@@ -137,6 +137,7 @@ public class findpage extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(findpage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();
@@ -162,6 +163,7 @@ public class findpage extends javax.swing.JFrame {
                 String query = searchField.getText();
                 if (!query.equals("")) {
                     LibrarianSearchBook sp = new LibrarianSearchBook(query);
+                    sp.setLocation(getLocation());
                     sp.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -179,6 +181,7 @@ try {
                 String query = searchField.getText();
                 if (!query.equals("")) {
                     LibrarianSearchBook sp = new LibrarianSearchBook(query);
+                    sp.setLocation(getLocation());
                     sp.setVisible(true);
                     setVisible(false);
                     dispose();

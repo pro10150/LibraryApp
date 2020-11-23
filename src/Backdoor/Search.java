@@ -15,8 +15,8 @@ public class Search{
 
     public static Statement statement = null;
     public static ResultSet resultSet = null;
-    private static String url = "jdbc:mysql://localhost:3306/library";
-    private static String user = "root",pass = DBVars.DBPassword;
+    protected static String url = DBVars.DBUrl;
+    protected static String user = DBVars.DBUser,pass = DBVars.DBPassword;
     private Connection connect ;
 
     public Search() throws SQLException{

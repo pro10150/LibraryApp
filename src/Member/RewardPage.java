@@ -231,6 +231,7 @@ public class RewardPage extends javax.swing.JFrame {
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
         MemberPage mp = new MemberPage();
+        mp.setLocation(getLocation());
         mp.setVisible(true);
         setVisible(false);
         dispose();
@@ -238,6 +239,7 @@ public class RewardPage extends javax.swing.JFrame {
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
         Notification notif = new Notification();
+        notif.setLocation(getLocation());
         notif.setVisible(true);
         setVisible(false);
         dispose();
@@ -245,6 +247,7 @@ public class RewardPage extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         MemberPage menu = new MemberPage();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -261,6 +264,7 @@ public class RewardPage extends javax.swing.JFrame {
                 String query = searchField.getText();
                 if (!query.equals("")) {
                     SearchBook sp = new SearchBook(query);
+                    sp.setLocation(getLocation());
                     sp.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -274,6 +278,7 @@ public class RewardPage extends javax.swing.JFrame {
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         Main menu = new Main();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -281,6 +286,7 @@ public class RewardPage extends javax.swing.JFrame {
 
     private void yourRewardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yourRewardButtonActionPerformed
         YourReward newui = new YourReward();
+        newui.setLocation(getLocation());
         newui.setVisible(true);
         setVisible(false);
         dispose();

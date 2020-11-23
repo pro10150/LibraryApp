@@ -235,6 +235,7 @@ public class LibrarianBookPageExtra extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(librarian_profile.class.getName()).log(Level.SEVERE, null, ex);
         }
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();                            
@@ -246,6 +247,7 @@ public class LibrarianBookPageExtra extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         LibrarianBookPage menu = new LibrarianBookPage(bookNameLink);
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();

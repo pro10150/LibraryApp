@@ -203,6 +203,7 @@ public class RegisterMember extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         RegisterPage Page = null;
         Page = new RegisterPage();
+        Page.setLocation(getLocation());
         Page.setVisible(true);
         setVisible(false);
         dispose();
@@ -236,6 +237,7 @@ public class RegisterMember extends javax.swing.JFrame {
         }
        JOptionPane.showMessageDialog(null, "Done");
        RegisterPage rp = new RegisterPage();
+       rp.setLocation(getLocation());
        rp.setVisible(true);
        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -248,6 +250,7 @@ public class RegisterMember extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(RegisterMember.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();

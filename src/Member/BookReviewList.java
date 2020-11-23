@@ -254,6 +254,7 @@ public class BookReviewList extends javax.swing.JFrame {
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
         Notification notif = new Notification();
+        notif.setLocation(getLocation());
         notif.setVisible(true);
         setVisible(false);
         dispose();
@@ -270,6 +271,7 @@ public class BookReviewList extends javax.swing.JFrame {
                 String query = searchField.getText();
                 if (!query.equals("")) {
                     SearchBook sp = new SearchBook(query);
+                    sp.setLocation(getLocation());
                     sp.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -284,6 +286,7 @@ public class BookReviewList extends javax.swing.JFrame {
 
     private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
         MemberPage mp = new MemberPage();
+        mp.setLocation(getLocation());
         mp.setVisible(true);
         setVisible(false);
         dispose();
@@ -291,6 +294,7 @@ public class BookReviewList extends javax.swing.JFrame {
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         Main menu = new Main();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -298,6 +302,7 @@ public class BookReviewList extends javax.swing.JFrame {
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
         BookPage bp = new BookPage(bookNameLink);
+        bp.setLocation(getLocation());
         bp.setVisible(true);
         setVisible(false);
         dispose();
@@ -311,6 +316,7 @@ public class BookReviewList extends javax.swing.JFrame {
                 UIVars.currentFriendID = userIDList.get(index).toString();
                 UIVars.prevPage = "BookPage";
                 BookReviewOther br = new BookReviewOther(bookNameLink);
+                br.setLocation(getLocation());
                 br.setVisible(true);
                 setVisible(false);
                 dispose();

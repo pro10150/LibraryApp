@@ -36,7 +36,6 @@ public class AudioBookPage extends javax.swing.JFrame {
     }
     public AudioBookPage(String bookName){
         initComponents();
-        
         bookNameLink = bookName;
         
         try{
@@ -126,8 +125,8 @@ public class AudioBookPage extends javax.swing.JFrame {
         moreButton = new javax.swing.JButton();
         otherReviewButton = new javax.swing.JButton();
         playButton1 = new javax.swing.JLabel();
-        stopButton = new javax.swing.JLabel();
         backwardFifteen = new javax.swing.JLabel();
+        stopButton = new javax.swing.JLabel();
         forwardFifteen = new javax.swing.JLabel();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -300,19 +299,19 @@ public class AudioBookPage extends javax.swing.JFrame {
             }
         });
 
-        stopButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        stopButton.setText("􀜪 ");
-        stopButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                stopButtonMouseClicked(evt);
-            }
-        });
-
         backwardFifteen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         backwardFifteen.setText("􀎄 ");
         backwardFifteen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backwardFifteenMouseClicked(evt);
+            }
+        });
+
+        stopButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        stopButton.setText("􀜪 ");
+        stopButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                stopButtonMouseClicked(evt);
             }
         });
 
@@ -329,13 +328,13 @@ public class AudioBookPage extends javax.swing.JFrame {
         backGroundLayout.setHorizontalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backGroundLayout.createSequentialGroup()
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(back)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                    .addGroup(backGroundLayout.createSequentialGroup()
                         .addGap(340, 340, 340)
                         .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(backGroundLayout.createSequentialGroup()
@@ -343,17 +342,18 @@ public class AudioBookPage extends javax.swing.JFrame {
                                     .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(otherReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(108, 108, 108)
-                        .addComponent(backwardFifteen)
-                        .addGap(18, 18, 18)
-                        .addComponent(playButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(stopButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(forwardFifteen)
-                        .addGap(34, 34, 34))
+                                .addGap(126, 126, 126))
+                            .addGroup(backGroundLayout.createSequentialGroup()
+                                .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(backwardFifteen)
+                                .addGap(18, 18, 18)
+                                .addComponent(playButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(stopButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(forwardFifteen)
+                                .addGap(16, 16, 16))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
                         .addGap(250, 250, 250)
                         .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -390,9 +390,9 @@ public class AudioBookPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(playButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(stopButton)
+                    .addComponent(playButton1)
                     .addComponent(backwardFifteen)
+                    .addComponent(stopButton)
                     .addComponent(forwardFifteen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(otherReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,6 +433,7 @@ public class AudioBookPage extends javax.swing.JFrame {
             flag = 0;
         }
         MemberPage mp = new MemberPage();
+        mp.setLocation(getLocation());
         mp.setVisible(true);
         setVisible(false);
         dispose();
@@ -445,6 +446,7 @@ public class AudioBookPage extends javax.swing.JFrame {
             flag = 0;
         }
         Notification notif = new Notification();
+        notif.setLocation(getLocation());
         notif.setVisible(true);
         setVisible(false);
         dispose();
@@ -457,6 +459,7 @@ public class AudioBookPage extends javax.swing.JFrame {
             flag = 0;
         }
         Main menu = new Main();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -501,6 +504,7 @@ public class AudioBookPage extends javax.swing.JFrame {
             flag = 0;
         }
         Main menu = new Main();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();

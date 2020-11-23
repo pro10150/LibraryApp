@@ -126,6 +126,7 @@ public class RegisterPage extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(RegisterPage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();
@@ -133,6 +134,7 @@ public class RegisterPage extends javax.swing.JFrame {
 
     private void memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberActionPerformed
         RegisterMember rgm = new RegisterMember();
+        rgm.setLocation(getLocation());
         rgm.setVisible(true);
         setVisible(false);
         dispose();
@@ -141,6 +143,7 @@ public class RegisterPage extends javax.swing.JFrame {
 
     private void librarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librarianActionPerformed
         RegisterLibrarian rgl = new RegisterLibrarian();
+        rgl.setLocation(getLocation());
         rgl.setVisible(true);
         setVisible(false);
         dispose();

@@ -6,6 +6,7 @@ import librarian.*;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*; 
+import java.awt.Toolkit;
 
 /**
  *
@@ -15,6 +16,7 @@ public class LoginScreen extends javax.swing.JFrame {
     
     public LoginScreen() {
         initComponents();
+        setLocation(getLocation());
     }
 
     @SuppressWarnings("unchecked")
@@ -160,8 +162,8 @@ public class LoginScreen extends javax.swing.JFrame {
                          UIVars.userID = userId;
                          Main menu = new Main();
                          //System.out.println(UIVars.userID);
+                         menu.setLocation(getLocation());
                          menu.setVisible(true);
-                         menu.setLocation(0,0);
                          setVisible(false);
                          dispose();
                      }
@@ -171,8 +173,8 @@ public class LoginScreen extends javax.swing.JFrame {
                          UIVars.userID = userId;
                          librarian_profile menu = new librarian_profile();
                          //UIVars.userID = userId;
+                         menu.setLocation(getLocation());
                          menu.setVisible(true);
-                         menu.setLocation(0, 0);
                          setVisible(false);
                          dispose();
                      }
@@ -224,6 +226,7 @@ public class LoginScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/LibraryLogo.png"));
                 new LoginScreen().setVisible(true);
             }
         });

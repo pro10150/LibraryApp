@@ -29,6 +29,7 @@ public class librarian_profile extends javax.swing.JFrame {
     public void gotoadd_book() {
         initComponents();
         add_book ad = new add_book();
+        ad.setLocation(getLocation());
         ad.setVisible(true);
         dispose();
     }
@@ -217,6 +218,7 @@ public class librarian_profile extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(librarian_profile.class.getName()).log(Level.SEVERE, null, ex);
         }
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -226,6 +228,7 @@ public class librarian_profile extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         findpage find = new findpage();
+        find.setLocation(getLocation());
         find.setVisible(true);
         setVisible(false);
         dispose();
@@ -234,6 +237,7 @@ public class librarian_profile extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
        Checkpage cp = new Checkpage();
+       cp.setLocation(getLocation());
        cp.setVisible(true);
        setVisible(false);
        dispose(); 
@@ -242,6 +246,7 @@ public class librarian_profile extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         borrow_book br = new borrow_book();
+        br.setLocation(getLocation());
         br.setVisible(true);
         setVisible(false);
         dispose();
@@ -250,6 +255,7 @@ public class librarian_profile extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         RegisterPage rg = new RegisterPage();
+        rg.setLocation(getLocation());
         rg.setVisible(true);
         setVisible(false);
         dispose();
@@ -257,6 +263,7 @@ public class librarian_profile extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         LoginScreen ls = new LoginScreen();
+        ls.setLocation(getLocation());
         ls.setVisible(true);
         setVisible(false);
         UIVars.userID = null;

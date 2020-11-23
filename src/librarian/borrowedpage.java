@@ -112,6 +112,7 @@ public class borrowedpage extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(borrowedpage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        profile.setLocation(getLocation());
         profile.setVisible(true);
         setVisible(false);
         dispose();

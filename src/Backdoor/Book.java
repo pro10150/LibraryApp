@@ -16,8 +16,8 @@ public abstract class Book {
 
     protected static Statement statement = null;
     protected static ResultSet resultSet = null;
-    protected static String url = "jdbc:mysql://localhost:3306/library";
-    protected static String user = "root",pass = DBVars.DBPassword;
+    protected static String url = DBVars.DBUrl;
+    protected static String user = DBVars.DBUser,pass = DBVars.DBPassword;
     protected Connection connect = DriverManager.getConnection(url,user,pass);
 
     protected Book() throws SQLException {

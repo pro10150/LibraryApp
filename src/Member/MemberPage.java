@@ -314,6 +314,7 @@ try {
                 String query = searchField.getText();
                 if (!query.equals("")) {
                     SearchBook sp = new SearchBook(query);
+                    sp.setLocation(getLocation());
                     sp.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -328,6 +329,7 @@ try {
 
     private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
         MemberPage mp = new MemberPage();
+        mp.setLocation(getLocation());
         mp.setVisible(true);
         setVisible(false);
         dispose();
@@ -336,7 +338,8 @@ try {
     private void findFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findFriendButtonActionPerformed
         //FriendList newui = new FriendList();
         //newui.setVisible(true);
-        YourFriendReview newui = new YourFriendReview(); // Placeholder
+        YourFriendReview newui = new YourFriendReview();
+        newui.setLocation(getLocation());// Placeholder
         newui.setVisible(true);
         setVisible(false);
         dispose();
@@ -344,6 +347,7 @@ try {
 
     private void bookReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReviewButtonActionPerformed
         YourReview newui = new YourReview();
+        newui.setLocation(getLocation());
         newui.setVisible(true);
         setVisible(false);
         dispose();
@@ -351,6 +355,7 @@ try {
 
     private void yourFeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yourFeeButtonActionPerformed
         YourFee newui = new YourFee();
+        newui.setLocation(getLocation());
         newui.setVisible(true);
         setVisible(false);
         dispose();
@@ -358,6 +363,7 @@ try {
 
     private void borrowedBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowedBookButtonActionPerformed
         YourBorrowedBooks newui = new YourBorrowedBooks();
+        newui.setLocation(getLocation());
         newui.setVisible(true);
         setVisible(false);
         dispose();
@@ -365,6 +371,7 @@ try {
 
     private void reservedBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservedBookButtonActionPerformed
         YourReservedBook newui = new YourReservedBook();
+        newui.setLocation(getLocation());
         newui.setVisible(true);
         setVisible(false);
         dispose();
@@ -372,6 +379,7 @@ try {
 
     private void bookRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookRoomButtonActionPerformed
         BookRoom newui = new BookRoom();
+        newui.setLocation(getLocation());
         newui.setVisible(true);
         setVisible(false);
         dispose();
@@ -379,6 +387,7 @@ try {
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         Main menu = new Main();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -386,6 +395,7 @@ try {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         LoginScreen ls = new LoginScreen();
+        ls.setLocation(getLocation());
         ls.setVisible(true);
         setVisible(false);
         UIVars.userID = null;
@@ -396,6 +406,7 @@ try {
         
         try {
             FavoriteBook fb = new FavoriteBook();
+            fb.setLocation(getLocation());
             fb.setVisible(true);
             setVisible(false);
             dispose();

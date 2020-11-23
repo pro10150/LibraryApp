@@ -109,6 +109,7 @@ public class BookPage extends javax.swing.JFrame {
             
     public void gotoBookReviewList(String bookName) {
         BookReviewList brl = new BookReviewList(bookName);
+        brl.setLocation(getLocation());
         brl.setVisible(true);
         setVisible(false);
         dispose();
@@ -117,6 +118,7 @@ public class BookPage extends javax.swing.JFrame {
     public void gotoBookPageExtra(String bookName) {
         if (!bookName.equals("-")) {
             BookPageExtra bp = new BookPageExtra(bookName);
+            bp.setLocation(getLocation());
             bp.setVisible(true);
             setVisible(false);
             dispose();
@@ -427,6 +429,7 @@ public class BookPage extends javax.swing.JFrame {
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
         MemberPage mp = new MemberPage();
+        mp.setLocation(getLocation());
         mp.setVisible(true);
         setVisible(false);
         dispose();
@@ -434,6 +437,7 @@ public class BookPage extends javax.swing.JFrame {
 
     private void notifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifButtonActionPerformed
         Notification notif = new Notification();
+        notif.setLocation(getLocation());
         notif.setVisible(true);
         setVisible(false);
         dispose();
@@ -459,15 +463,14 @@ public class BookPage extends javax.swing.JFrame {
     }//GEN-LAST:event_reserveButtonActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        try {
+        
             //Main menu = new Main();
-            SearchBook menu = new SearchBook(query);
+            Main menu = new Main();
+            menu.setLocation(getLocation());
             menu.setVisible(true);
             setVisible(false);
             dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(BookPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_backActionPerformed
 
     private void bookImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookImageActionPerformed
@@ -485,6 +488,7 @@ public class BookPage extends javax.swing.JFrame {
                 String query = searchField.getText();
                 if (!query.equals("")) {
                     SearchBook sp = new SearchBook(query);
+                    sp.setLocation(getLocation());
                     sp.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -499,6 +503,7 @@ public class BookPage extends javax.swing.JFrame {
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         Main menu = new Main();
+        menu.setLocation(getLocation());
         menu.setVisible(true);
         setVisible(false);
         dispose();
@@ -530,6 +535,7 @@ public class BookPage extends javax.swing.JFrame {
     private void reviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewButtonActionPerformed
         UIVars.prevPage = "BookPage";
         BookReview br = new BookReview(bookNameLink);
+        br.setLocation(getLocation());
         br.setVisible(true);
         setVisible(false);
         dispose();
