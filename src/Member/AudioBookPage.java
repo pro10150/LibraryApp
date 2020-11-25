@@ -124,10 +124,10 @@ public class AudioBookPage extends javax.swing.JFrame {
         favouriteButton = new javax.swing.JButton();
         moreButton = new javax.swing.JButton();
         otherReviewButton = new javax.swing.JButton();
-        playButton1 = new javax.swing.JLabel();
-        backwardFifteen = new javax.swing.JLabel();
-        stopButton = new javax.swing.JLabel();
-        forwardFifteen = new javax.swing.JLabel();
+        playButton2 = new javax.swing.JButton();
+        stopButton2 = new javax.swing.JButton();
+        backwardFifteen2 = new javax.swing.JButton();
+        forwardFifteen2 = new javax.swing.JButton();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("<< Back");
@@ -291,35 +291,35 @@ public class AudioBookPage extends javax.swing.JFrame {
             }
         });
 
-        playButton1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        playButton1.setText("􀊕 ");
-        playButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                playButton1MouseClicked(evt);
+        playButton2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        playButton2.setText("􀊕 ");
+        playButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playButton2ActionPerformed(evt);
             }
         });
 
-        backwardFifteen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        backwardFifteen.setText("􀎄 ");
-        backwardFifteen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backwardFifteenMouseClicked(evt);
+        stopButton2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        stopButton2.setText("􀜪 ");
+        stopButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopButton2ActionPerformed(evt);
             }
         });
 
-        stopButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        stopButton.setText("􀜪 ");
-        stopButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                stopButtonMouseClicked(evt);
+        backwardFifteen2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        backwardFifteen2.setText("􀎄 ");
+        backwardFifteen2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backwardFifteen2ActionPerformed(evt);
             }
         });
 
-        forwardFifteen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        forwardFifteen.setText("􀎃 ");
-        forwardFifteen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                forwardFifteenMouseClicked(evt);
+        forwardFifteen2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        forwardFifteen2.setText("􀎃 ");
+        forwardFifteen2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forwardFifteen2ActionPerformed(evt);
             }
         });
 
@@ -339,21 +339,23 @@ public class AudioBookPage extends javax.swing.JFrame {
                         .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(backGroundLayout.createSequentialGroup()
                                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(otherReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(126, 126, 126))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(backGroundLayout.createSequentialGroup()
                                 .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 319, Short.MAX_VALUE))
+                            .addGroup(backGroundLayout.createSequentialGroup()
+                                .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(backwardFifteen)
-                                .addGap(18, 18, 18)
-                                .addComponent(playButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(stopButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(forwardFifteen)
-                                .addGap(16, 16, 16))))
+                                .addComponent(backwardFifteen2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(playButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stopButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(forwardFifteen2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
                         .addGap(250, 250, 250)
                         .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,14 +388,14 @@ public class AudioBookPage extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addComponent(bookImage, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
-                .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(playButton1)
-                    .addComponent(backwardFifteen)
-                    .addComponent(stopButton)
-                    .addComponent(forwardFifteen))
+                    .addComponent(moreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stopButton2)
+                    .addComponent(backwardFifteen2)
+                    .addComponent(forwardFifteen2)
+                    .addComponent(playButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(otherReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -550,20 +552,19 @@ public class AudioBookPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_otherReviewButtonActionPerformed
 
-    private void playButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButton1MouseClicked
-        // TODO add your handling code here:
+    private void playButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButton2ActionPerformed
         if(flag == 1){
-           if(playButton1.getText().equals("􀊗 ") && isPlaying){
+           if(playButton2.getText().equals("􀊗 ") && isPlaying){
             clipTimePosition = clip.getMicrosecondPosition();
             clip.stop();
             isPlaying = false;
-            playButton1.setText("􀊕 ");//pause
+            playButton2.setText("􀊕 ");//pause
         }
-           else if(playButton1.getText().equals("􀊕 ")){//resume
+           else if(playButton2.getText().equals("􀊕 ")){//resume
             clip.setMicrosecondPosition(clipTimePosition);
             clip.start();
             isPlaying = true; 
-            playButton1.setText("􀊗 ");
+            playButton2.setText("􀊗 ");
         } 
         }
         if(flag == 0){
@@ -575,7 +576,7 @@ public class AudioBookPage extends javax.swing.JFrame {
         clip.setMicrosecondPosition(0);
         clipTimePosition = 0;
         clip.start();
-        playButton1.setText("􀊗 ");
+        playButton2.setText("􀊗 ");
         flag = 1;
         } catch (SQLException ex) {
             Logger.getLogger(AudioBookPage.class.getName()).log(Level.SEVERE, null, ex);
@@ -588,31 +589,28 @@ public class AudioBookPage extends javax.swing.JFrame {
         }
         }
         }
-    }//GEN-LAST:event_playButton1MouseClicked
+    }//GEN-LAST:event_playButton2ActionPerformed
 
-    private void stopButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopButtonMouseClicked
-        // TODO add your handling code here:
-        
-       if (isLoaded == true) {
+    private void stopButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButton2ActionPerformed
+        if (isLoaded == true) {
             clipTimePosition = 0;
             clip.stop();
             flag = 0;
         }
-        playButton1.setText("􀊕 ");
-    }//GEN-LAST:event_stopButtonMouseClicked
+        playButton2.setText("􀊕 ");
+    }//GEN-LAST:event_stopButton2ActionPerformed
 
-    private void backwardFifteenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backwardFifteenMouseClicked
-         if (isLoaded == true) {
+    private void backwardFifteen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardFifteen2ActionPerformed
+        if (isLoaded == true) {
             clip.stop();
             clipTimePosition = clip.getMicrosecondPosition();
             clipTimePosition -= 15000000;
             clip.setMicrosecondPosition(clipTimePosition);
             clip.start();
          }
-    }//GEN-LAST:event_backwardFifteenMouseClicked
+    }//GEN-LAST:event_backwardFifteen2ActionPerformed
 
-    private void forwardFifteenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forwardFifteenMouseClicked
-        // TODO add your handling code here:
+    private void forwardFifteen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardFifteen2ActionPerformed
         if (isLoaded == true) {
         clipTimePosition = clip.getMicrosecondPosition();
         clip.stop();
@@ -622,11 +620,12 @@ public class AudioBookPage extends javax.swing.JFrame {
         clip.setMicrosecondPosition(clipTimePosition);
         clip.start();
         }
-    }//GEN-LAST:event_forwardFifteenMouseClicked
+    }//GEN-LAST:event_forwardFifteen2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -661,7 +660,7 @@ public class AudioBookPage extends javax.swing.JFrame {
     
     public void loadAudio(String bookname) throws SQLException, UnsupportedAudioFileException, IOException, LineUnavailableException{
         AudioBook book = new AudioBook(bookname);
-        String path = "src";
+        String path = "Audio";
         File file = new File(path);
         String absolutePath = file.getAbsolutePath();
         File filePath = new File(absolutePath + book.getAudio());
@@ -676,11 +675,11 @@ public class AudioBookPage extends javax.swing.JFrame {
     private javax.swing.JButton back;
     private javax.swing.JPanel backGround;
     private javax.swing.JLabel backLine;
-    private javax.swing.JLabel backwardFifteen;
+    private javax.swing.JButton backwardFifteen2;
     private javax.swing.JButton bookImage;
     private javax.swing.JLabel bookName;
     private javax.swing.JButton favouriteButton;
-    private javax.swing.JLabel forwardFifteen;
+    private javax.swing.JButton forwardFifteen2;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -689,11 +688,11 @@ public class AudioBookPage extends javax.swing.JFrame {
     private javax.swing.JButton moreButton;
     private javax.swing.JButton notifButton;
     private javax.swing.JButton otherReviewButton;
-    private javax.swing.JLabel playButton1;
+    private javax.swing.JButton playButton2;
     private javax.swing.JLabel rate;
     private javax.swing.JButton reviewButton;
     private javax.swing.JTextField searchField;
-    private javax.swing.JLabel stopButton;
+    private javax.swing.JButton stopButton2;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel typeAndAuthor;
     private javax.swing.JLabel voiceActor;

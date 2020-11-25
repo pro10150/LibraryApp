@@ -7,9 +7,21 @@ package librarian;
 
 import Backdoor.Book;
 import Backdoor.PhysicalBook;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.Image;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +31,7 @@ import javax.swing.JOptionPane;
 public class Edit extends javax.swing.JFrame {
     private String bookID;
     PhysicalBook book;
+    private String addingImages;
     /**
      * Creates new form Edit
      */
@@ -31,6 +44,15 @@ public class Edit extends javax.swing.JFrame {
         setLocation(getLocation());
         this.bookID = bookID;
         book = new PhysicalBook(this.bookID);
+        javax.swing.ImageIcon icon = null;
+        if(book.getImageLocation() != null){
+                icon = new javax.swing.ImageIcon(getClass().getResource(book.getImageLocation()));
+                Image img = icon.getImage();
+                Image modImg = img.getScaledInstance(130,260, Image.SCALE_SMOOTH);
+                icon = new ImageIcon(modImg);
+                bookImage.setIcon(icon);
+                bookImage.setText("");
+        }
         nameTextField.setText(book.getName());
         typeTextField.setText(book.getType());
         sectionTextField.setText(book.getSection());
@@ -298,7 +320,23 @@ public class Edit extends javax.swing.JFrame {
         int remaining = 0;
         int year = 0;
     private void sendReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendReviewActionPerformed
-        
+        String imagesName = null;
+        if(addingImages != null){
+                Writer output = null;
+                String path = "src/bookCover";
+                File file = new File(path);
+                String dirName = file.getAbsolutePath();
+                File dir = new File (dirName);
+                Path source = Paths.get(addingImages);
+                Path targetDir = Paths.get(dirName);
+                imagesName = book.getBookID() + ".jpg";
+                Path target = targetDir.resolve(imagesName);
+            try {
+                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ex) {
+                Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }}
         if(!nameTextField.getText().equals("") || !nameTextField.getText().equals(book.getName())) name = nameTextField.getText();
         if(!typeTextField.getText().equals("") || !typeTextField.getText().equals(book.getType())) type = typeTextField.getText();
         if(!sectionTextField.getText().equals("") || !sectionTextField.getText().equals(book.getSection())) section = sectionTextField.getText();
@@ -372,7 +410,28 @@ public class Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_sendReviewActionPerformed
 
     private void bookImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookImageActionPerformed
-        // TODO add your handling code here:
+        FileDialog dialog = new FileDialog((Frame)null, "Select File to Open");
+        dialog.setFilenameFilter(new FilenameFilter(){
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".jpg") || name.endsWith(".jpeg");
+                }
+            });
+        dialog.setMode(FileDialog.LOAD);
+        dialog.setVisible(true);
+        String images = dialog.getFile();
+        String file = dialog.getDirectory();
+        System.out.println(images + " chosen.");
+        addingImages = file + images;
+        javax.swing.ImageIcon icon;
+        
+        //addingImages = chooser.getSelectedFile().getAbsolutePath();
+        icon = new javax.swing.ImageIcon(addingImages);
+        Image img = icon.getImage();
+        Image modImg = img.getScaledInstance(128,140, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(modImg);
+        bookImage.setIcon(icon);
+        bookImage.setText("");
     }//GEN-LAST:event_bookImageActionPerformed
 
     private void nameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameTextFieldMouseClicked
@@ -454,6 +513,23 @@ public class Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_authorTextFieldActionPerformed
 
     private void audioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audioButtonActionPerformed
+        String imagesName = null;
+        if(addingImages != null){
+                Writer output = null;
+                String path = "src/bookCover";
+                File file = new File(path);
+                String dirName = file.getAbsolutePath();
+                File dir = new File (dirName);
+                Path source = Paths.get(addingImages);
+                Path targetDir = Paths.get(dirName);
+                imagesName = book.getBookID() + ".jpg";
+                Path target = targetDir.resolve(imagesName);
+            try {
+                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ex) {
+                Logger.getLogger(add_book.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Please check your information.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }}
         try {
             if(!nameTextField.getText().equals("") || !nameTextField.getText().equals(book.getName())) name = nameTextField.getText();
         if(!typeTextField.getText().equals("") || !typeTextField.getText().equals(book.getType())) type = typeTextField.getText();

@@ -11,11 +11,11 @@ public class AudioBook extends Book{
         statement = connect.createStatement();
         this.name = name;
 
-        resultSet = statement.executeQuery("SELECT * FROM audio_book NATURAL JOIN book");
+        resultSet = statement.executeQuery("SELECT * FROM audio_book as a NATURAL JOIN book as b");
         while (resultSet.next()){
-            if (resultSet.getString("name").equals(this.name) || resultSet.getString("book_ID").equals(this.name)){
-                    this.voice_actor = resultSet.getString("audio_book.voice_actor");
-                    this.audio = resultSet.getString("audio_book.audio");
+            if (this.name.equals(resultSet.getString("name"))){
+                    this.voice_actor = resultSet.getString("a.voice_actor");
+                    this.audio = resultSet.getString("a.audio");
                     PhysicalBook book = new PhysicalBook(this.name);
                     this.name = book.getName();
                     this.book_ID = book.getBookID();

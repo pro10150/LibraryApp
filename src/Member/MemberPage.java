@@ -19,7 +19,7 @@ public class MemberPage extends javax.swing.JFrame {
             Member member = new Member(UIVars.userID);
         
             memberName.setText(member.getFirstName() + "    " + member.getLastName());
-            memberPoint.setText("Point: [WIP]"); // get user's point
+            //memberPoint.setText("Point: [WIP]"); // get user's point
         }catch (Exception e){System.out.println(e);}
     }
 
@@ -40,14 +40,11 @@ public class MemberPage extends javax.swing.JFrame {
         backLine = new javax.swing.JLabel();
         accountLogo = new javax.swing.JButton();
         memberName = new javax.swing.JLabel();
-        memberPoint = new javax.swing.JLabel();
-        findFriendButton = new javax.swing.JButton();
         bookReviewButton = new javax.swing.JButton();
         favBookButton = new javax.swing.JButton();
         yourFeeButton = new javax.swing.JButton();
         borrowedBookButton = new javax.swing.JButton();
         reservedBookButton = new javax.swing.JButton();
-        bookRoomButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -132,19 +129,6 @@ public class MemberPage extends javax.swing.JFrame {
         memberName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         memberName.setText("Name: [First Name] Surname: [Last Name]");
 
-        memberPoint.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        memberPoint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        memberPoint.setText("Point: [Number]");
-
-        findFriendButton.setBackground(new java.awt.Color(202, 180, 138));
-        findFriendButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        findFriendButton.setText("Find friend (userID 1234 placeholder)");
-        findFriendButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                findFriendButtonActionPerformed(evt);
-            }
-        });
-
         bookReviewButton.setBackground(new java.awt.Color(202, 180, 138));
         bookReviewButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         bookReviewButton.setText("Your book review");
@@ -190,15 +174,6 @@ public class MemberPage extends javax.swing.JFrame {
             }
         });
 
-        bookRoomButton.setBackground(new java.awt.Color(202, 180, 138));
-        bookRoomButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        bookRoomButton.setText("Book a room");
-        bookRoomButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookRoomButtonActionPerformed(evt);
-            }
-        });
-
         logoutButton.setBackground(new java.awt.Color(202, 180, 138));
         logoutButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         logoutButton.setText("Log Out");
@@ -212,37 +187,28 @@ public class MemberPage extends javax.swing.JFrame {
         backGround.setLayout(backGroundLayout);
         backGroundLayout.setHorizontalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(accountLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(411, 411, 411))
             .addGroup(backGroundLayout.createSequentialGroup()
                 .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(memberPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(memberName, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(memberName, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backGroundLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(backLine, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(backGroundLayout.createSequentialGroup()
+                        .addGap(336, 336, 336)
+                        .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(favBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bookReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(yourFeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(borrowedBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reservedBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(favBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                            .addComponent(accountLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(411, 411, 411))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
-                            .addComponent(findFriendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(337, 337, 337))
-                        .addGroup(backGroundLayout.createSequentialGroup()
-                            .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(bookReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(yourFeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(borrowedBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(reservedBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(bookRoomButton, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(337, 337, 337)))))
         );
         backGroundLayout.setVerticalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,11 +219,7 @@ public class MemberPage extends javax.swing.JFrame {
                 .addComponent(accountLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(memberName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(memberPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(findFriendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addGap(56, 56, 56)
                 .addComponent(bookReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(favBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,10 +230,8 @@ public class MemberPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reservedBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookRoomButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -335,16 +295,6 @@ try {
         dispose();
     }//GEN-LAST:event_accountButton1ActionPerformed
 
-    private void findFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findFriendButtonActionPerformed
-        //FriendList newui = new FriendList();
-        //newui.setVisible(true);
-        YourFriendReview newui = new YourFriendReview();
-        newui.setLocation(getLocation());// Placeholder
-        newui.setVisible(true);
-        setVisible(false);
-        dispose();
-    }//GEN-LAST:event_findFriendButtonActionPerformed
-
     private void bookReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookReviewButtonActionPerformed
         YourReview newui = new YourReview();
         newui.setLocation(getLocation());
@@ -376,14 +326,6 @@ try {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_reservedBookButtonActionPerformed
-
-    private void bookRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookRoomButtonActionPerformed
-        BookRoom newui = new BookRoom();
-        newui.setLocation(getLocation());
-        newui.setVisible(true);
-        setVisible(false);
-        dispose();
-    }//GEN-LAST:event_bookRoomButtonActionPerformed
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         Main menu = new Main();
@@ -454,10 +396,8 @@ try {
     private javax.swing.JPanel backGround;
     private javax.swing.JLabel backLine;
     private javax.swing.JButton bookReviewButton;
-    private javax.swing.JButton bookRoomButton;
     private javax.swing.JButton borrowedBookButton;
     private javax.swing.JButton favBookButton;
-    private javax.swing.JButton findFriendButton;
     private javax.swing.JButton imageA2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -465,7 +405,6 @@ try {
     private javax.swing.JButton logo;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel memberName;
-    private javax.swing.JLabel memberPoint;
     private javax.swing.JButton notifButton;
     private javax.swing.JButton reservedBookButton;
     private javax.swing.JTextField searchField;

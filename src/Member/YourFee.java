@@ -19,7 +19,7 @@ public class YourFee extends javax.swing.JFrame {
             Member member = new Member(UIVars.userID);
             int fee = member.getFee();
             if (fee > 0) {
-                label1.setText("You have fee of" + fee + "baht left.");
+                label1.setText("You have fee of " + fee + " baht left.");
             }
             else {
                 label1.setText("Well done!");

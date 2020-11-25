@@ -726,7 +726,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         // TODO add your handling code here:
         Edit edit2 = null;
         try{
-            edit2 = new Edit (bookID1);
+            edit2 = new Edit (bookID2);
         }catch (SQLException ex) {
             Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -740,7 +740,7 @@ public class LibrarianSearchBook extends javax.swing.JFrame {
         // TODO add your handling code here:
         Edit edit3 = null;
         try{
-            edit3 = new Edit (bookID1);
+            edit3 = new Edit (bookID3);
         }catch (SQLException ex) {
             Logger.getLogger(LibrarianSearchBook.class.getName()).log(Level.SEVERE, null, ex);
         }
