@@ -192,7 +192,7 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
         topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         topLabel.setText("Borrowed Book");
 
-        borrowTable.setBackground(new java.awt.Color(202, 180, 138));
+        borrowTable.setBackground(new java.awt.Color(234, 215, 178));
         borrowTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"T1", "X", "X", "X", "X"},
@@ -231,7 +231,7 @@ public class YourBorrowedBooks extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(borrowTable);
 
-        jPanel1.setBackground(new java.awt.Color(202, 180, 138));
+        jPanel1.setBackground(new java.awt.Color(234, 215, 178));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account.png"))); // NOI18N
         jLabel4.setPreferredSize(new java.awt.Dimension(80, 70));

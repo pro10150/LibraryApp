@@ -151,6 +151,7 @@ public class check_info extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel3.setText("Check the borrowing information");
 
+        borrowTable.setBackground(new java.awt.Color(234, 215, 178));
         borrowTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -173,6 +174,8 @@ public class check_info extends javax.swing.JFrame {
         ));
         borrowTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(borrowTable);
+
+        jPanel1.setBackground(new java.awt.Color(234, 215, 178));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account.png"))); // NOI18N
         jLabel4.setPreferredSize(new java.awt.Dimension(80, 70));
